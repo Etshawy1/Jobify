@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "plugin:node/recommended",
+    "prettier/standard"
+  ],
+  "plugins": ["prettier", "react", "standard"],
+  "globals": {
+    "__logger": true
+  },
+  "rules": {
+    "spaced-comment": "off",
+    "no-console": "warn",
+    "consistent-return": "off",
+    "radix": "off",
+    "func-names": "off",
+    "object-shorthand": "off",
+    "no-process-exit": "off",
+    "no-param-reassign": "off",
+    "no-return-await": "off",
+    "no-restricted-globals": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "object-curly-newline": "off",
+    "max-len": ["error", { "code": 80, "ignoreUrls": true }],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": false
+      }
+    ],
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": ["swagger-jsdoc", "swagger-ui-express"]
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "req|res|next|val"
+      }
+    ],
+
+    "node/no-unsupported-features/es-syntax": "off",
+    "prettier/prettier": "warn"
+  },
+  "space-before-function-paren": "error"
+}

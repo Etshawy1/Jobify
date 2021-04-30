@@ -1,0 +1,20 @@
+require('dotenv').config();
+const path = require('path');
+const express = require('express');
+const compression = require('compression');
+const passport = require('passport');
+const app = express();
+const server = require('http').Server(app);
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.use(passport.initialize());
+app.use(compression());
+require('./utils/constants');
+require('./startup/passport-setup');
+require('./startup/logging')(app);
+require('./startup/ratelimit')(app);
+require('./startup/routes')(app);
+require('./startup/sanitization')(app);
+require('./startup/db')();
+
+module.exports = { app, server };
