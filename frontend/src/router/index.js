@@ -1,6 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import Vue from "vue";
+import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import SignUp from "../views/UserManagement/SignUp.vue";
+
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -17,15 +19,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
-  {
-    path: "/signup",
-    name: "SignUp",
-    component: SignUp,
-  }
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes,
 });
 
