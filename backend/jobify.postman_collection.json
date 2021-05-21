@@ -1,0 +1,1756 @@
+{
+	"info": {
+		"_postman_id": "8bdfac48-8d9e-40f7-8f48-f3298689803a",
+		"name": "jobify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"description": "<em>Required </em> The content type of the request body:"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"etsh\",\n\t\"email\": \"test133@test.com\",\n\t\"emailConfirm\": \"test133@test.com\",\n\t\"password\": \"password\",\n\t\"dateOfBirth\": \"1999-04-30\",\n\t\"gender\": \"male\",\n\t\"type\": \"artist\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/signup",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"signup"
+							]
+						},
+						"description": "# Description\r\n\r\nRegister a new user into the application providing his/her essential information\r\n\r\n## Response Format\r\n\r\nOn success, the HTTP status code in the response header is 201 Created. The response body contains the token that will be used to authorize the user and user object. On error, the header status code is an error code and the response body contains an error object. \r\n\r\n\r\n### user object \r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>name</td>\r\n      <td>string</td>\r\n      <td>The name that the user provided for himself.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>email</td>\r\n      <td>string</td>\r\n      <td>The email the user provided.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>_id</td>\r\n      <td>string</td>\r\n      <td>The Symphonia ID used to identify the user in our application.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n## Request parameters\r\n\r\n### Body parameters\r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>name</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The name that the user provided for himself.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>email</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The email the user provided.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>password</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The user password.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>passwordConfirm</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The user password confirmation.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>DateOfBirth</td>\r\n      <td>date</td>\r\n      <td><em>Required: </em> The date of birth for the user.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>Gender</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The gender of the user should be <code>\"male\"</code> or <code>\"female\"</code> only.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+					},
+					"response": [
+						{
+							"name": "Register as artist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"description": "<em>Required </em> The content type of the request body:"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"etsh\",\n\t\"email\": \"test136@test.com\",\n\t\"emailConfirm\": \"test136@test.com\",\n\t\"password\": \"password\",\n\t\"dateOfBirth\": \"1999-04-30\",\n\t\"gender\": \"male\",\n\t\"type\": \"artist\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/signup",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38-aBmji3L7IresG1Qs6sdEDrdI34w\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Apr 2020 13:32:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"token was sent to email\"\n}"
+						},
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"description": "<em>Required </em> The content type of the request body:"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"etsh\",\n\t\"email\": \"test135@test.com\",\n\t\"emailConfirm\": \"test135@test.com\",\n\t\"password\": \"password\",\n\t\"dateOfBirth\": \"1999-04-30\",\n\t\"gender\": \"male\",\n\t\"type\": \"artist\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/signup",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "631"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"277-pFHi2TFXoxPHV2PkwzakmQ/grFA\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Apr 2020 16:29:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOGRmYzAxMDNiYjIxMzQ0ODM0ODJhYyIsImlhdCI6MTU4NjM2MzM5MywiZXhwIjoxNzU5MTYzMzkzfQ.eqt2T3Dih1IZdabgh9AvKQ9Uqo4CxjqmX_p72JbV64k\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null\n            },\n            \"queueTracks\": [],\n            \"previousTrack\": null,\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"devices\": []\n        },\n        \"ownedPlaylists\": [],\n        \"followedAlbums\": [],\n        \"followedTracks\": [],\n        \"_id\": \"5e8dfc0103bb2134483482ac\",\n        \"email\": \"test135@test.com\",\n        \"name\": \"etsh\",\n        \"dateOfBirth\": \"1999-04-30T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/images/users/default.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"description": "<em>Required </em> The content type of the request body:"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"generalmohamed1999@gmail.com\",\n\t\"password\": \"password\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						},
+						"description": "# Description\r\n\r\nlogin the Symphonia user into the application providing his/her registered email\r\n\r\n# Response Format\r\n\r\nOn success, the HTTP status code in the response header is `200`. The response body contains the token that will be used to authorize the user and user object. On error, the header status code is an error code and the response body contains an error object. \r\n\r\n# Example\r\n\r\n## user object \r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>name</td>\r\n      <td>string</td>\r\n      <td>The name that the user provided for himself.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>email</td>\r\n      <td>string</td>\r\n      <td>The email the user provided.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>_id</td>\r\n      <td>string</td>\r\n      <td>The Symphonia ID used to identify the user in our application.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n# Request parameters\r\n\r\n## Body parameters\r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>email</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The email the user provided.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>password</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The user password.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"description": "<em>Required </em> The content type of the request body:"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"generalmohamed1999@gmail.com\",\n\t\"password\": \"password\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/login",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 30 May 2020 13:57:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"971-PyqDrCHpx6B8e40YEzq5JJ8KTqs\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODEyNWRjNTQ2NjA2NzJmZDY5OTg3ZiIsImlhdCI6MTU5MDg0NzA2MSwiZXhwIjoxNzYzNjQ3MDYxfQ.QK6PXV53d0ge-Wpd4KIX4uVh0I1slG000OKmy05G8i4\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null,\n                \"device\": \"5ed04460bf6e5b68d3e52dcf\"\n            },\n            \"queueTracks\": [\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a39f24e11cd46c8bde654\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a37d0d56ea252c3860a1a\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1ea07937ec4d40c6debf\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e9a7937ec4d40c6debe\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e937937ec4d40c6debd\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e767937ec4d40c6debc\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e727937ec4d40c6debb\"\n            ],\n            \"previousTrack\": \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e937937ec4d40c6debd\",\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"nextTrack\": null,\n            \"devices\": [\n                {\n                    \"_id\": \"5ed03e767ddd9c689c7485c2\",\n                    \"devicesName\": \"Chrome\"\n                },\n                {\n                    \"_id\": \"5ed04447bf6e5b68d3e52dca\"\n                },\n                {\n                    \"_id\": \"5ed04460bf6e5b68d3e52dcf\"\n                }\n            ]\n        },\n        \"premium\": true,\n        \"ownedPlaylists\": [\n            \"5e7969965146d92e98ac3ef7\",\n            \"5e7ac3c7d43a2c49909c549c\",\n            \"5e805a8a3711912168602afa\",\n            \"5e875c15ba6ebe663fdbb2c1\",\n            \"5e9f6250a0e0d71699c45b09\",\n            \"5eccc3ef3900de3c24583d48\",\n            \"5eccc3fa3900de3c24583d49\"\n        ],\n        \"followedAlbums\": [\n            \"5e701f4d2672a63a60573a02\",\n            \"5e701fdf2672a63a60573a06\"\n        ],\n        \"followedTracks\": [\n            \"5e7d2dc03429e24340ff1396\",\n            \"5ea24170b53b6d11e68732db\",\n            \"5e8a1e937937ec4d40c6debd\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"5e8125dc54660672fd69987f\",\n        \"email\": \"generalmohamed1999@gmail.com\",\n        \"name\": \"Etshawy\",\n        \"dateOfBirth\": \"1999-05-12T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"last_login\": \"2020-05-30T13:57:41.927Z\",\n        \"passwordChangedAt\": \"2020-04-19T17:20:46.748Z\",\n        \"googleId\": \"114901540775379681047\",\n        \"imageGoogleUrl\": \"https://lh3.googleusercontent.com/a-/AOh14Gga4UgHOVM-hgdnV5Sv8OusgKzhsfmiYv5wEgSwxA\",\n        \"imageUrl\": \"https://thesymphonia.ddns.net/api/v1/images/users/b25af6f135ececc649c9-1590714351975.jpg\",\n        \"playerToken\": \"19992ee6a8b4a40eced8708c930c7768aaac64456428243206973ce2d9143f64\",\n        \"playerTokenExpires\": \"2020-05-28T23:28:16.872Z\",\n        \"phone\": \"577_5777\",\n        \"facebookId\": \"1513670318797902\",\n        \"imageFacebookUrl\": \"https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1513670318797902&height=50&width=50&ext=1589998517&hash=AeRnTaA0S9yI9ubW\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"passwordCurrent\": \"newpassword\",\n\t\"password\": \"password\",\n\t\"passwordConfirm\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updatepassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updatepassword"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {your access token}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"passwordCurrent\": \"password\",\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatepassword",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatepassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "999"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Mar 2020 16:35:28 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1585503326"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "453"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c5-1Q2P1P6u8hNJlcJfxpbyNTU6QZA\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODBiMzQxYjE5YTI0MDg0Y2I5YjdlNyIsImlhdCI6MTU4NTQ5OTczMiwiZXhwIjoxNTg1NTAzMzMyfQ._YoFcWRISVlkTXUA0s8qaxf7N0L3A2ZIwfVEwLq5joU\",\n    \"user\": {\n        \"_id\": \"5e80b341b19a24084cb9b7e7\",\n        \"email\": \"test29@test.com\",\n        \"name\": \"etsh\",\n        \"dateOfBirth\": \"1999-12-31T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"last_login\": \"2020-03-29T16:33:58.024Z\",\n        \"passwordChangedAt\": \"2020-03-29T16:35:31.242Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "<em>Required </em> The content type of the request body:",
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"generalmohamed1999@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/forgotpassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"forgotpassword"
+							]
+						},
+						"description": "# Description\r\n\r\nwhen a user forgets his password he provides his email so we can help him get into his account.\r\n\r\n# Response Format\r\n\r\nOn success, the HTTP status code in the response header is `200`. The response body contains a message telling the user to check his email inbox. On error, the header status code is an error code and the response body contains an error object. \r\n\r\n\r\n# Request parameters\r\n\r\n## Body parameters\r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>email</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The registered user email in Symphonia application.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+					},
+					"response": [
+						{
+							"name": "Forgot Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "<em>Required </em> The content type of the request body:",
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test@test.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/forgotpassword",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"forgotpassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Mar 2020 18:00:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "999"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1585591549"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-7vJh+jMVY1tC+XB9d74hwdymChI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Token sent to email!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset_Password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"description": "<em>Required </em> The content type of the request body:"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/resetpassword/:{token}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"resetpassword",
+								":{token}"
+							],
+							"variable": [
+								{
+									"key": "{token}",
+									"value": "f31c2eb07635197b475353b52140f202dbc6962045bc64929b0c3d2b0ec4b0c6",
+									"type": "string",
+									"description": "*required: *  A valid Token that the server sent it to the user email."
+								}
+							]
+						},
+						"description": "# Description\r\n\r\nThe user using the provided token can send the new password for the account to be set.\r\n\r\n# Response Format\r\n\r\nOn success, the HTTP status code in the response header is `200`. The response body contains the access token for the user. On error, the header status code is an error code and the response body contains an error object. \r\n\r\n\r\n# Request parameters\r\n\r\n## Body parameters\r\n\r\n<table>\r\n  <thead>\r\n    <tr>\r\n      <th>Key</th>\r\n      <th>Value Type</th>\r\n      <th>Value Description</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <td>password</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The new account password.</td>\r\n    </tr>\r\n    <tr>\r\n      <td>passwordConfirm</td>\r\n      <td>string</td>\r\n      <td><em>Required: </em> The new account password confirmation.</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+					},
+					"response": [
+						{
+							"name": "Reset_Password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"description": "<em>Required </em> The content type of the request body:"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/resetpassword/:{token}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"resetpassword",
+										":{token}"
+									],
+									"variable": [
+										{
+											"key": "{token}",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"461-I+md5cydQYq5EFszWlzxYesxHpI\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Apr 2020 16:32:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODEyNWRjNTQ2NjA2NzJmZDY5OTg3ZiIsImlhdCI6MTU4NjM2MzU0NywiZXhwIjoxNzU5MTYzNTQ3fQ.svKEbb352eWc8_FfHG055gSi3edEs0VScaTSlaP45zQ\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null\n            },\n            \"queueTracks\": [],\n            \"previousTrack\": null,\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"devices\": [\n                {\n                    \"_id\": \"5e8a5a78b2859207bf1fc2e8\",\n                    \"devicesName\": \"chrome\"\n                }\n            ]\n        },\n        \"ownedPlaylists\": [\n            \"5e7969965146d92e98ac3ef7\",\n            \"5e7ac3c7d43a2c49909c549c\",\n            \"5e805a8a3711912168602afa\",\n            \"5e875c15ba6ebe663fdbb2c1\"\n        ],\n        \"followedAlbums\": [\n            \"5e701f4d2672a63a60573a02\",\n            \"5e701fdf2672a63a60573a06\"\n        ],\n        \"followedTracks\": [\n            \"5e7d2dc03429e24340ff1396\"\n        ],\n        \"_id\": \"5e8125dc54660672fd69987f\",\n        \"email\": \"generalmohamed1999@gmail.com\",\n        \"name\": \"Muhammad Ahmad Hesham\",\n        \"dateOfBirth\": \"1999-05-12T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"user\",\n        \"last_login\": \"2020-04-06T10:21:58.141Z\",\n        \"passwordChangedAt\": \"2020-04-08T16:32:26.921Z\",\n        \"googleId\": \"googleId\",\n        \"imageGoogleUrl\": \"https://lh3.googleusercontent.com/a-/AOh14Gga4UgHOVM-hgdnV5Sv8OusgKzhsfmiYv5wEgSwxA\",\n        \"imageUrl\": \"https://thesymphonia.ddns.net/api/v1/images/users/default.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Apply_Artist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/activate/:{token}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"activate",
+								":{token}"
+							],
+							"variable": [
+								{
+									"key": "{token}",
+									"value": "5e3a07fb752414b689ac6730fd6e6eabe3f6f29bafed13669a00bbd34967542c",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Apply_Artist",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/activate/:{token}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"activate",
+										":{token}"
+									],
+									"variable": [
+										{
+											"key": "{token}",
+											"value": "c3e959d5d735a91bac435d4e04a041e3fa7ef0cd8bc57e68f167bad4b9742e0c"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "687"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2af-XhGPX9UFAjcWT2A7vlj5/ex0MNQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Apr 2020 00:50:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTBlNTFkYzMyOWIwMDRjYzc0NGYwNyIsImlhdCI6MTU4NzYwMzA0MywiZXhwIjoxNzYwNDAzMDQzfQ.flxIxPi_JKuaj-tlxSeah9E-z-lnNaa2mMRjy9tevNA\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null\n            },\n            \"queueTracks\": [],\n            \"previousTrack\": null,\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"devices\": []\n        },\n        \"ownedPlaylists\": [],\n        \"followedAlbums\": [],\n        \"followedTracks\": [],\n        \"deleted\": false,\n        \"_id\": \"5ea0e51dc329b004cc744f07\",\n        \"email\": \"test136@test.com\",\n        \"name\": \"etsh\",\n        \"dateOfBirth\": \"1999-04-30T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"last_login\": \"2020-04-23T00:45:17.897Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/images/users/default.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Facebook-Auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/auth/facebook/symphonia",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"auth",
+								"facebook",
+								"symphonia"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Facebook-Auth",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/auth/facebook",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"auth",
+										"facebook"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Authenticated with facebook\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Check email existence",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test29@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/email-exist",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"email-exist"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check if email exists in the database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test29@test.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/email-exist",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"email-exist"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "996"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Apr 2020 20:32:09 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1585949332"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-InAREvGHtGmbIvvXUJT/WV24CmA\""
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"exists\": true,\n    \"type\": \"artist\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Premium",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/me/checkout-session",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"me",
+								"checkout-session"
+							]
+						},
+						"description": "## Get user Cridet card sesssion\r\n\r\n return information from the session that the user use to pay the premium subscribtion\r\n## Response Format\r\n  On success, the HTTP status code in the response header is 200 OK, the header status code is an error code and the response body contains an error object."
+					},
+					"response": [
+						{
+							"name": "Premium",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/me/checkout-session",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"me",
+										"checkout-session"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "967"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2020 14:22:35 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1586097230"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "828"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33c-CN5AUcwAIsmbBcFI7rAiMWQvAS0\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"session\": {\n        \"id\": \"cs_test_ZbI888pzQWoVMZjtGrKSU2mVEFyaPpbwEeZ4LMUengwGfjrcjXNoVmWX\",\n        \"object\": \"checkout.session\",\n        \"billing_address_collection\": null,\n        \"cancel_url\": \"http://localhost:3000/\",\n        \"client_reference_id\": \"mohamed.ahmed999@eng-st.cu.edu.eg\",\n        \"customer\": null,\n        \"customer_email\": \"mohamed.ahmed999@eng-st.cu.edu.eg\",\n        \"display_items\": [\n            {\n                \"amount\": 10000,\n                \"currency\": \"usd\",\n                \"custom\": {\n                    \"description\": \"remove advs and get locked songs\",\n                    \"images\": [\n                        \"http://localhost:3000/img/defult\"\n                    ],\n                    \"name\": \"Premium Subscription\"\n                },\n                \"quantity\": 1,\n                \"type\": \"custom\"\n            }\n        ],\n        \"livemode\": false,\n        \"locale\": null,\n        \"metadata\": {},\n        \"mode\": \"payment\",\n        \"payment_intent\": \"pi_1GUZMvJfsNM64j5dNoOMub5j\",\n        \"payment_method_types\": [\n            \"card\"\n        ],\n        \"setup_intent\": null,\n        \"shipping\": null,\n        \"shipping_address_collection\": null,\n        \"submit_type\": null,\n        \"subscription\": null,\n        \"success_url\": \"http://localhost:3000/api/v1/me\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-Current-User-Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/me",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						},
+						"description": "## Get user Pfofile (private) \r\n Just get informations about the user .\r\n\r\n\r\n## Response Format\r\n  On success, the HTTP status code in the response header is 200 OK , the header status code is an error code and the response body contains an error object."
+					},
+					"response": [
+						{
+							"name": "Get-Current-User-Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/me",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2020 13:29:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"562-LnwxqZBdxcYBTesCvqeuTnJRm6w\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"premium\": true,\n    \"followedUsers\": [\n        \"5e84b966681ae439edfc1d6f\",\n        \"5e82a48054660672fd699883\",\n        \"5e812a3454660672fd699880\",\n        \"5e8c77c1e37ac11ac4f0135f\"\n    ],\n    \"tracks\": [],\n    \"ownedPlaylists\": [\n        \"5e7969965146d92e98ac3ef7\",\n        \"5e7ac3c7d43a2c49909c549c\",\n        \"5e805a8a3711912168602afa\",\n        \"5e875c15ba6ebe663fdbb2c1\",\n        \"5edfc01179571909a0c80f51\"\n    ],\n    \"followedAlbums\": [\n        \"5e701fdf2672a63a60573a06\",\n        \"5e794163c01c024ecc3c31d3\",\n        \"5e89f33375bcc40cc4b5a736\"\n    ],\n    \"followedTracks\": [\n        \"5e7d2dc03429e24340ff1396\",\n        \"5e7d2e023429e24340ff1398\",\n        \"5e7d334860cd930408a5f995\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"5e8125dc54660672fd69987f\",\n    \"email\": \"generalmohamed1999@gmail.com\",\n    \"name\": \"Muhammad Ahmad Hesham\",\n    \"dateOfBirth\": \"1999-05-12T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"user\",\n    \"last_login\": \"2020-06-10T11:40:52.278Z\",\n    \"imageGoogleUrl\": \"https://lh3.googleusercontent.com/a-/AOh14Gga4UgHOVM-hgdnV5Sv8OusgKzhsfmiYv5wEgSwxA\",\n    \"imageUrl\": \"https://graph.facebook.com/v2.6/1513670318797902/picture?type=large\",\n    \"__v\": 15,\n    \"imageFacebookUrl\": \"https://graph.facebook.com/v2.6/1513670318797902/picture?type=large\",\n    \"playerToken\": \"49a5afcd0a492c4afd262bad421194dcf56a0392027f6f351e8a91acb96184ec\",\n    \"playerTokenExpires\": \"2020-06-10T12:38:44.597Z\",\n    \"registraionToken\": \"eoutghG3cONxylicJfk9rI:APA91bEsUYhjNQBmM6bJUr0mJ0EJYPeye4nKXMReEBoJd-qF88gH53EosxnYT4o6JQbnVeWra31kbhRFcMYffSDz3wBHYvHxbNTXCVH05Uyljn0wmJFrNi14zZGnPl7a0BebCSiC0e8t\",\n    \"premiumExpires\": \"2020-12-06T17:02:32.240Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-User-Public-Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/me/user/:{user_id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"me",
+								"user",
+								":{user_id}"
+							],
+							"variable": [
+								{
+									"key": "{user_id}",
+									"value": "5e812a3454660672fd699880",
+									"type": "string",
+									"description": "The `Symphonia` id for the document you want to retrieve"
+								}
+							]
+						},
+						"description": "## Get user Pfofile (public) \r\n Just get informations about the user .\r\n\r\n\r\n## Response Format\r\n  On success, the HTTP status code in the response header is 200 OK , the header status code is an error code and the response body contains an error object."
+					},
+					"response": [
+						{
+							"name": "Get-User-Public-Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/me/user/:{user_id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"me",
+										"user",
+										":{user_id}"
+									],
+									"variable": [
+										{
+											"key": "{user_id}",
+											"value": "5e812a3454660672fd699880",
+											"description": "The `Symphonia` id for the document you want to retrieve"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2020 13:30:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4dc-MxA/IwYmloYVDEU3XwEjvS/ieUw\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"premium\": false,\n    \"followedUsers\": [\n        \"5e8b6d866253cb184eaac150\",\n        \"5e812db054660672fd699881\",\n        \"5edff84830afcb26b83fb1ac\",\n        \"5e82a48054660672fd699883\"\n    ],\n    \"tracks\": [],\n    \"ownedPlaylists\": [\n        \"5e806865ef653f5a541e0b1d\",\n        \"5e8069722fcb0d35900c4d64\",\n        \"5e8078b0dbaafc18605cb029\",\n        \"5e8828df838d9835d207016d\",\n        \"5edfcbf079571909a0c80ff1\",\n        \"5edfd09d79571909a0c810d1\",\n        \"5edfd57079571909a0c81545\",\n        \"5edfd65f79571909a0c8155c\",\n        \"5edfda35d6f6331d3e8e0766\",\n        \"5edfdde7d6f6331d3e8e07dc\",\n        \"5edfdec9d6f6331d3e8e07f7\",\n        \"5edfe061d6f6331d3e8e081c\"\n    ],\n    \"followedAlbums\": [\n        \"5e794163c01c024ecc3c31d3\",\n        \"5edf5a442aa9b365682e46f9\",\n        \"5e701fdf2672a63a60573a06\"\n    ],\n    \"followedTracks\": [\n        \"5e7d2dc03429e24340ff1396\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"5e812a3454660672fd699880\",\n    \"email\": \"test1@test.com\",\n    \"name\": \"user1\",\n    \"dateOfBirth\": \"1999-06-25T00:00:00.000Z\",\n    \"gender\": \"female\",\n    \"type\": \"user\",\n    \"imageUrl\": \"https://thesymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"__v\": 10,\n    \"last_login\": \"2020-06-10T09:29:12.974Z\",\n    \"playerToken\": \"ea1677700c30e32cc4f353f3650522ea1ac4fe2927fccc940e3341585f1c6f81\",\n    \"playerTokenExpires\": \"2020-06-10T09:53:29.790Z\",\n    \"registraionToken\": \"d1paSPuuvv0IgsR6DQLn6s:APA91bHg6-nHHNcgEgvmA5rEwb9IuU19otI9EV_cG5Ie2yQeHxqft_ZF84bnXs-pEjcZKw9as3DPLonu0Q9LTiOuzc4QTdbmRxRo3_a0PlfY8aUH9-039wYlbnBaZSeixT26ChVMf9Nv\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update user data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"ahmad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/me/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"me",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update all user data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test25@test.com\",\n\t\"gender\": \"male\",\n\t\"dateOfBirth\": \"1999-05-31\",\n\t\"phone\": \"1216595487\",\n\t\"name\": \"nice\"\n\t\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/me/",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"me",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "999"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 12:23:04 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1586179275"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"746-uxb8H/QUWe6FQH1Ds6JLNTiPG+Q\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"queue\": {\n        \"currentlyPlaying\": {\n            \"currentTrack\": \"http://ec2-54-197-122-205.compute-1.amazonaws.com/api/v1/me/player/tracks/5e7d2dc03429e24340ff1396\",\n            \"device\": \"5e8a6b01ed210008a53e2f7f\"\n        },\n        \"queueTracks\": [],\n        \"previousTrack\": null,\n        \"repeat\": false,\n        \"shuffle\": false,\n        \"play\": false,\n        \"repeatOnce\": false,\n        \"devices\": [\n            {\n                \"_id\": \"5e8a107fdf9ed11c1cc2de92\"\n            },\n            {\n                \"_id\": \"5e8a10c3df9ed11c1cc2de95\"\n            },\n            {\n                \"_id\": \"5e8a10cbd56ea252c3860a0a\"\n            },\n            {\n                \"_id\": \"5e8a113bdf9ed11c1cc2de97\"\n            },\n            {\n                \"_id\": \"5e8a1144d56ea252c3860a0c\"\n            },\n            {\n                \"_id\": \"5e8a1185d56ea252c3860a0e\"\n            },\n            {\n                \"_id\": \"5e8a118cdf9ed11c1cc2de99\"\n            },\n            {\n                \"_id\": \"5e8a1d9373973e2554164b1c\"\n            },\n            {\n                \"_id\": \"5e8a206cd021d52aecca8cf7\"\n            },\n            {\n                \"_id\": \"5e8a20a81688d1074869b9d0\"\n            },\n            {\n                \"_id\": \"5e8a2100d56ea252c3860a16\"\n            },\n            {\n                \"_id\": \"5e8a29a7d56ea252c3860a18\"\n            },\n            {\n                \"_id\": \"5e8a29b152566818b8f6822f\"\n            },\n            {\n                \"_id\": \"5e8a29e97e47b03d0428d140\"\n            },\n            {\n                \"_id\": \"5e8a2a7aa8350f239c4b48a4\"\n            },\n            {\n                \"_id\": \"5e8a2a9af04fa83bd860fae7\"\n            },\n            {\n                \"_id\": \"5e8a4d8d7b6f286c4816cbe5\"\n            },\n            {\n                \"_id\": \"5e8a4f39b4d0ab6f38e74f0d\"\n            },\n            {\n                \"_id\": \"5e8a4f4db4d0ab6f38e74f0f\"\n            },\n            {\n                \"_id\": \"5e8a4f4fb4d0ab6f38e74f11\"\n            },\n            {\n                \"_id\": \"5e8a5bc7b2859207bf1fc2eb\"\n            },\n            {\n                \"_id\": \"5e8a5c53b2859207bf1fc2ed\"\n            },\n            {\n                \"_id\": \"5e8a5ce9ed210008a53e2f7b\"\n            },\n            {\n                \"_id\": \"5e8a6578834519135aea4399\"\n            },\n            {\n                \"_id\": \"5e8a65e3834519135aea439b\"\n            },\n            {\n                \"_id\": \"5e8a667c94163072d0c444fb\"\n            },\n            {\n                \"_id\": \"5e8a66b4fbb91d735d629352\"\n            },\n            {\n                \"_id\": \"5e8a66f8ae59df73fc63fbb7\"\n            },\n            {\n                \"_id\": \"5e8a67d4a4ae9f757d0dc54c\"\n            },\n            {\n                \"_id\": \"5e8a67eda4ae9f757d0dc54e\"\n            },\n            {\n                \"_id\": \"5e8a6b01ed210008a53e2f7f\"\n            },\n            {\n                \"_id\": \"5e8a9aaef30cd40c365b8cb8\",\n                \"devicesName\": \"Chrome\"\n            }\n        ]\n    },\n    \"followedUsers\": [],\n    \"tracks\": [],\n    \"ownedPlaylists\": [],\n    \"followedAlbums\": [],\n    \"_id\": \"5e80b341b19a24084cb9b7e7\",\n    \"email\": \"test25@test.com\",\n    \"name\": \"nice\",\n    \"dateOfBirth\": \"1999-05-31T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"artist\",\n    \"__v\": 35,\n    \"last_login\": \"2020-04-06T11:57:33.763Z\",\n    \"passwordChangedAt\": \"2020-03-29T16:53:43.598Z\",\n    \"playlists\": [],\n    \"imageUrl\": \"http://zasymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"phone\": \"1216595487\"\n}"
+						},
+						{
+							"name": "update one user data only",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"test29@test.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/me/",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"me",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "1000"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "998"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 12:25:57 GMT"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1586179275"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"746-QT/Lwpu/iZCGkQw+2ZTYZW+MuXg\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"queue\": {\n        \"currentlyPlaying\": {\n            \"currentTrack\": \"http://ec2-54-197-122-205.compute-1.amazonaws.com/api/v1/me/player/tracks/5e7d2dc03429e24340ff1396\",\n            \"device\": \"5e8a6b01ed210008a53e2f7f\"\n        },\n        \"queueTracks\": [],\n        \"previousTrack\": null,\n        \"repeat\": false,\n        \"shuffle\": false,\n        \"play\": false,\n        \"repeatOnce\": false,\n        \"devices\": [\n            {\n                \"_id\": \"5e8a107fdf9ed11c1cc2de92\"\n            },\n            {\n                \"_id\": \"5e8a10c3df9ed11c1cc2de95\"\n            },\n            {\n                \"_id\": \"5e8a10cbd56ea252c3860a0a\"\n            },\n            {\n                \"_id\": \"5e8a113bdf9ed11c1cc2de97\"\n            },\n            {\n                \"_id\": \"5e8a1144d56ea252c3860a0c\"\n            },\n            {\n                \"_id\": \"5e8a1185d56ea252c3860a0e\"\n            },\n            {\n                \"_id\": \"5e8a118cdf9ed11c1cc2de99\"\n            },\n            {\n                \"_id\": \"5e8a1d9373973e2554164b1c\"\n            },\n            {\n                \"_id\": \"5e8a206cd021d52aecca8cf7\"\n            },\n            {\n                \"_id\": \"5e8a20a81688d1074869b9d0\"\n            },\n            {\n                \"_id\": \"5e8a2100d56ea252c3860a16\"\n            },\n            {\n                \"_id\": \"5e8a29a7d56ea252c3860a18\"\n            },\n            {\n                \"_id\": \"5e8a29b152566818b8f6822f\"\n            },\n            {\n                \"_id\": \"5e8a29e97e47b03d0428d140\"\n            },\n            {\n                \"_id\": \"5e8a2a7aa8350f239c4b48a4\"\n            },\n            {\n                \"_id\": \"5e8a2a9af04fa83bd860fae7\"\n            },\n            {\n                \"_id\": \"5e8a4d8d7b6f286c4816cbe5\"\n            },\n            {\n                \"_id\": \"5e8a4f39b4d0ab6f38e74f0d\"\n            },\n            {\n                \"_id\": \"5e8a4f4db4d0ab6f38e74f0f\"\n            },\n            {\n                \"_id\": \"5e8a4f4fb4d0ab6f38e74f11\"\n            },\n            {\n                \"_id\": \"5e8a5bc7b2859207bf1fc2eb\"\n            },\n            {\n                \"_id\": \"5e8a5c53b2859207bf1fc2ed\"\n            },\n            {\n                \"_id\": \"5e8a5ce9ed210008a53e2f7b\"\n            },\n            {\n                \"_id\": \"5e8a6578834519135aea4399\"\n            },\n            {\n                \"_id\": \"5e8a65e3834519135aea439b\"\n            },\n            {\n                \"_id\": \"5e8a667c94163072d0c444fb\"\n            },\n            {\n                \"_id\": \"5e8a66b4fbb91d735d629352\"\n            },\n            {\n                \"_id\": \"5e8a66f8ae59df73fc63fbb7\"\n            },\n            {\n                \"_id\": \"5e8a67d4a4ae9f757d0dc54c\"\n            },\n            {\n                \"_id\": \"5e8a67eda4ae9f757d0dc54e\"\n            },\n            {\n                \"_id\": \"5e8a6b01ed210008a53e2f7f\"\n            },\n            {\n                \"_id\": \"5e8a9aaef30cd40c365b8cb8\",\n                \"devicesName\": \"Chrome\"\n            }\n        ]\n    },\n    \"followedUsers\": [],\n    \"tracks\": [],\n    \"ownedPlaylists\": [],\n    \"followedAlbums\": [],\n    \"_id\": \"5e80b341b19a24084cb9b7e7\",\n    \"email\": \"test29@test.com\",\n    \"name\": \"etsh\",\n    \"dateOfBirth\": \"1999-05-31T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"artist\",\n    \"__v\": 35,\n    \"last_login\": \"2020-04-06T11:57:33.763Z\",\n    \"passwordChangedAt\": \"2020-03-29T16:53:43.598Z\",\n    \"playlists\": [],\n    \"imageUrl\": \"http://zasymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"phone\": \"1216595487\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
