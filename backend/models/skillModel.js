@@ -6,8 +6,8 @@ const constants = require('../utils/constants');
 const skillSchema = new mongoose.Schema({
   name: {
     type: String,
-    minlength: 3,
-    maxlength: 30,
+    minlength: 1,
+    maxlength: 50,
     unique: true
   }
 });

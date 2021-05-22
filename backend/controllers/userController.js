@@ -54,6 +54,29 @@ exports.updateSkills = catchAsync(async (req, res, next) => {
   });
   res.status(200).json(applicantData);
 });
+
+exports.deleteSkills = catchAsync(async (req, res, next) => {
+  const skillId = await Skill.findOne({ name: req.body.skillName });
+  if (!skillId) return next(new AppError('This is not a skill!', 400));
+
+  let skills = await ApplicantData.findById(req.user.additionalData);
+  skills = skills.skills;
+  for (let i = 0; i < skills.length; i++) {
+    if (skills[i].skill === req.body.skillName) {
+      skills.splice(i, 1);
+      break;
+    }
+  }
+
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      skills
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(202).json(applicantData);
+});
 exports.updateCategories = catchAsync(async (req, res, next) => {
   const categoryId = await Category.findOne({ name: req.body.categoryName });
   if (!categoryId) return next(new AppError('This is not a  category!', 400));
@@ -68,7 +91,30 @@ exports.updateCategories = catchAsync(async (req, res, next) => {
       category: categoryId.name
     }
   });
-  res.status(200).json(applicantData);
+  res.status(204).json(applicantData);
+});
+
+exports.deleteCategories = catchAsync(async (req, res, next) => {
+  const categoryId = await Category.findOne({ name: req.body.categoryName });
+  if (!categoryId) return next(new AppError('This is not a  category!', 400));
+
+  let categories = await ApplicantData.findById(req.user.additionalData);
+  categories = categories.categories;
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].category === req.body.categoryName) {
+      categories.splice(i, 1);
+      break;
+    }
+  }
+
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      categories
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(202).json(applicantData);
 });
 
 exports.updateLanguages = catchAsync(async (req, res, next) => {
@@ -90,7 +136,30 @@ exports.updateLanguages = catchAsync(async (req, res, next) => {
     }
   });
 
-  res.status(200).json(applicantData);
+  res.status(204).json(applicantData);
+});
+
+exports.deleteLanguages = catchAsync(async (req, res, next) => {
+  const languageId = await Language.findOne({ name: req.body.languageName });
+  if (!languageId) return next(new AppError('This is not a language!', 400));
+  let languages = await ApplicantData.findById(req.user.additionalData);
+  languages = languages.languages;
+  for (let i = 0; i < languages.length; i++) {
+    if (languages[i].language === req.body.languageName);
+    {
+      languages.splice(i, 1);
+      break;
+    }
+  }
+
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      languages
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(202).json(applicantData);
 });
 
 exports.updateSalary = catchAsync(async (req, res, next) => {
@@ -101,22 +170,32 @@ exports.updateSalary = catchAsync(async (req, res, next) => {
     },
     { new: true, runValidators: true }
   );
-  res.status(200).json(applicantData);
+  res.status(204).json(applicantData);
 });
-
+//todo
 exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
   const applicantData = await ApplicantData.findByIdAndUpdate(
     req.user.additionalData,
     {
-      $push: {
-        onlinePresence: {
-          $each: req.body.onlinePresence
-        }
+      onlinePresence: {
+        ..._.pick(req.body, [
+          'linkedIn',
+          'facebook',
+          'twitter',
+          'behance',
+          'instagram',
+          'gitHub',
+          'stackOverflow',
+          'youTube',
+          'blog',
+          'website',
+          'other'
+        ])
       }
     },
     { new: true, runValidators: true }
   );
-  res.status(200).json(applicantData);
+  res.status(204).json(applicantData);
 });
 
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
@@ -134,7 +213,27 @@ exports.updateJobTitles = catchAsync(async (req, res, next) => {
     }
   });
 
-  res.status(200).json(applicantData);
+  res.status(204).json(applicantData);
+});
+exports.deleteJobTitles = catchAsync(async (req, res, next) => {
+  const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
+  if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
+  let jobTitles = await ApplicantData.findById(req.user.additionalData);
+  jobTitles = jobTitles.jobTitles;
+  for (let i = 0; i < jobTitles.length; i++) {
+    if (jobTitles[i].jobTitle === req.body.jobTitleName) {
+      jobTitles.splice(i, 1);
+      break;
+    }
+  }
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      jobTitles
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(202).json(applicantData);
 });
 
 async function updateModelData (id, object) {
@@ -150,7 +249,7 @@ async function updateModelData (id, object) {
 exports.getSkills = factory.getAll(Skill);
 
 exports.searchSkills = catchAsync(async (req, res, next) => {
-  const offset = 0;
+  const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const skills = await exports.getSearchQuery(
@@ -163,7 +262,7 @@ exports.searchSkills = catchAsync(async (req, res, next) => {
   res.status(200).json(skills);
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
-  const offset = 0;
+  const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const jobTitles = await exports.getSearchQuery(
@@ -176,7 +275,7 @@ exports.searchJobTitles = catchAsync(async (req, res, next) => {
   res.status(200).json(jobTitles);
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
-  const offset = 0;
+  const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const jobTitles = await exports.getSearchQuery(
@@ -225,23 +324,3 @@ const getModel = {
   jobTitles: JobTitle,
   Categories: Category
 };
-
-// if (newUser.type === constants.USER_TYPES.APPLICANT) {
-//   const newApplicant = await ApplicantData.create({
-//     ..._.pick(req.body, ['firstName', 'lastName']),
-//     user: newUser._id
-//   });
-//   newUser = await User.findByIdAndUpdate(
-//     {
-//       _id: newUser._id
-//     },
-//     {
-//       additionalData: newApplicant._id,
-//       onModel: 'ApplicantData'
-//     },
-//     { new: true }
-//   ).populate({
-//     path: 'additionalData'
-//   });
-// }
-// await new Email(newUser, url).sendWelcome();

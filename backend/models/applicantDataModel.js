@@ -64,8 +64,8 @@ const applicantDataSchema = new mongoose.Schema({
     {
       skill: {
         type: String,
-        minlength: 3,
-        maxlength: 30,
+        minlength: 1,
+        maxlength: 50,
         unique: true
       },
       yearsExperiance: {
@@ -121,7 +121,52 @@ const applicantDataSchema = new mongoose.Schema({
     }
   ],
   phone: String,
-  onlinePresence: [String],
+  onlinePresence: {
+    linkedIn: {
+      type: String,
+      default: ''
+    },
+    facebook: {
+      type: String,
+      default: ''
+    },
+    twitter: {
+      type: String,
+      default: ''
+    },
+    behance: {
+      type: String,
+      default: ''
+    },
+    instagram: {
+      type: String,
+      default: ''
+    },
+    gitHub: {
+      type: String,
+      default: ''
+    },
+    stackOverflow: {
+      type: String,
+      default: ''
+    },
+    youTube: {
+      type: String,
+      default: ''
+    },
+    blog: {
+      type: String,
+      default: ''
+    },
+    website: {
+      type: String,
+      default: ''
+    },
+    other: {
+      type: String,
+      default: ''
+    }
+  },
   salary: {
     type: Number,
     validate: {
