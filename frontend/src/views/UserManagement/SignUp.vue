@@ -24,6 +24,5 @@ export default {
 <style>
 .signup {
   background-color: rgba(0, 0, 255, 0.6);
-  height: 100vh;
 }
 </style>

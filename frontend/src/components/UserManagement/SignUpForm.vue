@@ -4,29 +4,28 @@
       <v-container>
         <div class="signupTitle">Sign Up and Start Applying For Jobs</div>
         <v-row justify="center" justify-md="center">
-          <v-col cols="10" md="5" align-self="auto">
-            <v-text-field
-              rounded-md
-              outlined
-              label="First name"
-              dense
-              v-model="formData.firstName"
-              :rules="[required('first name')]"
-            >
-            </v-text-field>
-          </v-col>
-          <v-col cols="10" md="5" align-self="auto">
-            <v-text-field
-              rounded-md
-              outlined
-              label="Last name"
-              dense
-              v-model="formData.lastName"
-              :rules="[required('last name')]"
-            ></v-text-field>
-          </v-col>
+          <v-radio-group v-model="formData.type" row>
+            <template v-slot:label> <div>Join us as ?</div> </template>
+            <v-radio value="employee">
+              <template v-slot:label>
+                <strong>An Employee</strong>
+              </template>
+            </v-radio>
+            <v-radio value="recruiter">
+              <template v-slot:label>
+                <strong>A Recruiter</strong>
+              </template>
+            </v-radio>
+          </v-radio-group>
         </v-row>
-
+        <v-row justify="center" justify-md="center">
+          <v-img
+            src="../../assets/company.jpg"
+            max-width="80%"
+            v-if="formData.type === 'recruiter'"
+          ></v-img>
+          <v-img src="../../assets/employee.jpg" max-width="80%" v-else></v-img>
+        </v-row>
         <v-row justify="center">
           <v-col cols="10">
             <v-text-field
@@ -65,6 +64,17 @@
             </v-btn>
           </v-col>
         </v-row>
+        <v-row justify="center" justify-md="center" class="mb-2">
+          <div>Already a user ?</div>
+          <router-link
+            :to="{
+              path: '/login',
+              query: { redirect: this.$route.query.redirect },
+            }"
+            class="blue--text"
+            >Log in
+          </router-link>
+        </v-row>
       </v-container>
     </v-form>
   </v-sheet>
@@ -76,8 +86,7 @@ export default {
     return {
       formData: {
         valid: false,
-        firstName: "",
-        lastName: "",
+        type: "employee",
         email: "",
         password: "",
       },
