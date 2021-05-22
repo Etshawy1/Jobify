@@ -1,5 +1,5 @@
 <template>
-  <v-sheet color="rgba(0, 0, 255, 0.5)" width="100%" height="100%">
+  <div class="signup">
     <v-container fluid fill-height>
       <v-spacer></v-spacer>
       <v-col cols="12" md="5">
@@ -7,7 +7,7 @@
       </v-col>
       <v-spacer></v-spacer>
     </v-container>
-  </v-sheet>
+  </div>
 </template>
 
 <script>
@@ -21,4 +21,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.signup {
+  background-color: rgba(0, 0, 255, 0.6);
+  height: 100vh;
+}
+</style>
