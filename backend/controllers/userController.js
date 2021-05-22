@@ -93,6 +93,32 @@ exports.updateLanguages = catchAsync(async (req, res, next) => {
   res.status(200).json(applicantData);
 });
 
+exports.updateSalary = catchAsync(async (req, res, next) => {
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    req.user.additionalData,
+    {
+      salary: req.body.salary
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(200).json(applicantData);
+});
+
+exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    req.user.additionalData,
+    {
+      $push: {
+        onlinePresence: {
+          $each: req.body.onlinePresence
+        }
+      }
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(200).json(applicantData);
+});
+
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
   const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
   if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));

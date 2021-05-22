@@ -121,12 +121,13 @@ const applicantDataSchema = new mongoose.Schema({
     }
   ],
   phone: String,
+  onlinePresence: [String],
   salary: {
     type: Number,
     validate: {
       // This only works on CREATE and SAVE!!!
-      validator: function () {
-        return 0 <= this.salary;
+      validator: function (el) {
+        return el >= 0;
       },
       message: 'Salary must be postive number!'
     }
