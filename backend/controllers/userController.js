@@ -1,4 +1,5 @@
 const { User } = require('./../models/userModel');
+const { Skill } = require('./../models/skillModel');
 const { ApplicantData } = require('./../models/applicantDataModel');
 const _ = require('lodash');
 const catchAsync = require('./../utils/catchAsync').threeArg;
@@ -27,6 +28,23 @@ exports.updateData = catchAsync(async (req, res, next) => {
     { new: true, runValidators: true }
   );
   // await new Email(newUser, url).sendWelcome();
+  res.status(200).json(applicantData);
+});
+
+exports.updateSkills = catchAsync(async (req, res, next) => {
+  const skillId = await Skill.findOne({ name: req.body.skillName });
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      $push: {
+        skills: {
+          skill: skillId._id,
+          yearsExperiance: req.yearOfExperiance
+        }
+      }
+    },
+    { new: true, runValidators: true }
+  );
   res.status(200).json(applicantData);
 });
 

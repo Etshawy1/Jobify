@@ -60,6 +60,18 @@ const applicantDataSchema = new mongoose.Schema({
       ]
     }
   ],
+  skills: [
+    {
+      skill: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Skill'
+      },
+      yearsExperiance: {
+        type: String,
+        enum: ['Less than 1 years', '1-3 years', '3-5 years', '5-7 years']
+      }
+    }
+  ],
   phone: String,
   salary: {
     type: Number,

@@ -25,5 +25,6 @@ router.use(authController.protect(true));
 
 router.patch('/updatepassword', authController.updatePassword);
 router.patch('/updateapplicantdata', userController.updateData);
+router.patch('/updateskills', userController.updateSkills);
 
 module.exports = router;
