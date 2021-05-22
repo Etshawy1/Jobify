@@ -1,6 +1,6 @@
 // Acknowledgments: code adapted from https://github.com/jonasschmedtmann/complete-node-bootcamp
 
-module.exports.threeArg = (fn) => {
+module.exports.threeArg = fn => {
   return async (req, res, next) => {
     // catch rejected promise (inside a function that takes three arguments)
     // to the global error handling middleware
@@ -9,7 +9,7 @@ module.exports.threeArg = (fn) => {
 };
 
 /* istanbul ignore next */
-module.exports.fourArg = (fn) => {
+module.exports.fourArg = fn => {
   return (accessToken, freshToken, profile, done) => {
     // catch rejected promise (inside a function that takes three arguments)
     // to the global error handling middleware

@@ -12,7 +12,7 @@ router.post(
   '/auth/google/jobify',
   passport.authenticate('googleToken', {
     session: false,
-    scope: ['profile', 'email'],
+    scope: ['profile', 'email']
   }),
   authController.googleOauth
 );
@@ -24,5 +24,6 @@ router.patch('/resetpassword/:token', authController.resetPassword);
 router.use(authController.protect(true));
 
 router.patch('/updatepassword', authController.updatePassword);
+router.patch('/updateapplicantdata', userController.updateData);
 
 module.exports = router;
