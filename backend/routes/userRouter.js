@@ -26,6 +26,7 @@ router.use(authController.protect(true));
 router.patch('/updatepassword', authController.updatePassword);
 router.patch('/updateapplicantdata', userController.updateData);
 router.patch('/updateskills', userController.updateSkills);
+router.patch('/updatelanguage', userController.updateLanguages);
 router.get('/getskills', userController.getSkills);
 router.get('/searchskills/:keyword', userController.searchSkills);
 

@@ -4,4 +4,5 @@ const adminController = require('../controllers/adminController');
 const router = express.Router();
 router.use(authController.protect(true));
 router.post('/addskill', adminController.addSkill);
+router.post('/addlanguage', adminController.addLanguage);
 module.exports = router;

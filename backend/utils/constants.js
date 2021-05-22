@@ -7,6 +7,7 @@ module.exports = Object.freeze({
   MODELS_NAMES: {
     user: 'User',
     applicantData: 'ApplicantData',
-    skill: 'Skill'
+    skill: 'Skill',
+    language: 'Language'
   }
 });

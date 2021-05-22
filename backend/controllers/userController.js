@@ -1,5 +1,6 @@
 const { User } = require('./../models/userModel');
 const { Skill } = require('./../models/skillModel');
+const { Language } = require('./../models/languageModel');
 const { ApplicantData } = require('./../models/applicantDataModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
@@ -51,6 +52,28 @@ exports.updateSkills = catchAsync(async (req, res, next) => {
   );
   res.status(200).json(applicantData);
 });
+
+exports.updateLanguages = catchAsync(async (req, res, next) => {
+  const languageId = await Language.findOne({ name: req.body.languageName });
+  if (!languageId) return next(new AppError('This is not a language!', 400));
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    { _id: req.user.additionalData },
+    {
+      $push: {
+        languages: {
+          language: languageId.name,
+          Reading: req.body.Reading,
+          Writing: req.body.Writing,
+          Listening: req.body.Listening,
+          Speaking: req.body.Speaking
+        }
+      }
+    },
+    { new: true, runValidators: true }
+  );
+  res.status(200).json(applicantData);
+});
+
 exports.getSkills = factory.getAll(Skill);
 
 exports.searchSkills = catchAsync(async (req, res, next) => {

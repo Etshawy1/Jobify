@@ -73,6 +73,31 @@ const applicantDataSchema = new mongoose.Schema({
       }
     }
   ],
+  languages: [
+    {
+      language: {
+        type: String,
+        minlength: 3,
+        maxlength: 30
+      },
+      Reading: {
+        type: Number,
+        enum: [1, 2, 3, 4, 5]
+      },
+      Writing: {
+        type: Number,
+        enum: [1, 2, 3, 4, 5]
+      },
+      Listening: {
+        type: Number,
+        enum: [1, 2, 3, 4, 5]
+      },
+      Speaking: {
+        type: Number,
+        enum: [1, 2, 3, 4, 5]
+      }
+    }
+  ],
   phone: String,
   salary: {
     type: Number,
