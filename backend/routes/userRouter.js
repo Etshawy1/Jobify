@@ -28,8 +28,10 @@ router.patch('/updateapplicantdata', userController.updateData);
 router.patch('/updateskills', userController.updateSkills);
 router.patch('/updatelanguage', userController.updateLanguages);
 router.patch('/updatejobtitle', userController.updateJobTitles);
+router.patch('/updatecategory', userController.updateCategories);
 router.get('/getskills', userController.getSkills);
 router.get('/searchskills/:keyword', userController.searchSkills);
 router.get('/searchjobtitles/:keyword', userController.searchJobTitles);
+router.get('/searchcategories/:keyword', userController.searchCategories);
 
 module.exports = router;

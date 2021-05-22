@@ -84,6 +84,16 @@ const applicantDataSchema = new mongoose.Schema({
       }
     }
   ],
+  categories: [
+    {
+      category: {
+        type: String,
+        minlength: 3,
+        maxlength: 30,
+        unique: true
+      }
+    }
+  ],
   languages: [
     {
       language: {

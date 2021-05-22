@@ -9,6 +9,7 @@ module.exports = Object.freeze({
     applicantData: 'ApplicantData',
     skill: 'Skill',
     language: 'Language',
-    jobTitles: 'JobTitles'
+    jobTitle: 'JobTitle',
+    category: 'Category'
   }
 });

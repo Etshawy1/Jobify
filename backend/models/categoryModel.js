@@ -3,7 +3,7 @@ const validator = require('validator');
 const mongoose_delete = require('mongoose-delete');
 const constants = require('../utils/constants');
 
-const jobTitleSchema = new mongoose.Schema({
+const categorySchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 3,
@@ -12,13 +12,13 @@ const jobTitleSchema = new mongoose.Schema({
   }
 });
 
-jobTitleSchema.plugin(mongoose_delete, {
+categorySchema.plugin(mongoose_delete, {
   overrideMethods: 'all'
 });
 
-const JobTitle = mongoose.model(
-  constants.MODELS_NAMES.jobTitle,
-  jobTitleSchema
+const Category = mongoose.model(
+  constants.MODELS_NAMES.category,
+  categorySchema
 );
 
-exports.JobTitle = JobTitle;
+exports.Category = Category;

@@ -1,8 +1,9 @@
 const { User } = require('./../models/userModel');
 const { Skill } = require('./../models/skillModel');
 const { Language } = require('./../models/languageModel');
-const { JobTitles } = require('../models/jobTitlesModel');
+const { JobTitle } = require('../models/jobTitlesModel');
 const { ApplicantData } = require('./../models/applicantDataModel');
+const { Category } = require('./../models/categoryModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
@@ -45,11 +46,26 @@ exports.updateSkills = catchAsync(async (req, res, next) => {
     if (skills[i].skill === req.body.skillName)
       return next(new AppError('skill aleardy added!', 400));
   }
-  console.log(skills);
   const applicantData = await updateModelData(req.user.additionalData, {
     skills: {
       skill: skillId.name,
       yearsExperiance: req.body.yearOfExperiance
+    }
+  });
+  res.status(200).json(applicantData);
+});
+exports.updateCategories = catchAsync(async (req, res, next) => {
+  const categoryId = await Category.findOne({ name: req.body.categoryName });
+  if (!categoryId) return next(new AppError('This is not a  category!', 400));
+  let categories = await ApplicantData.findById(req.user.additionalData);
+  categories = categories.categories;
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].category === req.body.categoryName)
+      return next(new AppError('category aleardy added!', 400));
+  }
+  const applicantData = await updateModelData(req.user.additionalData, {
+    categories: {
+      category: categoryId.name
     }
   });
   res.status(200).json(applicantData);
@@ -78,7 +94,7 @@ exports.updateLanguages = catchAsync(async (req, res, next) => {
 });
 
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
-  const jobTitleId = await JobTitles.findOne({ name: req.body.jobTitleName });
+  const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
   if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
   let jobTitles = await ApplicantData.findById(req.user.additionalData);
   jobTitles = jobTitles.jobTitles;
@@ -133,6 +149,19 @@ exports.searchJobTitles = catchAsync(async (req, res, next) => {
   );
   res.status(200).json(jobTitles);
 });
+exports.searchCategories = catchAsync(async (req, res, next) => {
+  const offset = 0;
+  const limit = req.query.limit * 1 || 16;
+  const keyword = req.params.keyword;
+  const jobTitles = await exports.getSearchQuery(
+    'Categories',
+    {},
+    keyword,
+    limit,
+    offset
+  );
+  res.status(200).json(jobTitles);
+});
 
 /**
  * function to get the search query for any model providing the keyword to be searched
@@ -167,7 +196,8 @@ exports.getSearchQuery = async function getSearchQuery (
 
 const getModel = {
   skills: Skill,
-  jobTitles: JobTitles
+  jobTitles: JobTitle,
+  Categories: Category
 };
 
 // if (newUser.type === constants.USER_TYPES.APPLICANT) {

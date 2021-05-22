@@ -5,8 +5,10 @@ const factory = require('./handlerFactory');
 const _ = require('lodash');
 const { Skill } = require('../models/skillModel');
 const { Language } = require('../models/languageModel');
-const { JobTitles } = require('../models/jobTitlesModel');
+const { JobTitle } = require('../models/jobTitlesModel');
+const { Category } = require('../models/categoryModel');
 
 exports.addSkill = factory.createOne(Skill);
 exports.addLanguage = factory.createOne(Language);
-exports.addJobTitle = factory.createOne(JobTitles);
+exports.addJobTitle = factory.createOne(JobTitle);
+exports.addCategory = factory.createOne(Category);
