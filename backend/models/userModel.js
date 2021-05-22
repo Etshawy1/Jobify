@@ -18,14 +18,14 @@ const userSchema = new mongoose.Schema({
     maxlength: 255,
     unique: [true, 'this email is already used'],
     lowercase: true,
-    validate: [validator.isEmail, 'please enter a valid email'],
+    validate: [validator.isEmail, 'please enter a valid email']
   },
   password: {
     type: String,
     required: [true, 'please provide a password'],
     minlength: 8,
     maxlength: 1024,
-    select: false,
+    select: false
   },
   passwordConfirm: {
     type: String,
@@ -35,27 +35,27 @@ const userSchema = new mongoose.Schema({
       validator: function (el) {
         return el === this.password;
       },
-      message: 'Passwords are not the same!',
-    },
+      message: 'Passwords are not the same!'
+    }
   },
   type: {
     type: String,
     enum: [
       constants.USER_TYPES.APPLICANT,
       constants.USER_TYPES.RECRUITER,
-      constants.USER_TYPES.ADMIN,
+      constants.USER_TYPES.ADMIN
     ],
-    defult: 'applicant',
+    defult: 'applicant'
   },
   additionalData: {
     type: mongoose.Schema.Types.ObjectId,
     // Instead of a hardcoded model name in `ref`, `refPath` means Mongoose
     // will look at the `onModel` property to find the right model.
-    refPath: 'onModel',
+    refPath: 'onModel'
   },
   onModel: {
     type: String,
-    enum: ['ApplicantData'],
+    enum: ['ApplicantData']
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
@@ -67,8 +67,8 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     defult: true,
-    select: false,
-  },
+    select: false
+  }
 });
 
 userSchema.pre('save', async function (next) {
@@ -100,8 +100,8 @@ userSchema.pre(/^find/, function (next) {
   // this points to the current query
   this.find({
     active: {
-      $ne: false,
-    },
+      $ne: false
+    }
   });
   next();
 });
@@ -151,11 +151,11 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 userSchema.methods.signToken = function () {
   return jwt.sign(
     {
-      id: this._id,
+      id: this._id
     },
     process.env.JWT_SECRET_KEY,
     {
-      expiresIn: process.env.JWT_VALID_FOR,
+      expiresIn: process.env.JWT_VALID_FOR
     }
   );
 };
@@ -181,7 +181,7 @@ userSchema.methods.createPasswordResetToken = function () {
 };
 
 userSchema.plugin(mongoose_delete, {
-  overrideMethods: 'all',
+  overrideMethods: 'all'
 });
 
 const User = mongoose.model(constants.MODELS_NAMES.user, userSchema);
