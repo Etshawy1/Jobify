@@ -65,11 +65,22 @@ const applicantDataSchema = new mongoose.Schema({
       skill: {
         type: String,
         minlength: 3,
-        maxlength: 30
+        maxlength: 30,
+        unique: true
       },
       yearsExperiance: {
         type: String,
         enum: ['Less than 1 year', '1-3 years', '3-5 years', '5-7 years']
+      }
+    }
+  ],
+  jobTitles: [
+    {
+      jobTitle: {
+        type: String,
+        minlength: 3,
+        maxlength: 30,
+        unique: true
       }
     }
   ],
@@ -78,7 +89,8 @@ const applicantDataSchema = new mongoose.Schema({
       language: {
         type: String,
         minlength: 3,
-        maxlength: 30
+        maxlength: 30,
+        unique: true
       },
       Reading: {
         type: Number,
