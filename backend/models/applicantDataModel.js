@@ -63,12 +63,13 @@ const applicantDataSchema = new mongoose.Schema({
   skills: [
     {
       skill: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Skill'
+        type: String,
+        minlength: 3,
+        maxlength: 30
       },
       yearsExperiance: {
         type: String,
-        enum: ['Less than 1 years', '1-3 years', '3-5 years', '5-7 years']
+        enum: ['Less than 1 year', '1-3 years', '3-5 years', '5-7 years']
       }
     }
   ],
