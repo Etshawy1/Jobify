@@ -7,6 +7,7 @@ const { Category } = require('./../models/categoryModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
+const Helpers = require('./../utils/helper');
 
 const catchAsync = require('./../utils/catchAsync').threeArg;
 
@@ -259,7 +260,7 @@ exports.searchSkills = catchAsync(async (req, res, next) => {
     limit,
     offset
   );
-  res.status(200).json(skills);
+  res.status(200).json(Helpers.getPaging(skills, req));
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
@@ -272,20 +273,20 @@ exports.searchJobTitles = catchAsync(async (req, res, next) => {
     limit,
     offset
   );
-  res.status(200).json(jobTitles);
+  res.status(200).json(Helpers.getPaging(jobTitles, req));
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
-  const jobTitles = await exports.getSearchQuery(
+  const categories = await exports.getSearchQuery(
     'Categories',
     {},
     keyword,
     limit,
     offset
   );
-  res.status(200).json(jobTitles);
+  res.status(200).json(Helpers.getPaging(categories, req));
 });
 
 /**

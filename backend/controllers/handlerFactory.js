@@ -3,8 +3,9 @@
 const catchAsync = require('./../utils/catchAsync').threeArg;
 const AppError = require('./../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
+const Helpers = require('./../utils/helper');
 
-exports.deleteOne = (Model) =>
+exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
 
@@ -15,25 +16,25 @@ exports.deleteOne = (Model) =>
     res.status(204).json(null);
   });
 
-exports.updateOne = (Model) =>
+exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true,
+      runValidators: true
     });
 
     if (!doc) {
       return next(new AppError('No document found with that ID', 404));
     }
 
-    res.status(200).json(doc);
+    res.status(200).json(Helpers.getPaging(doc, req));
   });
 
-exports.createOne = (Model) =>
+exports.createOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
 
-    res.status(201).json(doc);
+    res.status(201).json(Helpers.getPaging(doc, req));
   });
 
 exports.getOne = (Model, popOptions) =>
@@ -46,15 +47,15 @@ exports.getOne = (Model, popOptions) =>
       return next(new AppError('that document does not exist', 404));
     }
 
-    res.status(200).json(doc);
+    res.status(200).json(Helpers.getPaging(doc, req));
   });
 
 exports.getMany = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let query = Model.find({
       _id: {
-        $in: req.query.ids.split(','),
-      },
+        $in: req.query.ids.split(',')
+      }
     });
     if (popOptions) query = query.populate(popOptions);
     const doc = await query;
@@ -62,14 +63,18 @@ exports.getMany = (Model, popOptions) =>
       return next(new AppError('No documents found with provided IDs', 404));
     }
 
-    res.status(200).json(doc);
+    res.status(200).json(Helpers.getPaging(doc, req));
   });
 
-exports.getAll = (Model) =>
+exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(Model.find({}), req.query);
+    const features = new APIFeatures(Model.find({}), req.query)
+      .filter()
+      .offset()
+      .sort()
+      .paginate();
     const doc = await features.query;
 
     // SEND RESPONSE
-    res.status(200).json(doc);
+    res.status(200).json(Helpers.getPaging(doc, req));
   });
