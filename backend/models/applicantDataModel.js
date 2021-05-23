@@ -66,7 +66,10 @@ const applicantDataSchema = new mongoose.Schema({
         type: String,
         minlength: 1,
         maxlength: 50,
-        unique: true
+        index: {
+          unique: true,
+          partialFilterExpression: {skill: {$type: 'string'}}
+        }
       },
       yearsExperiance: {
         type: String,
@@ -80,7 +83,10 @@ const applicantDataSchema = new mongoose.Schema({
         type: String,
         minlength: 3,
         maxlength: 30,
-        unique: true
+        index: {
+          unique: true,
+          partialFilterExpression: {jobTitle: {$type: 'string'}}
+        }
       }
     }
   ],
@@ -90,7 +96,10 @@ const applicantDataSchema = new mongoose.Schema({
         type: String,
         minlength: 3,
         maxlength: 30,
-        unique: true
+        index: {
+          unique: true,
+          partialFilterExpression: {category: {$type: 'string'}}
+        }
       }
     }
   ],
@@ -100,7 +109,10 @@ const applicantDataSchema = new mongoose.Schema({
         type: String,
         minlength: 3,
         maxlength: 30,
-        unique: true
+        index: {
+          unique: true,
+          partialFilterExpression: {language: {$type: 'string'}}
+        }
       },
       Reading: {
         type: Number,
@@ -176,7 +188,9 @@ const applicantDataSchema = new mongoose.Schema({
       },
       message: 'Salary must be postive number!'
     }
-  }
+  },
+  cvURL: String,
+  cvLastUpdated: Date,
 });
 
 applicantDataSchema.plugin(mongoose_delete, {
