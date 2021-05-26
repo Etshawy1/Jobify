@@ -1,3 +1,4 @@
+import axios from "axios";
 
 const state = {
     userToken: "",
@@ -19,7 +20,24 @@ const mutations = {
 };
 
 const actions = {
-
+    //an action to take user data on registering
+    registerUser({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            //send a post request with the user data to the database
+            axios
+                .post("/v1/users/signup", {
+                    email: payload.email,
+                    password: payload.password,
+                    type: payload.type
+                })
+                .then(response => {
+                    resolve(payload.type);
+                })
+                .catch(error => {
+                    reject(error.response.data);
+                });
+        });
+    },
 };
 
 

@@ -6,9 +6,9 @@
         <v-row justify="center" justify-md="center">
           <v-radio-group v-model="formData.type" row>
             <template v-slot:label> <div>Join us as ?</div> </template>
-            <v-radio value="employee">
+            <v-radio value="applicant">
               <template v-slot:label>
-                <strong>An Employee</strong>
+                <strong>An Applicant</strong>
               </template>
             </v-radio>
             <v-radio value="recruiter">
@@ -86,7 +86,7 @@ export default {
     return {
       formData: {
         valid: false,
-        type: "employee",
+        type: "applicant",
         email: "",
         password: "",
       },
@@ -108,6 +108,10 @@ export default {
   methods: {
     onSubmit() {
       console.log("on submit function");
+      this.$store
+        .dispatch("registerUser", this.formData)
+        .then((userType) => console.log(userType))
+        .catch(() => console.log("an error occured"));
     },
   },
 };
