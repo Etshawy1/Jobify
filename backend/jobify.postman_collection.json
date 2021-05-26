@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "012c69ca-31d5-4e1b-9845-27e9e5d96675",
+		"_postman_id": "5383a816-9503-4bea-8e5c-14bd8db1bdf7",
 		"name": "jobify",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test5555@test.com\",\n\t\"password\": \"password\",\n\t\"type\": \"applicant\"\n}",
+							"raw": "{\n\t\"email\": \"test13333@test.com\",\n\t\"password\": \"password\",\n\t\"type\": \"applicant\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1820,6 +1820,292 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Profile picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/dell/Desktop/Capture.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updatepicture",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updatepicture"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile picture",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dell/Desktop/Capture.PNG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatepicture",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatepicture"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DL87h7QnXAo0Tcque6YP4QPSB9c\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 May 2021 11:31:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"image\": \"http://localhost:3000/api/v1/static/images/users/3e29e40aa3efafdd9c3c-1621769489494.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update CV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/G:/CV.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updatecv",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updatecv"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update CV",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/G:/CV.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatecv",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatecv"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "471"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d7-RlDsil6Zx8BNzuOGkSyFnkpU6JQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 May 2021 11:32:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60aa3cfbfb39e05724eed09f\",\n    \"user\": \"60aa3cfbfb39e05724eed09e\",\n    \"skills\": [],\n    \"jobTitles\": [],\n    \"categories\": [],\n    \"languages\": [],\n    \"__v\": 0,\n    \"cvLastUpdated\": \"2021-05-23T11:32:06.380Z\",\n    \"cvURL\": \"http://localhost:3000/api/v1/static/documents/cvs/4db631a62d097b940efd-1621769526377.pdf\"\n}"
+						}
+					]
 				}
 			]
 		},
