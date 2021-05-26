@@ -37,7 +37,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     ..._.pick(req.body, ['email', 'password', 'type']),
     last_login: Date.now(),
     passwordConfirm: req.body.password,
-    imageUrl: `${url}/api/v1/images/users/default.png`
+    imageUrl: `${url}/api/v1/static/images/users/default.png`
   });
 
   if (newUser.type === constants.USER_TYPES.APPLICANT) {

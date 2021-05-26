@@ -7,7 +7,8 @@ const { Category } = require('./../models/categoryModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
-const Helpers = require('./../utils/helper');
+const helpers = require('./../utils/helper');
+const path = require('path');
 
 const catchAsync = require('./../utils/catchAsync').threeArg;
 
@@ -260,7 +261,7 @@ exports.searchSkills = catchAsync(async (req, res, next) => {
     limit,
     offset
   );
-  res.status(200).json(Helpers.getPaging(skills, req));
+  res.status(200).json(helpers.getPaging(skills, req));
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
@@ -273,7 +274,7 @@ exports.searchJobTitles = catchAsync(async (req, res, next) => {
     limit,
     offset
   );
-  res.status(200).json(Helpers.getPaging(jobTitles, req));
+  res.status(200).json(helpers.getPaging(jobTitles, req));
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
@@ -286,7 +287,56 @@ exports.searchCategories = catchAsync(async (req, res, next) => {
     limit,
     offset
   );
-  res.status(200).json(Helpers.getPaging(categories, req));
+  res.status(200).json(helpers.getPaging(categories, req));
+});
+
+exports.updatePicture = catchAsync(async (req, res, next) => {
+  // check if file is missing
+  if (!req.file || !req.file.buffer) {
+    return next(new AppError('image file is missing', 400));
+  }
+
+  // save the image and get its name
+  const newImageName = await helpers.prepareAndSaveImage(
+    req.file.buffer,
+    path.resolve(__dirname, '..') + '/assets/images/users'
+  );
+
+  // update image url in the database
+  const url = `${req.protocol}://${req.get('host')}`;
+  const image = `${url}/api/v1/static/images/users/${newImageName}`;
+  await User.findByIdAndUpdate(req.user._id, {
+    imageUrl: image
+  });
+  res.status(200).json({image});
+});
+
+exports.updateCV = catchAsync(async (req, res, next) => {
+  // check if file is missing
+  if (!req.file) {
+    return next(new AppError('cv file is missing', 400));
+  }
+
+  // update cv url in the database
+  const url = `${req.protocol}://${req.get('host')}`;
+  const cv = `${url}/api/v1/static/documents/cvs/${req.file.filename}`;
+  const applicantData = await ApplicantData.findByIdAndUpdate(req.user.additionalData, {
+    cvURL: cv,
+    cvLastUpdated: Date.now()
+  },
+  {
+    new: true
+  });
+  res.status(200).json(applicantData);
+});
+
+
+exports.CVsMultipart = catchAsync(async (req, res, next) => {
+  helpers.getMultiPart(false, path.resolve(__dirname, '..') + '/assets/cvs')(req, res, next);
+});
+
+exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
+  helpers.getMultiPart(true, path.resolve(__dirname, '..') + '/assets/images/users')(req, res, next);
 });
 
 /**
