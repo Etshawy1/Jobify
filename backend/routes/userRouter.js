@@ -23,6 +23,8 @@ router.patch('/resetpassword/:token', authController.resetPassword);
 // any endpoint written after the following line is protected
 router.use(authController.protect(true));
 
+router.put('/updatepicture',userController.profilePictureMultipart, userController.updatePicture);
+router.put('/updatecv',userController.CVsMultipart, userController.updateCV);
 router.patch('/updatepassword', authController.updatePassword);
 router.patch('/updateapplicantdata', userController.updateData);
 router.patch('/updateskills', userController.updateSkills);

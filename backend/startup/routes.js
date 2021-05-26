@@ -3,7 +3,7 @@ const userRouter = require('../routes/userRouter');
 const adminRouter = require('../routes/adminRouter');
 const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/errorController');
-const staticImages = require('../routes/images');
+const staticRouter = require('../routes/staticRouter');
 
 module.exports = function (app) {
   app.set('trust proxy', 'loopback'); // for deployment to get the host in the code
@@ -17,11 +17,7 @@ module.exports = function (app) {
     })
   );
   // serve static
-  app.use('/api/v1/images', staticImages);
-  app.use(
-    '/api/v1/browse/categories/images',
-    express.static('assets/images/categories')
-  );
+  app.use('/api/v1/static', staticRouter);
 
   // rest of the routes
   app.use('/api/v1/users', userRouter);
