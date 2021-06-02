@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test13333@test.com\",\n\t\"password\": \"password\",\n\t\"type\": \"applicant\"\n}",
+							"raw": "{\n\t\"email\": \"test23132@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"applicant\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,7 +59,7 @@
 					},
 					"response": [
 						{
-							"name": "Register",
+							"name": "Register as applicant",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -73,7 +73,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"etsh\",\n\t\"email\": \"test135@test.com\",\n\t\"emailConfirm\": \"test135@test.com\",\n\t\"password\": \"password\",\n\t\"dateOfBirth\": \"1999-04-30\",\n\t\"gender\": \"male\",\n\t\"type\": \"artist\"\n}",
+									"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"password\",\n\t\"type\": \"applicant\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -101,8 +101,16 @@
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -121,8 +129,16 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
+									"value": "0"
 								},
 								{
 									"key": "Content-Type",
@@ -130,11 +146,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "631"
+									"value": "398"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"277-pFHi2TFXoxPHV2PkwzakmQ/grFA\""
+									"value": "W/\"18e-vtuAv+r/CnNaDny1pzL66eRUOpc\""
 								},
 								{
 									"key": "Vary",
@@ -142,7 +158,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 08 Apr 2020 16:29:53 GMT"
+									"value": "Wed, 02 Jun 2021 13:29:31 GMT"
 								},
 								{
 									"key": "Connection",
@@ -150,10 +166,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOGRmYzAxMDNiYjIxMzQ0ODM0ODJhYyIsImlhdCI6MTU4NjM2MzM5MywiZXhwIjoxNzU5MTYzMzkzfQ.eqt2T3Dih1IZdabgh9AvKQ9Uqo4CxjqmX_p72JbV64k\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null\n            },\n            \"queueTracks\": [],\n            \"previousTrack\": null,\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"devices\": []\n        },\n        \"ownedPlaylists\": [],\n        \"followedAlbums\": [],\n        \"followedTracks\": [],\n        \"_id\": \"5e8dfc0103bb2134483482ac\",\n        \"email\": \"test135@test.com\",\n        \"name\": \"etsh\",\n        \"dateOfBirth\": \"1999-04-30T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/images/users/default.png\"\n    }\n}"
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYjc4N2JiMTlmZGI3NDU3YzY0ZDBkYiIsImlhdCI6MTYyMjY0MDU3MSwiZXhwIjoxNjI0MzY4NTcxfQ.aQKFI6uODBtOy8EIrlyH_wWoIRvX-rQ3iwmpyC5oDEY\",\n    \"user\": {\n        \"_id\": \"60b787bb19fdb7457c64d0db\",\n        \"deleted\": false,\n        \"email\": \"test@test.com\",\n        \"type\": \"applicant\",\n        \"last_login\": \"2021-06-02T13:29:31.319Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\"\n    }\n}"
 						},
 						{
-							"name": "Register as artist",
+							"name": "Register as recruiter",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -167,7 +183,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"etsh\",\n\t\"email\": \"test136@test.com\",\n\t\"emailConfirm\": \"test136@test.com\",\n\t\"password\": \"password\",\n\t\"dateOfBirth\": \"1999-04-30\",\n\t\"gender\": \"male\",\n\t\"type\": \"artist\"\n}",
+									"raw": "{\n\t\"email\": \"test@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"recruiter\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -195,8 +211,16 @@
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -215,8 +239,16 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
+									"value": "0"
 								},
 								{
 									"key": "Content-Type",
@@ -224,11 +256,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "56"
+									"value": "399"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"38-aBmji3L7IresG1Qs6sdEDrdI34w\""
+									"value": "W/\"18f-O9yyAHewpfZb4UeHViiSlEeWfjk\""
 								},
 								{
 									"key": "Vary",
@@ -236,7 +268,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 24 Apr 2020 13:32:45 GMT"
+									"value": "Wed, 02 Jun 2021 15:38:28 GMT"
 								},
 								{
 									"key": "Connection",
@@ -244,7 +276,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"token was sent to email\"\n}"
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYjdhNWYzNjM3NjNhNGI1Y2YyODdlNSIsImlhdCI6MTYyMjY0ODMwOCwiZXhwIjoxNjI0Mzc2MzA4fQ.RFTo0sXmsefe1uUHbQuN6uEKLI6JyEcOm2e8s12l-dw\",\n    \"user\": {\n        \"_id\": \"60b7a5f363763a4b5cf287e5\",\n        \"deleted\": false,\n        \"email\": \"test@gmail.com\",\n        \"type\": \"recruiter\",\n        \"last_login\": \"2021-06-02T15:38:27.479Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\"\n    }\n}"
 						}
 					]
 				},
@@ -274,7 +306,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test11@test.com\",\n\t\"password\": \"password\"\n}\n",
+							"raw": "{\n\t\"email\": \"test23132@gmail.com\",\n\t\"password\": \"password\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -310,7 +342,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"email\": \"generalmohamed1999@gmail.com\",\n\t\"password\": \"password\"\n}\n",
+									"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"password\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -334,32 +366,20 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"key": "Server",
-									"value": "nginx/1.14.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 30 May 2020 13:57:41 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
 									"key": "Access-Control-Allow-Origin",
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -378,24 +398,44 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "771"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"971-PyqDrCHpx6B8e40YEzq5JJ8KTqs\""
+									"value": "W/\"303-v+XREE9C8v/UvVAhbvXKgRHJVWI\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
 								},
 								{
-									"key": "Content-Encoding",
-									"value": "gzip"
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 13:30:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODEyNWRjNTQ2NjA2NzJmZDY5OTg3ZiIsImlhdCI6MTU5MDg0NzA2MSwiZXhwIjoxNzYzNjQ3MDYxfQ.QK6PXV53d0ge-Wpd4KIX4uVh0I1slG000OKmy05G8i4\",\n    \"user\": {\n        \"queue\": {\n            \"currentlyPlaying\": {\n                \"currentTrack\": null,\n                \"device\": \"5ed04460bf6e5b68d3e52dcf\"\n            },\n            \"queueTracks\": [\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a39f24e11cd46c8bde654\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a37d0d56ea252c3860a1a\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1ea07937ec4d40c6debf\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e9a7937ec4d40c6debe\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e937937ec4d40c6debd\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e767937ec4d40c6debc\",\n                \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e727937ec4d40c6debb\"\n            ],\n            \"previousTrack\": \"https://thesymphonia.ddns.net/api/v1/me/player/tracks/5e8a1e937937ec4d40c6debd\",\n            \"repeat\": false,\n            \"shuffle\": false,\n            \"play\": false,\n            \"repeatOnce\": false,\n            \"nextTrack\": null,\n            \"devices\": [\n                {\n                    \"_id\": \"5ed03e767ddd9c689c7485c2\",\n                    \"devicesName\": \"Chrome\"\n                },\n                {\n                    \"_id\": \"5ed04447bf6e5b68d3e52dca\"\n                },\n                {\n                    \"_id\": \"5ed04460bf6e5b68d3e52dcf\"\n                }\n            ]\n        },\n        \"premium\": true,\n        \"ownedPlaylists\": [\n            \"5e7969965146d92e98ac3ef7\",\n            \"5e7ac3c7d43a2c49909c549c\",\n            \"5e805a8a3711912168602afa\",\n            \"5e875c15ba6ebe663fdbb2c1\",\n            \"5e9f6250a0e0d71699c45b09\",\n            \"5eccc3ef3900de3c24583d48\",\n            \"5eccc3fa3900de3c24583d49\"\n        ],\n        \"followedAlbums\": [\n            \"5e701f4d2672a63a60573a02\",\n            \"5e701fdf2672a63a60573a06\"\n        ],\n        \"followedTracks\": [\n            \"5e7d2dc03429e24340ff1396\",\n            \"5ea24170b53b6d11e68732db\",\n            \"5e8a1e937937ec4d40c6debd\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"5e8125dc54660672fd69987f\",\n        \"email\": \"generalmohamed1999@gmail.com\",\n        \"name\": \"Etshawy\",\n        \"dateOfBirth\": \"1999-05-12T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"last_login\": \"2020-05-30T13:57:41.927Z\",\n        \"passwordChangedAt\": \"2020-04-19T17:20:46.748Z\",\n        \"googleId\": \"114901540775379681047\",\n        \"imageGoogleUrl\": \"https://lh3.googleusercontent.com/a-/AOh14Gga4UgHOVM-hgdnV5Sv8OusgKzhsfmiYv5wEgSwxA\",\n        \"imageUrl\": \"https://thesymphonia.ddns.net/api/v1/images/users/b25af6f135ececc649c9-1590714351975.jpg\",\n        \"playerToken\": \"19992ee6a8b4a40eced8708c930c7768aaac64456428243206973ce2d9143f64\",\n        \"playerTokenExpires\": \"2020-05-28T23:28:16.872Z\",\n        \"phone\": \"577_5777\",\n        \"facebookId\": \"1513670318797902\",\n        \"imageFacebookUrl\": \"https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1513670318797902&height=50&width=50&ext=1589998517&hash=AeRnTaA0S9yI9ubW\"\n    }\n}"
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYjc4N2JiMTlmZGI3NDU3YzY0ZDBkYiIsImlhdCI6MTYyMjY0MDY1MiwiZXhwIjoxNjI0MzY4NjUyfQ.KMLMIECzMWYQcZ880uHZnClCT1G8WqNPjCy89zTCwKU\",\n    \"user\": {\n        \"deleted\": false,\n        \"_id\": \"60b787bb19fdb7457c64d0db\",\n        \"email\": \"test@test.com\",\n        \"type\": \"applicant\",\n        \"last_login\": \"2021-06-02T13:30:52.357Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n        \"additionalData\": {\n            \"onlinePresence\": {\n                \"linkedIn\": \"\",\n                \"facebook\": \"\",\n                \"twitter\": \"\",\n                \"behance\": \"\",\n                \"instagram\": \"\",\n                \"gitHub\": \"\",\n                \"stackOverflow\": \"\",\n                \"youTube\": \"\",\n                \"blog\": \"\",\n                \"website\": \"\",\n                \"other\": \"\"\n            },\n            \"jobType\": [],\n            \"deleted\": false,\n            \"_id\": \"60b787bb19fdb7457c64d0dc\",\n            \"user\": \"60b787bb19fdb7457c64d0db\",\n            \"skills\": [],\n            \"jobTitles\": [],\n            \"categories\": [],\n            \"languages\": [],\n            \"__v\": 0\n        },\n        \"onModel\": \"ApplicantData\"\n    }\n}"
 						}
 					]
 				},
@@ -416,7 +456,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"passwordCurrent\": \"newpassword\",\n\t\"password\": \"password\",\n\t\"passwordConfirm\": \"password\"\n}",
+							"raw": "{\n\t\"passwordCurrent\": \"password\",\n\t\"password\": \"passwordd\",\n\t\"passwordConfirm\": \"passwordd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,16 +480,10 @@
 							"name": "update password",
 							"originalRequest": {
 								"method": "PATCH",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {your access token}",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"passwordCurrent\": \"password\",\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}",
+									"raw": "{\n\t\"passwordCurrent\": \"password\",\n\t\"password\": \"passwordd\",\n\t\"passwordConfirm\": \"passwordd\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -477,8 +511,16 @@
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -497,24 +539,16 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "1000"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "999"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 29 Mar 2020 16:35:28 GMT"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1585503326"
+									"value": "0"
 								},
 								{
 									"key": "Content-Type",
@@ -522,11 +556,19 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "453"
+									"value": "515"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"1c5-1Q2P1P6u8hNJlcJfxpbyNTU6QZA\""
+									"value": "W/\"203-jQcfVVvbkLFqLOZfrE3ToUS1Spc\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 13:32:50 GMT"
 								},
 								{
 									"key": "Connection",
@@ -534,7 +576,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlODBiMzQxYjE5YTI0MDg0Y2I5YjdlNyIsImlhdCI6MTU4NTQ5OTczMiwiZXhwIjoxNTg1NTAzMzMyfQ._YoFcWRISVlkTXUA0s8qaxf7N0L3A2ZIwfVEwLq5joU\",\n    \"user\": {\n        \"_id\": \"5e80b341b19a24084cb9b7e7\",\n        \"email\": \"test29@test.com\",\n        \"name\": \"etsh\",\n        \"dateOfBirth\": \"1999-12-31T00:00:00.000Z\",\n        \"gender\": \"male\",\n        \"type\": \"artist\",\n        \"last_login\": \"2020-03-29T16:33:58.024Z\",\n        \"passwordChangedAt\": \"2020-03-29T16:35:31.242Z\"\n    }\n}"
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYjc4N2JiMTlmZGI3NDU3YzY0ZDBkYiIsImlhdCI6MTYyMjY0MDc3MCwiZXhwIjoxNjI0MzY4NzcwfQ.vFUlOhQfBaNwAb8afE6cvEhXObx6MaOpklsyDKE7xRs\",\n    \"user\": {\n        \"deleted\": false,\n        \"_id\": \"60b787bb19fdb7457c64d0db\",\n        \"email\": \"test@test.com\",\n        \"type\": \"applicant\",\n        \"last_login\": \"2021-06-02T13:30:52.357Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n        \"additionalData\": \"60b787bb19fdb7457c64d0dc\",\n        \"onModel\": \"ApplicantData\",\n        \"passwordChangedAt\": \"2021-06-02T13:32:49.416Z\"\n    }\n}"
 						}
 					]
 				},
@@ -697,7 +739,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}",
+							"raw": "{\n\t\"password\": \"password\",\n\t\"passwordConfirm\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -718,7 +760,7 @@
 							"variable": [
 								{
 									"key": "{token}",
-									"value": "f31c2eb07635197b475353b52140f202dbc6962045bc64929b0c3d2b0ec4b0c6",
+									"value": "58053e098812eeda142507d785da9fbb63ef7aa2b1b92ea5e1b7f37c3b7ad6f5",
 									"description": "*required: *  A valid Token that the server sent it to the user email."
 								}
 							]
@@ -1387,7 +1429,101 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get website skills fro user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/getskills",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"getskills"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-WArYxc/0LTp1pNGbNczBqKX/0fg\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:54:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc5841913e5408725e47\",\n        \"name\": \"C++\",\n        \"__v\": 0\n    },\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc5e41913e5408725e48\",\n        \"name\": \"C\",\n        \"__v\": 0\n    },\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc6241913e5408725e49\",\n        \"name\": \"C#\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "Search website skills by a user keyword",
@@ -1405,7 +1541,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/users/searchskills/java",
+							"raw": "{{URL}}api/v1/users/searchskills/c?limit=1&offset=0",
 							"host": [
 								"{{URL}}api"
 							],
@@ -1413,11 +1549,126 @@
 								"v1",
 								"users",
 								"searchskills",
-								"java"
+								"c"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Search website skills by a user keyword",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/searchskills/c?limit=1&offset=0",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"searchskills",
+										"c"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-O/DtflPc7OaqkSy+kjG855InZ1I\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:51:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 3,\n    \"items\": [\n        {\n            \"deleted\": false,\n            \"_id\": \"60b7fc5e41913e5408725e48\",\n            \"name\": \"C\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "update Language",
@@ -2129,7 +2380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"C++\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"C#\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2148,7 +2399,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "addSkill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"C#\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/admins/addskill",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"admins",
+										"addskill"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-s0RT65L8GHJ/tpg5Mdax7lm2rkA\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:47:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"60b7fc6241913e5408725e49\",\n    \"deleted\": false,\n    \"name\": \"C#\",\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "Adding language",
@@ -2186,7 +2540,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Adding language",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Arabic\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/admins/addlanguage",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"admins",
+										"addlanguage"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-+yc2Ya2y0VJFMrc/HofO6HiSjJk\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:47:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"60b7fc7341913e5408725e4a\",\n    \"deleted\": false,\n    \"name\": \"Arabic\",\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "Add job title",
@@ -2224,7 +2681,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add job title",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Back-end Develope\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/admins/addjobtitle",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"admins",
+										"addjobtitle"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-fW6VbuklC536HViZb6j483yOlfQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:47:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"60b7fc7a41913e5408725e4b\",\n    \"deleted\": false,\n    \"name\": \"Back-end Develope\",\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "add category",
@@ -2262,7 +2822,1205 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "add category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"IT/Sotfware Development\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/admins/addcategory",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"admins",
+										"addcategory"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-ZAmdc/Do6qyYy+S6m0h+p2IZQLA\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 21:47:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"60b7fc8141913e5408725e4c\",\n    \"deleted\": false,\n    \"name\": \"IT/Sotfware Development\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Recruiter",
+			"item": [
+				{
+					"name": "update recruiter data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"360 imaging\",\n    \"address\": \"Maadi, Cairo, Egypt\",\n    \"employeesCount\": \"1-50 Employees\",\n    \"field\": \"IT/Software Development\",\n    \"description\": \"imaging\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/recruiters/updatedata",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"recruiters",
+								"updatedata"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update recruiter data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"360 imaging\",\n    \"address\": \"Maadi, Cairo, Egypt\",\n    \"employeesCount\": \"1-50 Employees\",\n    \"field\": \"IT/Software Development\",\n    \"description\": \"imaging\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/recruiters/updatedata",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"recruiters",
+										"updatedata"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "237"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ed-7ce5lnjlCUN5jME/7HoFkmM+S3g\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 16:39:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"deleted\": false,\n    \"_id\": \"60b7b1022e597543905ee166\",\n    \"user\": \"60b7b1022e597543905ee165\",\n    \"__v\": 0,\n    \"name\": \"360 imaging\",\n    \"address\": \"Maadi, Cairo, Egypt\",\n    \"description\": \"imaging\",\n    \"employeesCount\": \"1-50 Employees\",\n    \"field\": \"IT/Software Development\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Company picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/G:/g.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/recruiters/updatepicture",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"recruiters",
+								"updatepicture"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile picture",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dell/Desktop/Capture.PNG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatepicture",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatepicture"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DL87h7QnXAo0Tcque6YP4QPSB9c\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 May 2021 11:31:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"image\": \"http://localhost:3000/api/v1/static/images/users/3e29e40aa3efafdd9c3c-1621769489494.jpg\"\n}"
+						},
+						{
+							"name": "Update Company picture",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/G:/g.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/recruiters/updatepicture",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"recruiters",
+										"updatepicture"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"67-rLhLPWqjW8iGesDwoGQQsYyIlGA\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 16:41:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"image\": \"http://localhost:3000/api/v1/static/images/companies/1d27e43e091bc32e7706-1622652105246.jpg\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "ceate job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/jobs/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ceate job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/jobs/",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "902"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"386-mHAtfBDh0WY8Qcrr8bFcXcA7PSs\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 20:54:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"_id\": \"60b7eff5c245d1080c2917d5\",\n    \"deleted\": false,\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 3000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"Android developer full time\",\n    \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n    \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "update job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 5000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android Java developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/jobs/:{id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								":{id}"
+							],
+							"variable": [
+								{
+									"key": "{id}",
+									"value": "60b7eff5c245d1080c2917d5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update job",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 5000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android Java developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/jobs/:{id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										":{id}"
+									],
+									"variable": [
+										{
+											"key": "{id}",
+											"value": "60b7eff5c245d1080c2917d5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "907"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38b-sM4x9UxEnPsfpDLdwia0h4vA6rY\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 20:55:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"60b7eff5c245d1080c2917d5\",\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 5000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"Android Java developer full time\",\n    \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n    \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "delete job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/jobs/:{id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								":{id}"
+							],
+							"variable": [
+								{
+									"key": "{id}",
+									"value": "60b7eff5c245d1080c2917d5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete job",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobs/:{id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										":{id}"
+									],
+									"variable": [
+										{
+											"key": "{id}",
+											"value": "60b7ea300e508148bc43bdef"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 20:45:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "get job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/jobs/:{id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								":{id}"
+							],
+							"variable": [
+								{
+									"key": "{id}",
+									"value": "60b7eff5c245d1080c2917d5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobs/:{id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										":{id}"
+									],
+									"variable": [
+										{
+											"key": "{id}",
+											"value": "60b7eff5c245d1080c2917d5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "934"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a6-RM29LcfoYYrtoWSBvQrCcXX/TQk\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 20:55:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": {\n        \"skills\": [\n            \"C++\",\n            \"Java\",\n            \"Git\"\n        ],\n        \"screeningQuestions\": [\n            \"what makes you different?\",\n            \"why should we hire you?\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60b7eff5c245d1080c2917d5\",\n        \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n        \"field\": \"IT/Software Development\",\n        \"salary\": 3000,\n        \"careerLevel\": \"Entry Level\",\n        \"experience\": \"No experience\",\n        \"jobTitle\": \"Android developer full time\",\n        \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n        \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n        \"__v\": 0\n    },\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "get recruiter jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/jobs/recruiter/:{recruiter_user_id}?limit=1&offset=0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								"recruiter",
+								":{recruiter_user_id}"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							],
+							"variable": [
+								{
+									"key": "{recruiter_user_id}",
+									"value": "60b7bca7db1c5a25f81abfe1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobs/:{id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										":{id}"
+									],
+									"variable": [
+										{
+											"key": "{id}",
+											"value": "60b7eff5c245d1080c2917d5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "934"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a6-RM29LcfoYYrtoWSBvQrCcXX/TQk\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 20:55:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": {\n        \"skills\": [\n            \"C++\",\n            \"Java\",\n            \"Git\"\n        ],\n        \"screeningQuestions\": [\n            \"what makes you different?\",\n            \"why should we hire you?\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60b7eff5c245d1080c2917d5\",\n        \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n        \"field\": \"IT/Software Development\",\n        \"salary\": 3000,\n        \"careerLevel\": \"Entry Level\",\n        \"experience\": \"No experience\",\n        \"jobTitle\": \"Android developer full time\",\n        \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n        \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n        \"__v\": 0\n    },\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
 				}
 			]
 		}

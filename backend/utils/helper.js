@@ -41,14 +41,15 @@ module.exports.checkIDS = async (ids, Model) => {
  *       "limit": 0,
  *       "offset": 0
  *}
- *@param {Array} items this is the array on witch you are providing the pagination
- *@param {Request} req this is an express request object
+ * @param {Array} items this is the array on witch you are providing the pagination
+ * @param {Request} req this is an express request object
+ * @param {Number} toatl total count of objects that can be retreived from request
  */
-module.exports.getPaging = (items, req) => {
+module.exports.getPaging = (items, req, total) => {
   const limit = req.params.limit ? parseInt(req.query.limit) : 20;
   const offset = req.params.offset ? parseInt(req.query.offset) : 0;
   return {
-    total: items.length,
+    total,
     items,
     limit,
     offset,

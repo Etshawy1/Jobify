@@ -16,6 +16,17 @@ exports.deleteOne = Model =>
     res.status(204).json(null);
   });
 
+exports.softDelete = Model => 
+  catchAsync(async (req, res, next) => {
+    const document = await Model.findById(req.params.id);
+    if (!document) {
+      return next(new AppError('the document was not found', 404));
+    }
+    await document.delete();
+
+    res.status(204).json({});
+  });
+
 exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
@@ -27,14 +38,14 @@ exports.updateOne = Model =>
       return next(new AppError('No document found with that ID', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.createOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
 
-    res.status(201).json(Helpers.getPaging(doc, req));
+    res.status(201).json(doc);
   });
 
 exports.getOne = (Model, popOptions) =>
@@ -47,7 +58,7 @@ exports.getOne = (Model, popOptions) =>
       return next(new AppError('that document does not exist', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.getMany = (Model, popOptions) =>
@@ -63,18 +74,13 @@ exports.getMany = (Model, popOptions) =>
       return next(new AppError('No documents found with provided IDs', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(Model.find({}), req.query)
-      .filter()
-      .offset()
-      .sort()
-      .paginate();
-    const doc = await features.query;
+    const doc = await Model.find({});
 
     // SEND RESPONSE
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
