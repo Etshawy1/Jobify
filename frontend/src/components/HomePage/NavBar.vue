@@ -5,7 +5,7 @@
       prominent
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title large style="cursor: pointer" @click="$router.push('/')" >Jobify</v-toolbar-title>
+      <v-toolbar-title large style="cursor: pointer" @click="$router.push('/home')" >Jobify</v-toolbar-title>
       <v-spacer></v-spacer>
           
       <v-menu offset-y>

@@ -10,15 +10,14 @@ import NavBar from '../../components/HomePage/NavBar.vue';
 import Postjob from '../../components/Recuiter/Postjob.vue'
 
 export default {
-  name: "JobApply",
+  name: "JobPost",
   data () {
-      return {
-      }
+      return {}
   },
   components: {
     "nav-bar-app":NavBar,
     "post-job-app": Postjob
-   },
+   }
 };
 </script>
 
