@@ -75,6 +75,37 @@
           </v-col>
           <v-spacer></v-spacer>
         </v-row>
+        <!-- phone -->
+        <v-row justify="center">
+          <v-col cols="10">
+            <v-text-field
+              rounded-md
+              outlined
+              label="Phone number"
+              dense
+              type="text"
+              v-model="formData.phone"
+              :rules="[required('phone number')]"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <!-- gender -->
+        <v-row justify="center" justify-md="center">
+          <v-radio-group v-model="formData.gender" row>
+            <template v-slot:label> <div>Gender</div> </template>
+            <v-radio value="male">
+              <template v-slot:label>
+                <strong>Male</strong>
+              </template>
+            </v-radio>
+            <v-radio value="female">
+              <template v-slot:label>
+                <strong>female</strong>
+              </template>
+            </v-radio>
+          </v-radio-group>
+        </v-row>
+
         <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -116,7 +147,9 @@ export default {
         valid: false,
         firstname: '',
         lastname: '',
-        dateOfBirth: '1999-12-31'
+        dateOfBirth: '1999-12-31',
+        gender: 'male',
+        phone: ''
       },
       dateMenu: false,
       errorMessage: "",
@@ -146,7 +179,9 @@ export default {
           userToken : localStorage.getItem('userToken'),
           firstname : this.formData.firstname,
           lastname : this.formData.lastname,
-          dateOfBirth : this.formData.dateOfBirth
+          dateOfBirth : this.formData.dateOfBirth,
+          phone : this.formData.phone,
+          gender: this.formData.gender
         })
         this.loadingState = false;
         this.$router.push('/home')

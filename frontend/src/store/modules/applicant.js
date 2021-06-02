@@ -11,7 +11,9 @@ const actions = {
             axios.patch('/v1/users/updateapplicantdata', {
                 firstName: payload.firstname,
                 lastName : payload.lastname,
-                dateOfBirth: payload.dateOfBirth
+                dateOfBirth: payload.dateOfBirth,
+                gender: payload.gender,
+                phone: payload.phone
             },
             {
                 headers: {
