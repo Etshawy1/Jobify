@@ -876,120 +876,6 @@
 					]
 				},
 				{
-					"name": "Get-Current-User-Profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}api/v1/me",
-							"host": [
-								"{{URL}}api"
-							],
-							"path": [
-								"v1",
-								"me"
-							]
-						},
-						"description": "## Get user Pfofile (private) \r\n Just get informations about the user .\r\n\r\n\r\n## Response Format\r\n  On success, the HTTP status code in the response header is 200 OK , the header status code is an error code and the response body contains an error object."
-					},
-					"response": [
-						{
-							"name": "Get-Current-User-Profile",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}api/v1/me",
-									"host": [
-										"{{URL}}api"
-									],
-									"path": [
-										"v1",
-										"me"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.14.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 10 Jun 2020 13:29:49 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"562-LnwxqZBdxcYBTesCvqeuTnJRm6w\""
-								},
-								{
-									"key": "Vary",
-									"value": "Accept-Encoding"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"premium\": true,\n    \"followedUsers\": [\n        \"5e84b966681ae439edfc1d6f\",\n        \"5e82a48054660672fd699883\",\n        \"5e812a3454660672fd699880\",\n        \"5e8c77c1e37ac11ac4f0135f\"\n    ],\n    \"tracks\": [],\n    \"ownedPlaylists\": [\n        \"5e7969965146d92e98ac3ef7\",\n        \"5e7ac3c7d43a2c49909c549c\",\n        \"5e805a8a3711912168602afa\",\n        \"5e875c15ba6ebe663fdbb2c1\",\n        \"5edfc01179571909a0c80f51\"\n    ],\n    \"followedAlbums\": [\n        \"5e701fdf2672a63a60573a06\",\n        \"5e794163c01c024ecc3c31d3\",\n        \"5e89f33375bcc40cc4b5a736\"\n    ],\n    \"followedTracks\": [\n        \"5e7d2dc03429e24340ff1396\",\n        \"5e7d2e023429e24340ff1398\",\n        \"5e7d334860cd930408a5f995\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"5e8125dc54660672fd69987f\",\n    \"email\": \"generalmohamed1999@gmail.com\",\n    \"name\": \"Muhammad Ahmad Hesham\",\n    \"dateOfBirth\": \"1999-05-12T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"user\",\n    \"last_login\": \"2020-06-10T11:40:52.278Z\",\n    \"imageGoogleUrl\": \"https://lh3.googleusercontent.com/a-/AOh14Gga4UgHOVM-hgdnV5Sv8OusgKzhsfmiYv5wEgSwxA\",\n    \"imageUrl\": \"https://graph.facebook.com/v2.6/1513670318797902/picture?type=large\",\n    \"__v\": 15,\n    \"imageFacebookUrl\": \"https://graph.facebook.com/v2.6/1513670318797902/picture?type=large\",\n    \"playerToken\": \"49a5afcd0a492c4afd262bad421194dcf56a0392027f6f351e8a91acb96184ec\",\n    \"playerTokenExpires\": \"2020-06-10T12:38:44.597Z\",\n    \"registraionToken\": \"eoutghG3cONxylicJfk9rI:APA91bEsUYhjNQBmM6bJUr0mJ0EJYPeye4nKXMReEBoJd-qF88gH53EosxnYT4o6JQbnVeWra31kbhRFcMYffSDz3wBHYvHxbNTXCVH05Uyljn0wmJFrNi14zZGnPl7a0BebCSiC0e8t\",\n    \"premiumExpires\": \"2020-12-06T17:02:32.240Z\"\n}"
-						}
-					]
-				},
-				{
 					"name": "Get-User-Public-Profile",
 					"request": {
 						"auth": {
@@ -1005,20 +891,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/me/user/:{user_id}",
+							"raw": "{{URL}}api/v1/users/:{user_id}",
 							"host": [
 								"{{URL}}api"
 							],
 							"path": [
 								"v1",
-								"me",
-								"user",
+								"users",
 								":{user_id}"
 							],
 							"variable": [
 								{
 									"key": "{user_id}",
-									"value": "5e812a3454660672fd699880",
+									"value": "60b7b1022e597543905ee165",
 									"description": "The `Symphonia` id for the document you want to retrieve"
 								}
 							]
@@ -1032,20 +917,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}api/v1/me/user/:{user_id}",
+									"raw": "{{URL}}api/v1/users/:{user_id}",
 									"host": [
 										"{{URL}}api"
 									],
 									"path": [
 										"v1",
-										"me",
-										"user",
+										"users",
 										":{user_id}"
 									],
 									"variable": [
 										{
 											"key": "{user_id}",
-											"value": "5e812a3454660672fd699880",
+											"value": "60b7fb945e74d34934ac9730",
 											"description": "The `Symphonia` id for the document you want to retrieve"
 										}
 									]
@@ -1056,32 +940,20 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"key": "Server",
-									"value": "nginx/1.14.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 10 Jun 2020 13:30:51 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
 									"key": "Access-Control-Allow-Origin",
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -1100,12 +972,24 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"4dc-MxA/IwYmloYVDEU3XwEjvS/ieUw\""
+									"value": "W/\"433-x24iiu2tjtT8x/o1qcWxBA/4Va4\""
 								},
 								{
 									"key": "Vary",
@@ -1114,10 +998,51 @@
 								{
 									"key": "Content-Encoding",
 									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:48:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"premium\": false,\n    \"followedUsers\": [\n        \"5e8b6d866253cb184eaac150\",\n        \"5e812db054660672fd699881\",\n        \"5edff84830afcb26b83fb1ac\",\n        \"5e82a48054660672fd699883\"\n    ],\n    \"tracks\": [],\n    \"ownedPlaylists\": [\n        \"5e806865ef653f5a541e0b1d\",\n        \"5e8069722fcb0d35900c4d64\",\n        \"5e8078b0dbaafc18605cb029\",\n        \"5e8828df838d9835d207016d\",\n        \"5edfcbf079571909a0c80ff1\",\n        \"5edfd09d79571909a0c810d1\",\n        \"5edfd57079571909a0c81545\",\n        \"5edfd65f79571909a0c8155c\",\n        \"5edfda35d6f6331d3e8e0766\",\n        \"5edfdde7d6f6331d3e8e07dc\",\n        \"5edfdec9d6f6331d3e8e07f7\",\n        \"5edfe061d6f6331d3e8e081c\"\n    ],\n    \"followedAlbums\": [\n        \"5e794163c01c024ecc3c31d3\",\n        \"5edf5a442aa9b365682e46f9\",\n        \"5e701fdf2672a63a60573a06\"\n    ],\n    \"followedTracks\": [\n        \"5e7d2dc03429e24340ff1396\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"5e812a3454660672fd699880\",\n    \"email\": \"test1@test.com\",\n    \"name\": \"user1\",\n    \"dateOfBirth\": \"1999-06-25T00:00:00.000Z\",\n    \"gender\": \"female\",\n    \"type\": \"user\",\n    \"imageUrl\": \"https://thesymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"__v\": 10,\n    \"last_login\": \"2020-06-10T09:29:12.974Z\",\n    \"playerToken\": \"ea1677700c30e32cc4f353f3650522ea1ac4fe2927fccc940e3341585f1c6f81\",\n    \"playerTokenExpires\": \"2020-06-10T09:53:29.790Z\",\n    \"registraionToken\": \"d1paSPuuvv0IgsR6DQLn6s:APA91bHg6-nHHNcgEgvmA5rEwb9IuU19otI9EV_cG5Ie2yQeHxqft_ZF84bnXs-pEjcZKw9as3DPLonu0Q9LTiOuzc4QTdbmRxRo3_a0PlfY8aUH9-039wYlbnBaZSeixT26ChVMf9Nv\"\n}"
+							"body": "{\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9730\",\n    \"email\": \"test23132@gmail.com\",\n    \"type\": \"applicant\",\n    \"last_login\": \"2021-06-02T21:43:58.902Z\",\n    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n    \"__v\": 0,\n    \"additionalData\": {\n        \"onlinePresence\": {\n            \"linkedIn\": \"\",\n            \"facebook\": \"ioasdjfoiajsdofjadsoifjoiadsf\",\n            \"twitter\": \"ioasdjfoiajsdofjadsoifjoiadsf\",\n            \"behance\": \"\",\n            \"instagram\": \"\",\n            \"gitHub\": \"\",\n            \"stackOverflow\": \"\",\n            \"youTube\": \"\",\n            \"blog\": \"\",\n            \"website\": \"\",\n            \"other\": \"\"\n        },\n        \"jobType\": [],\n        \"deleted\": false,\n        \"_id\": \"60b7fb945e74d34934ac9731\",\n        \"user\": \"60b7fb945e74d34934ac9730\",\n        \"skills\": [\n            {\n                \"_id\": \"60b8076b9b729723b42a40c9\",\n                \"skill\": \"C\",\n                \"yearsExperiance\": \"Less than 1 year\"\n            },\n            {\n                \"_id\": \"60b8077e9b729723b42a40ca\",\n                \"skill\": \"C#\",\n                \"yearsExperiance\": \"Less than 1 year\"\n            }\n        ],\n        \"jobTitles\": [\n            {\n                \"_id\": \"60b808ae0a69dd632c1d6b84\",\n                \"jobTitle\": \"Back-end Develope\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"_id\": \"60b808e10a69dd632c1d6b85\",\n                \"category\": \"IT/Sotfware Development\"\n            }\n        ],\n        \"languages\": [\n            {\n                \"_id\": \"60b8088f0a69dd632c1d6b83\",\n                \"language\": \"Arabic\",\n                \"Reading\": 5,\n                \"Writing\": 1,\n                \"Listening\": 2,\n                \"Speaking\": 3\n            }\n        ],\n        \"__v\": 0,\n        \"salary\": 2999\n    },\n    \"onModel\": \"ApplicantData\"\n}"
+						},
+						{
+							"name": "Get Recruiter profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/:{user_id}",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										":{user_id}"
+									],
+									"variable": [
+										{
+											"key": "{user_id}",
+											"value": "60b7fb945e74d34934ac9730",
+											"description": "The `Symphonia` id for the document you want to retrieve"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						}
 					]
 				},
@@ -1381,7 +1306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"java\",\r\n    \"yearOfExperiance\": \"Less than 1 year\"\r\n}",
+							"raw": "{\r\n    \"skillName\": \"C#\",\r\n    \"yearOfExperiance\": \"Less than 1 year\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1400,7 +1325,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update Skills",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"skillName\": \"C#\",\r\n    \"yearOfExperiance\": \"Less than 1 year\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updateskills",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updateskills"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "497"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f1-yFtdrdTDT+I41tIO/VjGdkS0aIo\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:34:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [],\n    \"categories\": [],\n    \"languages\": [],\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "Get website skills fro user",
@@ -1687,7 +1715,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"languageName\" : \"Arabic\",\r\n    \"Reading\" :5,\r\n          \"Writing\": 1,\r\n          \"Listening\": 2,\r\n         \"Speaking\": 3\r\n}",
+							"raw": "{\r\n    \"languageName\" : \"Arabic\",\r\n    \"Reading\" :5,\r\n    \"Writing\": 1,\r\n    \"Listening\": 2,\r\n    \"Speaking\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1706,7 +1734,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update Language",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"languageName\" : \"Arabic\",\r\n    \"Reading\" :5,\r\n    \"Writing\": 1,\r\n    \"Listening\": 2,\r\n    \"Speaking\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatelanguage",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatelanguage"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "602"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25a-VMLXupwCHb1O2Fxlu4Cy8SbiGUM\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:39:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [],\n    \"categories\": [],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "Update job title",
@@ -1744,7 +1875,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update job title",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobTitleName\":\"Back-end Develope\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatejobtitle",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatejobtitle"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "667"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29b-riXIRM/4NTEGxpJUg11jXSeg1GI\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:39:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "search job titles",
@@ -1774,7 +2008,102 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "search job titles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/searchjobtitles/ack",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"searchjobtitles",
+										"ack"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-HfQS8AWUKg3iJm7kW3/nagURzPE\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:40:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"deleted\": false,\n            \"_id\": \"60b7fc7a41913e5408725e4b\",\n            \"name\": \"Back-end Develope\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "update job category",
@@ -1812,7 +2141,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update job category",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryName\": \"IT/Sotfware Development\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatecategory",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatecategory"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "738"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e2-76mulLP+Rtyb4CMHv0MwyPBxv80\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:40:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"_id\": \"60b808e10a69dd632c1d6b85\",\n            \"category\": \"IT/Sotfware Development\"\n        }\n    ],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "search job categories",
@@ -1830,7 +2262,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/users/searchcategories/IT",
+							"raw": "{{URL}}api/v1/users/searchcategories/IT?limit=2&offset=0",
 							"host": [
 								"{{URL}}api"
 							],
@@ -1839,10 +2271,125 @@
 								"users",
 								"searchcategories",
 								"IT"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "search job categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/users/searchcategories/IT?limit=2&offset=0",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"searchcategories",
+										"IT"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-fEzrxsLsEqonN7V6ovYEp1RGa54\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:47:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"deleted\": false,\n            \"_id\": \"60b7fc8141913e5408725e4c\",\n            \"name\": \"IT/Sotfware Development\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 2,\n    \"offset\": 0\n}"
+						}
+					]
 				},
 				{
 					"name": "update salary",
@@ -1880,7 +2427,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update salary",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"salary\": 2999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updatesalary",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updatesalary"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "752"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f0-nJY8z1LkvCNrTOfZ6QGSVcUlAgg\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:47:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"_id\": \"60b808e10a69dd632c1d6b85\",\n            \"category\": \"IT/Sotfware Development\"\n        }\n    ],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0,\n    \"salary\": 2999\n}"
+						}
+					]
 				},
 				{
 					"name": "update Online Presence",
@@ -1918,7 +2568,110 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "update Online Presence",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"facebook\": \"ioasdjfoiajsdofjadsoifjoiadsf\",\r\n   \"twitter\": \"ioasdjfoiajsdofjadsoifjoiadsf\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/users/updateOnlinePresence",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"users",
+										"updateOnlinePresence"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "810"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32a-rMHZngQ3wnHk4PKZRXJ/ESJH0Vo\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 22:47:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"ioasdjfoiajsdofjadsoifjoiadsf\",\n        \"twitter\": \"ioasdjfoiajsdofjadsoifjoiadsf\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"_id\": \"60b808e10a69dd632c1d6b85\",\n            \"category\": \"IT/Sotfware Development\"\n        }\n    ],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0,\n    \"salary\": 2999\n}"
+						}
+					]
 				},
 				{
 					"name": "delete skill",
