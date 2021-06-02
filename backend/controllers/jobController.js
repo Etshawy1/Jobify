@@ -27,3 +27,4 @@ exports.getRecruiterJobs = catchAsync(async (req, res, next) => {
 exports.updateJob = factory.updateOne(Job);
 exports.deleteJob = factory.softDelete(Job);
 exports.getJob = factory.getOne(Job);
+exports.getAllJobs = factory.getAll(Job);

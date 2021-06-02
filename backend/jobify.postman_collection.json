@@ -891,13 +891,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/users/:{user_id}",
+							"raw": "{{URL}}api/v1/users/profile/:{user_id}",
 							"host": [
 								"{{URL}}api"
 							],
 							"path": [
 								"v1",
 								"users",
+								"profile",
 								":{user_id}"
 							],
 							"variable": [
@@ -1446,7 +1447,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/users/getskills",
+							"raw": "{{URL}}api/v1/users/getskills?limit=2&offset=0",
 							"host": [
 								"{{URL}}api"
 							],
@@ -1454,6 +1455,16 @@
 								"v1",
 								"users",
 								"getskills"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
 							]
 						}
 					},
@@ -1464,7 +1475,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}api/v1/users/getskills",
+									"raw": "{{URL}}api/v1/users/getskills?limit=2&offset=0",
 									"host": [
 										"{{URL}}api"
 									],
@@ -1472,6 +1483,16 @@
 										"v1",
 										"users",
 										"getskills"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
 									]
 								}
 							},
@@ -1529,11 +1550,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "214"
+									"value": "184"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"d6-WArYxc/0LTp1pNGbNczBqKX/0fg\""
+									"value": "W/\"b8-ogowfvysnh4xQw9mHqVJET/LpTc\""
 								},
 								{
 									"key": "Vary",
@@ -1541,7 +1562,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 21:54:51 GMT"
+									"value": "Wed, 02 Jun 2021 23:21:24 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1549,7 +1570,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc5841913e5408725e47\",\n        \"name\": \"C++\",\n        \"__v\": 0\n    },\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc5e41913e5408725e48\",\n        \"name\": \"C\",\n        \"__v\": 0\n    },\n    {\n        \"deleted\": false,\n        \"_id\": \"60b7fc6241913e5408725e49\",\n        \"name\": \"C#\",\n        \"__v\": 0\n    }\n]"
+							"body": "{\n    \"total\": 3,\n    \"items\": [\n        {\n            \"deleted\": false,\n            \"_id\": \"60b7fc5841913e5408725e47\",\n            \"name\": \"C++\",\n            \"__v\": 0\n        },\n        {\n            \"deleted\": false,\n            \"_id\": \"60b7fc5e41913e5408725e48\",\n            \"name\": \"C\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 2,\n    \"offset\": 0\n}"
 						}
 					]
 				},
@@ -4772,6 +4793,137 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"items\": {\n        \"skills\": [\n            \"C++\",\n            \"Java\",\n            \"Git\"\n        ],\n        \"screeningQuestions\": [\n            \"what makes you different?\",\n            \"why should we hire you?\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60b7eff5c245d1080c2917d5\",\n        \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n        \"field\": \"IT/Software Development\",\n        \"salary\": 3000,\n        \"careerLevel\": \"Entry Level\",\n        \"experience\": \"No experience\",\n        \"jobTitle\": \"Android developer full time\",\n        \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n        \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n        \"__v\": 0\n    },\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "get all jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/jobs?limit=1&offset=1",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobs?limit=1&offset=1",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "945"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b1-+pqxpZpgipJSWz6BbW3I2U3prsI\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jun 2021 23:15:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 2,\n    \"items\": [\n        {\n            \"skills\": [\n                \"C++\",\n                \"Java\",\n                \"Git\"\n            ],\n            \"screeningQuestions\": [\n                \"what makes you different?\",\n                \"why should we hire you?\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60b7f3fc6a63e60300f0e3ae\",\n            \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n            \"field\": \"IT/Software Development\",\n            \"salary\": 3000,\n            \"careerLevel\": \"Entry Level\",\n            \"experience\": \"No experience\",\n            \"jobTitle\": \"Android developer full time\",\n            \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n            \"createdAt\": \"2021-06-02T21:11:24.815Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 1,\n    \"offset\": 1\n}"
 						}
 					]
 				}

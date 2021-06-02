@@ -3,7 +3,7 @@
 const catchAsync = require('./../utils/catchAsync').threeArg;
 const AppError = require('./../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
-const Helpers = require('./../utils/helper');
+const helpers = require('./../utils/helper');
 
 exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
@@ -79,8 +79,11 @@ exports.getMany = (Model, popOptions) =>
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.find({});
-
-    // SEND RESPONSE
-    res.status(200).json(doc);
+    const features = new APIFeatures(Model.find({}), req.query)
+      .filter()
+      .offset();
+    const docs = await features.query;
+    const totalCount = await Model.find({}).countDocuments();
+    
+    res.status(200).json(helpers.getPaging(docs, req, totalCount));
   });

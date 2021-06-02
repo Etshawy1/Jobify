@@ -5,6 +5,7 @@ const constants = require('../utils/constants');
 
 const router = express.Router();
 
+router.get('/', jobController.getAllJobs);
 
 // any endpoint written after the following line is protected
 router.use(authController.protect(true));
