@@ -12,5 +12,7 @@ module.exports = Object.freeze({
     jobTitle: 'JobTitle',
     category: 'Category',
     recruiterData: 'RecruiterData'
-  }
+  },
+  FRONTEND_HOSTNAME: "localhost:8080",
+  FRONTEND_PROTOCOL: "http"
 });

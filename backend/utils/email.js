@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
-const htmlToText = require('html-to-text');
+const {htmlToText} = require('html-to-text');
 /**
  * Class contains features for out apis to handel pagiantion and limitation and sorting.
  * @class Email
@@ -10,15 +10,15 @@ class Email {
   /**
    * Create a APIFeatures object.
    * @constructor
-   * @param {mongodb_user} mongodb_Object - The user you want to send him your email.
-   * @param {url_string} string - the url string that you want the user to go to it it do an action
-   * @returns {void}
+   * @param {string} name - The user email you want to send him your email.
+   * @param {string} email - The user email you want to send him your email.
+   * @param {string} url - the url string that you want the user to go to it it do an action
    */
-  constructor(user, url) {
-    this.to = user.email;
-    this.firstName = user.additionalData.firstName;
+  constructor(name, email, url) {
+    this.to = email;
+    this.firstName = name;
     this.url = url;
-    this.from = `Muhammad Alaa <${process.env.EMAIL_FROM}>`;
+    this.from = `Jobify <${process.env.EMAIL_FROM}>`;
   }
 
   /* istanbul ignore next */
@@ -28,7 +28,6 @@ class Email {
    */
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
-      // Sendgrid
       return nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -37,31 +36,17 @@ class Email {
         },
       });
     }
-    return nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
   }
 
   /**
    * @summary the function that handle email containt and view
    * @param {template} html_page - A template that the email containt take to looks good for User Interface
-   * @param {subject} string - The subject that the email that you want to send talikng about
-   * @returns {void}
+   * @param {string} subject - The subject that the email that you want to send talikng about
    */
 
   /* istanbul ignore next */
   // Send the actual email
   async send(template, subject) {
-    if (process.env.NODE_ENV === 'test') {
-      if (!process.env.TEST_REJECT) return;
-      else return Promise.reject(new Error('fail'));
-    }
-
     // 1) Render HTML based on a pug template
     const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       firstName: this.firstName,
@@ -74,7 +59,7 @@ class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: htmlToText(html),
     };
 
     // 3) Create a transport and send email
@@ -87,27 +72,12 @@ class Email {
    */
 
   async sendWelcome() {
-    await this.send('welcome', 'Welcome to the Symphonia Family!');
+    await this.send('welcome', 'Welcome to the Jobify Family!');
   }
 
-  /**
-   * @summary the function that send Artist Application email if a user want to become an artist
-   */
-  async sendArtistApplication() {
-    await this.send('artist', 'You are applying to be an artist!');
-  }
-
-  /* istanbul ignore next */
-  /**
-   * @summary the function that send user token to user to be preimum for android
-   */
-  async sendPremiumToken() {
-    await this.send('premium', 'You are applying to be an premium user!');
-  }
   /**
    * @summary the function that send user an email contains token to reset his password .
    */
-
   async sendPasswordReset() {
     await this.send(
       'passwordReset',

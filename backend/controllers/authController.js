@@ -64,6 +64,7 @@ exports.signup = catchAsync(async (req, res, next) => {
           : constants.MODELS_NAMES.applicantData,
     }
   );
+  await new Email("", user.email, "").sendWelcome();
   createSendToken(newUser, 201, res);
 });
 
@@ -74,7 +75,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide email and password!', 400));
   }
   // Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ email }).select('+password').populate('additionalData');
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password', 401));
@@ -136,7 +137,7 @@ exports.protect = (blocking) => {
       process.env.JWT_SECRET_KEY
     );
     // 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id);
+    const currentUser = await User.findById(decoded.id).populate('additionalData');
     if (!currentUser) {
       return next(
         new AppError(
@@ -190,9 +191,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 3) Send it to user's email
   try {
     const resetURL =
-      `${req.protocol}://${req.hostname}` +
+      `${constants.FRONTEND_PROTOCOL}://${constants.FRONTEND_HOSTNAME}` +
       `/password-reset/change/${resetToken}`;
-    await new Email(user, resetURL).sendPasswordReset();
+    await new Email(user.additionalData.firstName || user.additionalData.name, user.email, resetURL).sendPasswordReset();
     res.status(200).json({
       status: 'success',
       message: 'Token sent to email!',
