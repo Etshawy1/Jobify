@@ -45,16 +45,23 @@
                             Apply
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn
-                        class="mx-2"
-                        fab
-                        dark
-                        small
-                        color="primary">
-                        <v-icon dark>
-                            mdi-share
-                        </v-icon>
-                        </v-btn>                        
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    class="mx-2"
+                                    fab
+                                    dark
+                                    small
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    color="primary">
+                                    <v-icon dark>
+                                    mdi-share
+                                </v-icon>
+                                </v-btn>                        
+                            </template>
+                            <span>Share</span>
+                        </v-tooltip>
                     </v-card-actions>
                 </v-card>
                 
@@ -91,23 +98,8 @@
                     outlined>
                     <v-card-title>Skills and Tools</v-card-title>
                     <div wrap style="margin:10px">
-                        <v-btn rounded depressed class="skills-buttons">
+                        <v-btn rounded depressed class="skills-buttons" v-for="n in 17" v-bind:key="n">
                             IT
-                        </v-btn>
-                        <v-btn rounded depressed class="skills-buttons">
-                            Computer Science
-                        </v-btn>
-                        <v-btn rounded depressed class="skills-buttons">
-                            Digital Communication
-                        </v-btn>
-                        <v-btn rounded depressed class="skills-buttons">
-                            Soft Skills
-                        </v-btn>
-                        <v-btn rounded depressed class="skills-buttons">
-                            Software Engineering
-                        </v-btn>
-                        <v-btn rounded depressed class="skills-buttons">
-                            Version Control
                         </v-btn>
                     </div>                    
                 </v-card>
@@ -146,6 +138,8 @@
                 <v-container>
                     <h2>More Jobs Posted By this campany</h2>
                     <v-card
+                        v-for="n in 5"
+                        v-bind:key="n"
                         class="mx-auto job-card"
                         elevation="10"
                         outlined

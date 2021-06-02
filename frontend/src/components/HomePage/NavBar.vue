@@ -5,7 +5,7 @@
       prominent
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title large>Jobify</v-toolbar-title>
+      <v-toolbar-title large style="cursor: pointer" @click="$router.push('/')" >Jobify</v-toolbar-title>
       <v-spacer></v-spacer>
           
       <v-menu offset-y>
@@ -36,6 +36,16 @@
                 <span>View Profile</span>
               </v-flex>
             </v-list-item>
+            
+            <v-list-item row wrap align-center v-show="!type" @click="$router.push('/jobs/' + profile_id)">
+              <v-flex md3>
+                <v-icon class="icons_menu">mdi-briefcase</v-icon>
+              </v-flex>
+              <v-flex md9>
+                <span class="spans-menu">My Jobs</span>
+              </v-flex>  
+            </v-list-item>
+            
             <v-list-item row wrap align-center>
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-wrench</v-icon>
@@ -70,6 +80,12 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      type: false,
+      profile_id: 7
+    }
+  }
 };
 </script>
 

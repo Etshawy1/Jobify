@@ -1,24 +1,25 @@
 <template>
   <div>
     <nav-bar-app/>
-    <job-content-app/>
+    <jobs-history-app/>
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/HomePage/NavBar.vue';
-import JobApplyContent from '../../components/JobApply/JobApplyContent.vue'
+import JobsHistory from '../../components/Recuiter/JobsHistory.vue'
+
 export default {
   name: "JobApply",
   data () {
       return {
-          id: this.$route.params.id,
+          profile_id: this.$route.params.profile_id,
       }
   },
   components: {
     "nav-bar-app":NavBar,
-    "job-content-app": JobApplyContent  
-  },
+    "jobs-history-app": JobsHistory  
+   },
 };
 </script>
 

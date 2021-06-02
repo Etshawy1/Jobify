@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import SignUp from "../views/UserManagement/SignUp.vue";
 import JobApply from "../views/JobApply/JobApply.vue";
+import MyJobs from "../views/Recuiter/MyJobs.vue";
+import ReviewApplicants from "../views/Recuiter/ReviewApplicants.vue";
+
 
 Vue.use(VueRouter);
 
@@ -26,10 +29,19 @@ const routes = [
     name: "SignUp",
     component: SignUp,
   },{
-    path: "/apply",
+    path: "/apply/:id",
     name: "JobApply",
     component: JobApply,
-  }
+  },{
+    path: "/jobs/:profile_id",
+    name: "MyJobs",
+    component: MyJobs,
+  },{
+    path: "/review/:job_id",
+    name: "ReviewApplicants",
+    component: ReviewApplicants,
+  },
+  
 ];
 
 const router = new VueRouter({
