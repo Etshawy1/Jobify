@@ -8,6 +8,7 @@ import JobApply from "../views/JobApply/JobApply.vue";
 import MyJobs from "../views/Recuiter/MyJobs.vue";
 import ReviewApplicants from "../views/Recuiter/ReviewApplicants.vue";
 import PostJob from "../views/Recuiter/PostJob.vue";
+import EditJob from "../views/Recuiter/EditJob.vue";
 
 
 Vue.use(VueRouter);
@@ -58,8 +59,11 @@ const routes = [
     path: "/postjob",
     name: "PostJob",
     component: PostJob,
+  },{
+    path: "/editjob/:job_id",
+    name: "EditJob",
+    component: EditJob,
   },
-  
 ];
 
 const router = new VueRouter({

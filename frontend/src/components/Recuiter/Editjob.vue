@@ -74,7 +74,7 @@
                     large
                     width = "120"
                     @click="submitForm">
-                    Post
+                    Update
                 </v-btn>
             </div>
         </v-form>  
@@ -87,6 +87,7 @@ import {exprience_needed_list, career_level_list, job_category_list} from "../..
 export default {
     data () {
         return {
+            
             exprience_needed_list:[],
             career_level_list:[],
             job_category_list:[],
