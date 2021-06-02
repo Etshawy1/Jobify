@@ -3,30 +3,8 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
-        <div class="signupTitle">Sign Up and Start Applying For Jobs</div>
-        <v-row justify="center" justify-md="center">
-          <v-radio-group v-model="formData.type" row>
-            <template v-slot:label> <div>Join us as ?</div> </template>
-            <v-radio value="applicant">
-              <template v-slot:label>
-                <strong>An Applicant</strong>
-              </template>
-            </v-radio>
-            <v-radio value="recruiter">
-              <template v-slot:label>
-                <strong>A Recruiter</strong>
-              </template>
-            </v-radio>
-          </v-radio-group>
-        </v-row>
-        <v-row justify="center" justify-md="center">
-          <v-img
-            src="../../assets/company.jpg"
-            max-width="80%"
-            v-if="formData.type === 'recruiter'"
-          ></v-img>
-          <v-img src="../../assets/employee.jpg" max-width="80%" v-else></v-img>
-        </v-row>
+        <div class="loginTitle text-h6 mb-3"></div>
+        <!-- email text field -->
         <v-row justify="center">
           <v-col cols="10">
             <v-text-field
@@ -39,6 +17,7 @@
               :rules="[required('email'), checkEmail()]"
             ></v-text-field>
           </v-col>
+          <!-- passowrd text field -->
           <v-col cols="10">
             <v-text-field
               rounded-md
@@ -53,9 +32,10 @@
             ></v-text-field>
           </v-col>
         </v-row>
+
+        <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
-          <!-- alert to show any errors returning from back server -->
             <v-alert 
             id="backerr-alert" 
             v-if="errorMessage"
@@ -66,6 +46,7 @@
             </v-alert>
           </v-col>
         </v-row>
+        <!-- form submission button -->
         <v-row justify="center">
           <v-col cols="10">
             <v-btn
@@ -75,19 +56,31 @@
               large
               class="white--text"
               :disabled="!formData.valid"
-              >submit
+              >login
             </v-btn>
           </v-col>
         </v-row>
+        <!-- forgot your password -->
         <v-row justify="center" justify-md="center" class="mb-2">
-          <div>Already a user ?</div>
           <router-link
             :to="{
-              path: '/login',
+              path: '/signup',
               query: { redirect: this.$route.query.redirect },
             }"
             class="blue--text"
-            >Log in
+            >Forgot Your password ? Let us remind you
+          </router-link>
+        </v-row>
+        <!-- to sign up page -->
+        <v-row justify="center" justify-md="center" class="mb-2">
+          <div class="text-caption">New here ? Why not join us now ?</div>
+          <router-link
+            :to="{
+              path: '/signup',
+              query: { redirect: this.$route.query.redirect },
+            }"
+            class="blue--text text-caption"
+            >Sign Up
           </router-link>
         </v-row>
       </v-container>
@@ -102,7 +95,6 @@ export default {
     return {
       formData: {
         valid: false,
-        type: "applicant",
         email: "",
         password: "",
       },
@@ -129,11 +121,9 @@ export default {
       this.loadingState = true;
       this.errorMessage = ""
       try {
-        let userType = await this.$store.dispatch("registerUser", this.formData)
+        let userType = await this.$store.dispatch("loginUser", this.formData)
         this.loadingState = false;
-        if(userType === 'applicant'){
-          this.$router.push('/completeprofile')
-        }
+        console.log(userType)
       } 
       catch (error) {
         console.log("an error occured")
@@ -151,7 +141,7 @@ export default {
 </script>
 
 <style scoped>
-.signupTitle {
+.loginTitle {
   text-align: center;
   font-size: 21px;
   padding-bottom: 10px;

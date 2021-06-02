@@ -3,59 +3,81 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
-        <div class="signupTitle">Sign Up and Start Applying For Jobs</div>
-        <v-row justify="center" justify-md="center">
-          <v-radio-group v-model="formData.type" row>
-            <template v-slot:label> <div>Join us as ?</div> </template>
-            <v-radio value="applicant">
-              <template v-slot:label>
-                <strong>An Applicant</strong>
-              </template>
-            </v-radio>
-            <v-radio value="recruiter">
-              <template v-slot:label>
-                <strong>A Recruiter</strong>
-              </template>
-            </v-radio>
-          </v-radio-group>
-        </v-row>
-        <v-row justify="center" justify-md="center">
+        <div class="loginTitle text-h2 mb-3">Tell us more about yourself</div>
+        <v-row justify="center">
           <v-img
-            src="../../assets/company.jpg"
-            max-width="80%"
-            v-if="formData.type === 'recruiter'"
-          ></v-img>
-          <v-img src="../../assets/employee.jpg" max-width="80%" v-else></v-img>
+            src="../../assets/profile.png"
+            max-width="50%"
+            max-height="20%"
+          >
+          </v-img>
         </v-row>
+        <!-- Personal info -->
+        <v-row>
+          <div class="text-h4 text-left mb-2 ml-13">Personal info</div>
+        </v-row>
+        <!-- first name text field -->
         <v-row justify="center">
           <v-col cols="10">
             <v-text-field
               rounded-md
               outlined
-              label="Email"
+              label="First name"
               dense
-              type="email"
-              v-model="formData.email"
-              :rules="[required('email'), checkEmail()]"
+              type="text"
+              v-model="formData.firstname"
+              :rules="[required('first name')]"
             ></v-text-field>
           </v-col>
+          <!-- last name text field -->
           <v-col cols="10">
             <v-text-field
               rounded-md
               outlined
-              label="Password"
+              label="Last name"
               dense
-              type="password"
-              v-model="formData.password"
-              maxlength="30"
-              counter="30"
-              :rules="[required('password'), checkLength('password', 8)]"
+              type="text"
+              v-model="formData.lastname"
+              :rules="[required('last name')]"
             ></v-text-field>
           </v-col>
         </v-row>
+        <!-- dateOfBirth Picker -->
+        <v-row justify="center">
+          <v-spacer></v-spacer>
+          <v-col cols="10">
+            <v-menu
+              v-model="dateMenu"
+              :close-on-content-click="false"
+              :nudge-right="40"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="formData.dateOfBirth"
+                  label="Birth date"
+                  readonly
+                  rounded-md
+                  outlined
+                  dense
+                  :rules="[required('birth date')]"
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="formData.dateOfBirth"
+                @input="dateMenu = false"
+              ></v-date-picker>
+            </v-menu>
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+        <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
-          <!-- alert to show any errors returning from back server -->
             <v-alert 
             id="backerr-alert" 
             v-if="errorMessage"
@@ -66,8 +88,9 @@
             </v-alert>
           </v-col>
         </v-row>
+        <!-- form submission button -->
         <v-row justify="center">
-          <v-col cols="10">
+          <v-col cols="5">
             <v-btn
               block
               color="blue darken-4"
@@ -75,20 +98,9 @@
               large
               class="white--text"
               :disabled="!formData.valid"
-              >submit
+              >Submit
             </v-btn>
           </v-col>
-        </v-row>
-        <v-row justify="center" justify-md="center" class="mb-2">
-          <div>Already a user ?</div>
-          <router-link
-            :to="{
-              path: '/login',
-              query: { redirect: this.$route.query.redirect },
-            }"
-            class="blue--text"
-            >Log in
-          </router-link>
         </v-row>
       </v-container>
     </v-form>
@@ -102,10 +114,11 @@ export default {
     return {
       formData: {
         valid: false,
-        type: "applicant",
-        email: "",
-        password: "",
+        firstname: '',
+        lastname: '',
+        dateOfBirth: '1999-12-31'
       },
+      dateMenu: false,
       errorMessage: "",
       loadingState: false,
       required(propertyType) {
@@ -129,11 +142,14 @@ export default {
       this.loadingState = true;
       this.errorMessage = ""
       try {
-        let userType = await this.$store.dispatch("registerUser", this.formData)
+        let userType = await this.$store.dispatch("setApplicantMandatoryData", {
+          userToken : localStorage.getItem('userToken'),
+          firstname : this.formData.firstname,
+          lastname : this.formData.lastname,
+          dateOfBirth : this.formData.dateOfBirth
+        })
         this.loadingState = false;
-        if(userType === 'applicant'){
-          this.$router.push('/completeprofile')
-        }
+        this.$router.push('/home')
       } 
       catch (error) {
         console.log("an error occured")
@@ -151,7 +167,7 @@ export default {
 </script>
 
 <style scoped>
-.signupTitle {
+.loginTitle {
   text-align: center;
   font-size: 21px;
   padding-bottom: 10px;
