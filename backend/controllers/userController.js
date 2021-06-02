@@ -238,40 +238,40 @@ exports.searchSkills = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
-  const skills = await exports.getSearchQuery(
+  const {documents, totalCount} = await exports.getSearchQuery(
     'skills',
     {},
     keyword,
     limit,
     offset
   );
-  res.status(200).json(helpers.getPaging(skills, req));
+  res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
-  const jobTitles = await exports.getSearchQuery(
+  const {documents, totalCount} = await exports.getSearchQuery(
     'jobTitles',
     {},
     keyword,
     limit,
     offset
   );
-  res.status(200).json(helpers.getPaging(jobTitles, req));
+  res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
   const offset = req.query.offset * 1 || 0;
   const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
-  const categories = await exports.getSearchQuery(
+  const {documents, totalCount} = await exports.getSearchQuery(
     'Categories',
     {},
     keyword,
     limit,
     offset
   );
-  res.status(200).json(helpers.getPaging(categories, req));
+  res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
 
 exports.updatePicture = catchAsync(async (req, res, next) => {
@@ -331,7 +331,7 @@ exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
  * @param {Number} limit - maximum number of documents returned from the query
  * @param {Number} offset - index of first element in the response
  * @param {Object} popOptions - object contains what fields to be populated in the returned document
- * @returns {Query}
+ * @returns {documents, totalCount}
  */
 
 exports.getSearchQuery = async function getSearchQuery (
@@ -344,14 +344,17 @@ exports.getSearchQuery = async function getSearchQuery (
 ) {
   const Model = getModel[type];
   if (!Model) return null;
-  let query = Model.find({
+  const query = {
     name: { $regex: keyword, $options: 'i' },
     ...additionalConditions
-  })
+  };
+  let documents = Model.find(query)
     .limit(limit)
     .skip(offset);
-  if (popOptions) query = query.populate(popOptions);
-  return query;
+  if (popOptions) documents = await documents.populate(popOptions);
+  else documents = await documents;
+  let totalCount = await Model.find(query).countDocuments();
+  return {documents, totalCount};
 };
 
 const getModel = {
