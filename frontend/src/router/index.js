@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import SignUp from "../views/UserManagement/SignUp.vue";
+import JobApply from "../views/JobApply/JobApply.vue";
 
 Vue.use(VueRouter);
 
@@ -24,7 +25,11 @@ const routes = [
     path: "/signup",
     name: "SignUp",
     component: SignUp,
-  },
+  },{
+    path: "/apply",
+    name: "JobApply",
+    component: JobApply,
+  }
 ];
 
 const router = new VueRouter({
