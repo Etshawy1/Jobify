@@ -4,6 +4,14 @@
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
         <div class="loginTitle text-h6 mb-3">Welcome Back</div>
+        <v-row justify="center">
+          <v-img
+          src="../../assets/login.png"
+          max-width="30%"
+          aspect-ratio
+          >
+          </v-img>
+        </v-row>
         <!-- email text field -->
         <v-row justify="center">
           <v-col cols="10">
