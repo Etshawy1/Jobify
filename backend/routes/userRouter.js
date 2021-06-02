@@ -20,6 +20,7 @@ router.post(
 
 router.post('/forgotpassword', authController.forgotPassword);
 router.patch('/resetpassword/:token', authController.resetPassword);
+router.get('/:id', userController.getUserProfile);
 
 // any endpoint written after the following line is protected
 router.use(authController.protect(true));

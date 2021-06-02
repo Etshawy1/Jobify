@@ -12,6 +12,11 @@ const path = require('path');
 
 const catchAsync = require('./../utils/catchAsync').threeArg;
 
+exports.getUserProfile = catchAsync(async(req, res, next)=>{
+  const user = await User.findById(req.params.id).populate('additionalData');
+  res.status(200).json(user);
+});
+
 exports.updateData = catchAsync(async (req, res, next) => {
   const applicantData = await ApplicantData.findByIdAndUpdate(
     { _id: req.user.additionalData._id },
@@ -82,7 +87,7 @@ exports.updateCategories = catchAsync(async (req, res, next) => {
       category: categoryId.name
     }
   });
-  res.status(204).json(applicantData);
+  res.status(200).json(applicantData);
 });
 
 exports.deleteCategories = catchAsync(async (req, res, next) => {
@@ -125,7 +130,7 @@ exports.updateLanguages = catchAsync(async (req, res, next) => {
     }
   });
 
-  res.status(204).json(applicantData);
+  res.status(200).json(applicantData);
 });
 
 exports.deleteLanguages = catchAsync(async (req, res, next) => {
@@ -158,7 +163,7 @@ exports.updateSalary = catchAsync(async (req, res, next) => {
     },
     { new: true, runValidators: true }
   );
-  res.status(204).json(applicantData);
+  res.status(200).json(applicantData);
 });
 //todo
 exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
@@ -183,7 +188,7 @@ exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
     },
     { new: true, runValidators: true }
   );
-  res.status(204).json(applicantData);
+  res.status(200).json(applicantData);
 });
 
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
@@ -200,7 +205,7 @@ exports.updateJobTitles = catchAsync(async (req, res, next) => {
     }
   });
 
-  res.status(204).json(applicantData);
+  res.status(200).json(applicantData);
 });
 exports.deleteJobTitles = catchAsync(async (req, res, next) => {
   const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
@@ -235,41 +240,32 @@ async function updateModelData (id, object) {
 exports.getSkills = factory.getAll(Skill);
 
 exports.searchSkills = catchAsync(async (req, res, next) => {
-  const offset = req.query.offset * 1 || 0;
-  const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const {documents, totalCount} = await exports.getSearchQuery(
     'skills',
     {},
     keyword,
-    limit,
-    offset
+    req
   );
   res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
-  const offset = req.query.offset * 1 || 0;
-  const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const {documents, totalCount} = await exports.getSearchQuery(
     'jobTitles',
     {},
     keyword,
-    limit,
-    offset
+    req
   );
   res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
-  const offset = req.query.offset * 1 || 0;
-  const limit = req.query.limit * 1 || 16;
   const keyword = req.params.keyword;
   const {documents, totalCount} = await exports.getSearchQuery(
     'Categories',
     {},
     keyword,
-    limit,
-    offset
+    req
   );
   res.status(200).json(helpers.getPaging(documents, req, totalCount));
 });
@@ -328,8 +324,7 @@ exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
  * @param {String} type - the model name of the collection to be searched
  * @param {Object} additionalConditions - any additional query conditions to be applied in the query
  * @param {String} keyword - the item name or part of its name
- * @param {Number} limit - maximum number of documents returned from the query
- * @param {Number} offset - index of first element in the response
+ * @param {Request} req - express request object
  * @param {Object} popOptions - object contains what fields to be populated in the returned document
  * @returns {documents, totalCount}
  */
@@ -338,10 +333,11 @@ exports.getSearchQuery = async function getSearchQuery (
   type,
   additionalConditions,
   keyword,
-  limit,
-  offset,
+  req,
   popOptions
 ) {
+  const offset = req.query.offset * 1 || 0;
+  const limit = req.query.limit * 1 || 20;
   const Model = getModel[type];
   if (!Model) return null;
   const query = {

@@ -46,8 +46,8 @@ module.exports.checkIDS = async (ids, Model) => {
  * @param {Number} toatl total count of objects that can be retreived from request
  */
 module.exports.getPaging = (items, req, total) => {
-  const limit = req.params.limit ? parseInt(req.query.limit) : 20;
-  const offset = req.params.offset ? parseInt(req.query.offset) : 0;
+  const offset = req.query.offset * 1 || 0;
+  const limit = req.query.limit * 1 || 20;
   return {
     total,
     items,
