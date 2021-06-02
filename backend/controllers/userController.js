@@ -12,18 +12,9 @@ const path = require('path');
 
 const catchAsync = require('./../utils/catchAsync').threeArg;
 
-exports.setToken = catchAsync(async (req, res, next) => {
-  const user = await User.findByIdAndUpdate(req.user.id, {
-    registraionToken: req.body.token
-  });
-  res.status(200).json({
-    user
-  });
-});
-
 exports.updateData = catchAsync(async (req, res, next) => {
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    { _id: req.user.additionalData },
+    { _id: req.user.additionalData._id },
     {
       ..._.pick(req.body, [
         'firstName',
@@ -42,13 +33,12 @@ exports.updateData = catchAsync(async (req, res, next) => {
 exports.updateSkills = catchAsync(async (req, res, next) => {
   const skillId = await Skill.findOne({ name: req.body.skillName });
   if (!skillId) return next(new AppError('This is not a skill!', 400));
-  let skills = await ApplicantData.findById(req.user.additionalData);
-  skills = skills.skills;
+  const skills = req.user.additionalData.skills;
   for (let i = 0; i < skills.length; i++) {
     if (skills[i].skill === req.body.skillName)
       return next(new AppError('skill aleardy added!', 400));
   }
-  const applicantData = await updateModelData(req.user.additionalData, {
+  const applicantData = await updateModelData(req.user.additionalData._id, {
     skills: {
       skill: skillId.name,
       yearsExperiance: req.body.yearOfExperiance
@@ -61,8 +51,7 @@ exports.deleteSkills = catchAsync(async (req, res, next) => {
   const skillId = await Skill.findOne({ name: req.body.skillName });
   if (!skillId) return next(new AppError('This is not a skill!', 400));
 
-  let skills = await ApplicantData.findById(req.user.additionalData);
-  skills = skills.skills;
+  const skills = req.user.additionalData.skills;
   for (let i = 0; i < skills.length; i++) {
     if (skills[i].skill === req.body.skillName) {
       skills.splice(i, 1);
@@ -71,7 +60,7 @@ exports.deleteSkills = catchAsync(async (req, res, next) => {
   }
 
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    { _id: req.user.additionalData },
+    { _id: req.user.additionalData._id },
     {
       skills
     },
@@ -79,16 +68,16 @@ exports.deleteSkills = catchAsync(async (req, res, next) => {
   );
   res.status(202).json(applicantData);
 });
+
 exports.updateCategories = catchAsync(async (req, res, next) => {
   const categoryId = await Category.findOne({ name: req.body.categoryName });
   if (!categoryId) return next(new AppError('This is not a  category!', 400));
-  let categories = await ApplicantData.findById(req.user.additionalData);
-  categories = categories.categories;
+  const categories = req.user.additionalData.categories;
   for (let i = 0; i < categories.length; i++) {
     if (categories[i].category === req.body.categoryName)
       return next(new AppError('category aleardy added!', 400));
   }
-  const applicantData = await updateModelData(req.user.additionalData, {
+  const applicantData = await updateModelData(req.user.additionalData._id, {
     categories: {
       category: categoryId.name
     }
@@ -100,8 +89,7 @@ exports.deleteCategories = catchAsync(async (req, res, next) => {
   const categoryId = await Category.findOne({ name: req.body.categoryName });
   if (!categoryId) return next(new AppError('This is not a  category!', 400));
 
-  let categories = await ApplicantData.findById(req.user.additionalData);
-  categories = categories.categories;
+  const categories = req.user.additionalData.categories;
   for (let i = 0; i < categories.length; i++) {
     if (categories[i].category === req.body.categoryName) {
       categories.splice(i, 1);
@@ -110,7 +98,7 @@ exports.deleteCategories = catchAsync(async (req, res, next) => {
   }
 
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    { _id: req.user.additionalData },
+    { _id: req.user.additionalData._id },
     {
       categories
     },
@@ -122,13 +110,12 @@ exports.deleteCategories = catchAsync(async (req, res, next) => {
 exports.updateLanguages = catchAsync(async (req, res, next) => {
   const languageId = await Language.findOne({ name: req.body.languageName });
   if (!languageId) return next(new AppError('This is not a language!', 400));
-  let languages = await ApplicantData.findById(req.user.additionalData);
-  languages = languages.languages;
+  const languages = req.user.additionalData.languages;
   for (let i = 0; i < languages.length; i++) {
     if (languages[i].language === req.body.languageName)
       return next(new AppError('language aleardy added!', 400));
   }
-  const applicantData = await updateModelData(req.user.additionalData, {
+  const applicantData = await updateModelData(req.user.additionalData._id, {
     languages: {
       language: languageId.name,
       Reading: req.body.Reading,
@@ -144,8 +131,7 @@ exports.updateLanguages = catchAsync(async (req, res, next) => {
 exports.deleteLanguages = catchAsync(async (req, res, next) => {
   const languageId = await Language.findOne({ name: req.body.languageName });
   if (!languageId) return next(new AppError('This is not a language!', 400));
-  let languages = await ApplicantData.findById(req.user.additionalData);
-  languages = languages.languages;
+  const languages = req.user.additionalData.languages;
   for (let i = 0; i < languages.length; i++) {
     if (languages[i].language === req.body.languageName);
     {
@@ -155,7 +141,7 @@ exports.deleteLanguages = catchAsync(async (req, res, next) => {
   }
 
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    { _id: req.user.additionalData },
+    { _id: req.user.additionalData._id },
     {
       languages
     },
@@ -166,7 +152,7 @@ exports.deleteLanguages = catchAsync(async (req, res, next) => {
 
 exports.updateSalary = catchAsync(async (req, res, next) => {
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    req.user.additionalData,
+    req.user.additionalData._id,
     {
       salary: req.body.salary
     },
@@ -177,7 +163,7 @@ exports.updateSalary = catchAsync(async (req, res, next) => {
 //todo
 exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    req.user.additionalData,
+    req.user.additionalData._id,
     {
       onlinePresence: {
         ..._.pick(req.body, [
@@ -203,13 +189,12 @@ exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
   const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
   if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
-  let jobTitles = await ApplicantData.findById(req.user.additionalData);
-  jobTitles = jobTitles.jobTitles;
+  const jobTitles = req.user.additionalData.jobTitles;
   for (let i = 0; i < jobTitles.length; i++) {
     if (jobTitles[i].jobTitle === req.body.jobTitleName)
       return next(new AppError('job Title aleardy added!', 400));
   }
-  const applicantData = await updateModelData(req.user.additionalData, {
+  const applicantData = await updateModelData(req.user.additionalData._id, {
     jobTitles: {
       jobTitle: jobTitleId.name
     }
@@ -220,8 +205,7 @@ exports.updateJobTitles = catchAsync(async (req, res, next) => {
 exports.deleteJobTitles = catchAsync(async (req, res, next) => {
   const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
   if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
-  let jobTitles = await ApplicantData.findById(req.user.additionalData);
-  jobTitles = jobTitles.jobTitles;
+  const jobTitles = req.user.additionalData.jobTitles;
   for (let i = 0; i < jobTitles.length; i++) {
     if (jobTitles[i].jobTitle === req.body.jobTitleName) {
       jobTitles.splice(i, 1);
@@ -229,7 +213,7 @@ exports.deleteJobTitles = catchAsync(async (req, res, next) => {
     }
   }
   const applicantData = await ApplicantData.findByIdAndUpdate(
-    { _id: req.user.additionalData },
+    { _id: req.user.additionalData._id },
     {
       jobTitles
     },
@@ -320,7 +304,7 @@ exports.updateCV = catchAsync(async (req, res, next) => {
   // update cv url in the database
   const url = `${req.protocol}://${req.get('host')}`;
   const cv = `${url}/api/v1/static/documents/cvs/${req.file.filename}`;
-  const applicantData = await ApplicantData.findByIdAndUpdate(req.user.additionalData, {
+  const applicantData = await ApplicantData.findByIdAndUpdate(req.user.additionalData._id, {
     cvURL: cv,
     cvLastUpdated: Date.now()
   },
