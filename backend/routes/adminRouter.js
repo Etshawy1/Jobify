@@ -1,8 +1,10 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const adminController = require('../controllers/adminController');
+const constants = require('../utils/constants');
 const router = express.Router();
 router.use(authController.protect(true));
+router.use(authController.restrictTo(constants.USER_TYPES.ADMIN));
 router.post('/addskill', adminController.addSkill);
 router.post('/addlanguage', adminController.addLanguage);
 router.post('/addjobtitle', adminController.addJobTitle);

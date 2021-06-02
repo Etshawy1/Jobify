@@ -64,7 +64,7 @@ exports.signup = catchAsync(async (req, res, next) => {
           : constants.MODELS_NAMES.applicantData,
     }
   );
-  await new Email("", user.email, "").sendWelcome();
+  await new Email("", newUser.email, "").sendWelcome();
   createSendToken(newUser, 201, res);
 });
 
