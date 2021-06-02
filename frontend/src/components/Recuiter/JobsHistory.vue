@@ -73,6 +73,27 @@
                     </v-card-actions>
                 </v-card>                
             </v-flex>
+            <v-spacer/>
+            <v-flex md3>
+                <v-card
+                    class="mx-auto"
+                    elevation="2"
+                    max-width="350"
+                    outlined>
+                    <v-card-title>Post a new Job?</v-card-title>
+                    <v-card-subtitle>
+                        Here you can add a new job based on your full-detailed 
+                        specifications and it will</v-card-subtitle>
+                    <v-card-actions class="pt-0">
+                    <v-btn
+                        text
+                        color="light-blue darken-4"
+                        @click="$router.push('/postjob')">
+                        Post a Job
+                    </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
         </v-row>
     </v-container>
 </template>
@@ -80,8 +101,6 @@
 export default {
     data () {
         return {
-            id: 12,
-            type: true,
             job_id: 15
         }
     }
