@@ -3,18 +3,14 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
-        <div class="loginTitle text-h2 mb-3">Tell us more about yourself</div>
+        <div class="formTitle text-h2 mb-3">Edit your personal info</div>
         <v-row justify="center">
           <v-img
             src="../../assets/profile.png"
-            max-width="50%"
+            max-width="30%"
             max-height="20%"
           >
           </v-img>
-        </v-row>
-        <!-- Personal info -->
-        <v-row>
-          <div class="text-h4 text-left mb-2 ml-13">Personal info</div>
         </v-row>
         <!-- first name text field -->
         <v-row justify="center">
@@ -129,7 +125,7 @@
               large
               class="white--text"
               :disabled="!formData.valid"
-              >Submit
+              >Save Changes
             </v-btn>
           </v-col>
         </v-row>
@@ -172,37 +168,13 @@ export default {
   methods: {
     async onSubmit() {
       console.log("on submit function")
-      this.loadingState = true;
-      this.errorMessage = ""
-      try {
-        let userType = await this.$store.dispatch("setApplicantMandatoryData", {
-          userToken : localStorage.getItem('userToken'),
-          firstname : this.formData.firstname,
-          lastname : this.formData.lastname,
-          dateOfBirth : this.formData.dateOfBirth,
-          phone : this.formData.phone,
-          gender: this.formData.gender
-        })
-        this.loadingState = false;
-        this.$router.push('/home')
-      } 
-      catch (error) {
-        console.log("an error occured")
-        this.loadingState = false
-        if(error.status === "fail") {
-          this.errorMessage = error.msg
-        }
-        else {
-          this.errorMessage = "Please try again later !"
-        }
-      }
     },
   },
 };
 </script>
 
 <style scoped>
-.loginTitle {
+.formTitle {
   text-align: center;
   font-size: 21px;
   padding-bottom: 10px;

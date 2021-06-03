@@ -58,12 +58,16 @@
                     max-width="350"
                     outlined>
                     <v-card-title>Improve Your Profile</v-card-title>
-                    <v-card-subtitle v-show="type">So that the employers can be atrackted to you</v-card-subtitle>
-                    <v-card-subtitle v-show="!type">So that the employees can be atrackted to your company</v-card-subtitle>
+                    <v-card-subtitle v-show="type">So that the employers can be attracted to you</v-card-subtitle>
+                    <v-card-subtitle v-show="!type">So that the employees can be attracted to your company</v-card-subtitle>
                     <v-card-actions class="pt-0">
                     <v-btn
                         text
                         color="light-blue darken-4"
+                        :to="{
+                            path: `editapplicantprofile/${currUserId}`,
+                            query: { redirect: this.$route.query.redirect },
+                        }"
                         @click="reveal = false">
                         Update Here
                     </v-btn>
@@ -78,7 +82,8 @@ export default {
     data () {
         return {
             id: 12,
-            type: true
+            type: true,
+            currUserId: localStorage.getItem('userID')
         }
     }
 };
