@@ -11,7 +11,9 @@ module.exports = Object.freeze({
     language: 'Language',
     jobTitle: 'JobTitle',
     category: 'Category',
-    recruiterData: 'RecruiterData'
+    recruiterData: 'RecruiterData',
+    jobApplication: 'JobAppilcation',
+    job: 'Job'
   },
   FRONTEND_HOSTNAME: "localhost:8080",
   FRONTEND_PROTOCOL: "http"

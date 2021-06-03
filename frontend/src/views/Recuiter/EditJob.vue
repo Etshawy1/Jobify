@@ -1,22 +1,25 @@
 <template>
   <div>
     <nav-bar-app/>
-    <post-job-app/>
+    <edit-job-app/>
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/HomePage/NavBar.vue';
-import Postjob from '../../components/Recuiter/Postjob.vue'
+import Editjob from '../../components/Recuiter/Editjob.vue';
+
 
 export default {
-  name: "JobPost",
+  name: "EditJob",
   data () {
-      return {}
+      return {
+        post_id: this.$route.params.post_id,
+      }
   },
   components: {
     "nav-bar-app":NavBar,
-    "post-job-app": Postjob
+    "edit-job-app": Editjob
    }
 };
 </script>

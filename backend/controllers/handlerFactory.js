@@ -3,7 +3,7 @@
 const catchAsync = require('./../utils/catchAsync').threeArg;
 const AppError = require('./../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
-const Helpers = require('./../utils/helper');
+const helpers = require('./../utils/helper');
 
 exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
@@ -14,6 +14,17 @@ exports.deleteOne = Model =>
     }
 
     res.status(204).json(null);
+  });
+
+exports.softDelete = Model => 
+  catchAsync(async (req, res, next) => {
+    const document = await Model.findById(req.params.id);
+    if (!document) {
+      return next(new AppError('the document was not found', 404));
+    }
+    await document.delete();
+
+    res.status(204).json({});
   });
 
 exports.updateOne = Model =>
@@ -27,14 +38,14 @@ exports.updateOne = Model =>
       return next(new AppError('No document found with that ID', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.createOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
 
-    res.status(201).json(Helpers.getPaging(doc, req));
+    res.status(201).json(doc);
   });
 
 exports.getOne = (Model, popOptions) =>
@@ -47,7 +58,7 @@ exports.getOne = (Model, popOptions) =>
       return next(new AppError('that document does not exist', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.getMany = (Model, popOptions) =>
@@ -63,18 +74,16 @@ exports.getMany = (Model, popOptions) =>
       return next(new AppError('No documents found with provided IDs', 404));
     }
 
-    res.status(200).json(Helpers.getPaging(doc, req));
+    res.status(200).json(doc);
   });
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Model.find({}), req.query)
       .filter()
-      .offset()
-      .sort()
-      .paginate();
-    const doc = await features.query;
-
-    // SEND RESPONSE
-    res.status(200).json(Helpers.getPaging(doc, req));
+      .offset();
+    const docs = await features.query;
+    const totalCount = await Model.find({}).countDocuments();
+    
+    res.status(200).json(helpers.getPaging(docs, req, totalCount));
   });

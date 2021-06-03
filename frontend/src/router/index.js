@@ -11,13 +11,14 @@ import PostJob from "../views/Recuiter/PostJob.vue";
 import editApplicantProfile from "../views/Applicant/editApplicantProfile.vue";
 import editPersonalInfoForm from "../components/Applicant/editPersonalInfoForm.vue";
 import updateApplicantCVForm from "../components/Applicant/updateApplicantCVForm.vue"
+import EditJob from "../views/Recuiter/EditJob.vue";
 
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: Home,
   },
@@ -61,6 +62,10 @@ const routes = [
     path: "/postjob",
     name: "PostJob",
     component: PostJob,
+  },{
+    path: "/editjob/:job_id",
+    name: "EditJob",
+    component: EditJob,
   },
   // the applicant edit profile url
   {

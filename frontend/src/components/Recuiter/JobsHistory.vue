@@ -32,7 +32,7 @@
                                                                         
                                     <v-list-item row wrap align-center>
                                     <v-flex md6>
-                                        <v-icon color="blue darken-2">mdi-pencil</v-icon>
+                                        <v-icon color="blue darken-2" @click="$router.push('/editjob/' + job_id)">mdi-pencil</v-icon>
                                     </v-flex>
                                     <v-flex md6>
                                         <span class="spans-menu">Edit</span>
