@@ -9,7 +9,7 @@
         <v-row justify="center">
           <v-img
             src="../../assets/cv.png"
-            max-width="50%"
+            max-width="30%"
             max-height="20%"
           >
           </v-img>

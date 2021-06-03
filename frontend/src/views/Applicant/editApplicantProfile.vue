@@ -65,7 +65,8 @@ export default {
                 },
                 {
                     title: 'Update Skills',
-                    icon: 'mdi-brain'
+                    icon: 'mdi-brain',
+                    toUrl: `/editapplicantprofile/${this.$route.params.id}/updateskills`
                 }
             ]
         }

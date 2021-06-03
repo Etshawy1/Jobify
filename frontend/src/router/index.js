@@ -10,9 +10,9 @@ import ReviewApplicants from "../views/Recuiter/ReviewApplicants.vue";
 import PostJob from "../views/Recuiter/PostJob.vue";
 import editApplicantProfile from "../views/Applicant/editApplicantProfile.vue";
 import editPersonalInfoForm from "../components/Applicant/editPersonalInfoForm.vue";
-import updateApplicantCVForm from "../components/Applicant/updateApplicantCVForm.vue"
+import updateApplicantCVForm from "../components/Applicant/updateApplicantCVForm.vue";
+import updateSkillsForm from "../components/Applicant/updateSkillsForm.vue";
 import EditJob from "../views/Recuiter/EditJob.vue";
-
 
 Vue.use(VueRouter);
 
@@ -70,7 +70,7 @@ const routes = [
   // the applicant edit profile url
   {
     path: "/editapplicantprofile/:id",
-    name: editApplicantProfile,
+    name: "editApplicantProfile",
     component: editApplicantProfile,
     children: [
       {
@@ -82,6 +82,11 @@ const routes = [
         path:"updatecv",
         name: "updatecv",
         component: updateApplicantCVForm
+      },
+      {
+        path:"updateskills",
+        name:"updateskills",
+        component: updateSkillsForm
       }
     ]
   }
