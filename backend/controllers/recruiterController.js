@@ -1,5 +1,7 @@
 const { User } = require('./../models/userModel');
 const { RecruiterData } = require('../models/recruiterDataModel');
+const { JobApplication } = require('../models/jobApplicationModel');
+const { Job } = require('../models/jobModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
@@ -42,10 +44,24 @@ exports.updatePicture = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user._id, {
     imageUrl: image
   });
-  res.status(200).json({image});
+  res.status(200).json({ image });
 });
 
-
 exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
-  helpers.getMultiPart(true, path.resolve(__dirname, '..') + '/assets/images/companies')(req, res, next);
+  helpers.getMultiPart(
+    true,
+    path.resolve(__dirname, '..') + '/assets/images/companies'
+  )(req, res, next);
+});
+
+exports.jopStatus = catchAsync(async (req, res, next) => {
+  const job = await Job.findById(req.body.job);
+  if (job._id != req.user.id) {
+    return next(new AppError('you are not authorized to do this.', 401));
+  }
+  const application = await JobApplication.findOneAndUpdate(
+    { applicant: req.body.applicant, Job: req.body.Job },
+    { status: req.body.status }
+  );
+  res.status(201).json({ application });
 });
