@@ -27,8 +27,12 @@ router.get('/getskills', userController.getSkills);
 router.use(authController.protect(true));
 router.use(authController.restrictTo(constants.USER_TYPES.APPLICANT));
 
-router.put('/updatepicture',userController.profilePictureMultipart, userController.updatePicture);
-router.put('/updatecv',userController.CVsMultipart, userController.updateCV);
+router.put(
+  '/updatepicture',
+  userController.profilePictureMultipart,
+  userController.updatePicture
+);
+router.put('/updatecv', userController.CVsMultipart, userController.updateCV);
 router.patch('/updatepassword', authController.updatePassword);
 router.patch('/updateapplicantdata', userController.updateData);
 router.patch('/updateskills', userController.updateSkills);
@@ -44,5 +48,6 @@ router.patch('/updateOnlinePresence', userController.updateOnlinePresence);
 router.get('/searchskills/:keyword', userController.searchSkills);
 router.get('/searchjobtitles/:keyword', userController.searchJobTitles);
 router.get('/searchcategories/:keyword', userController.searchCategories);
+router.post('/applyjob', userController.applyJob);
 
 module.exports = router;

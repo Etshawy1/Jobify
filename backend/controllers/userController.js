@@ -3,6 +3,7 @@ const { Skill } = require('./../models/skillModel');
 const { Language } = require('./../models/languageModel');
 const { JobTitle } = require('../models/jobTitlesModel');
 const { ApplicantData } = require('./../models/applicantDataModel');
+const { JobApplication } = require('../models/jobApplicationModel');
 const { Category } = require('./../models/categoryModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
@@ -12,7 +13,7 @@ const path = require('path');
 
 const catchAsync = require('./../utils/catchAsync').threeArg;
 
-exports.getUserProfile = catchAsync(async(req, res, next)=>{
+exports.getUserProfile = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id).populate('additionalData');
   res.status(200).json(user);
 });
@@ -241,7 +242,7 @@ exports.getSkills = factory.getAll(Skill);
 
 exports.searchSkills = catchAsync(async (req, res, next) => {
   const keyword = req.params.keyword;
-  const {documents, totalCount} = await exports.getSearchQuery(
+  const { documents, totalCount } = await exports.getSearchQuery(
     'skills',
     {},
     keyword,
@@ -251,7 +252,7 @@ exports.searchSkills = catchAsync(async (req, res, next) => {
 });
 exports.searchJobTitles = catchAsync(async (req, res, next) => {
   const keyword = req.params.keyword;
-  const {documents, totalCount} = await exports.getSearchQuery(
+  const { documents, totalCount } = await exports.getSearchQuery(
     'jobTitles',
     {},
     keyword,
@@ -261,7 +262,7 @@ exports.searchJobTitles = catchAsync(async (req, res, next) => {
 });
 exports.searchCategories = catchAsync(async (req, res, next) => {
   const keyword = req.params.keyword;
-  const {documents, totalCount} = await exports.getSearchQuery(
+  const { documents, totalCount } = await exports.getSearchQuery(
     'Categories',
     {},
     keyword,
@@ -288,7 +289,7 @@ exports.updatePicture = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user._id, {
     imageUrl: image
   });
-  res.status(200).json({image});
+  res.status(200).json({ image });
 });
 
 exports.updateCV = catchAsync(async (req, res, next) => {
@@ -300,23 +301,32 @@ exports.updateCV = catchAsync(async (req, res, next) => {
   // update cv url in the database
   const url = `${req.protocol}://${req.get('host')}`;
   const cv = `${url}/api/v1/static/documents/cvs/${req.file.filename}`;
-  const applicantData = await ApplicantData.findByIdAndUpdate(req.user.additionalData._id, {
-    cvURL: cv,
-    cvLastUpdated: Date.now()
-  },
-  {
-    new: true
-  });
+  const applicantData = await ApplicantData.findByIdAndUpdate(
+    req.user.additionalData._id,
+    {
+      cvURL: cv,
+      cvLastUpdated: Date.now()
+    },
+    {
+      new: true
+    }
+  );
   res.status(200).json(applicantData);
 });
 
-
 exports.CVsMultipart = catchAsync(async (req, res, next) => {
-  helpers.getMultiPart(false, path.resolve(__dirname, '..') + '/assets/cvs')(req, res, next);
+  helpers.getMultiPart(false, path.resolve(__dirname, '..') + '/assets/cvs')(
+    req,
+    res,
+    next
+  );
 });
 
 exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
-  helpers.getMultiPart(true, path.resolve(__dirname, '..') + '/assets/images/users')(req, res, next);
+  helpers.getMultiPart(
+    true,
+    path.resolve(__dirname, '..') + '/assets/images/users'
+  )(req, res, next);
 });
 
 /**
@@ -350,8 +360,16 @@ exports.getSearchQuery = async function getSearchQuery (
   if (popOptions) documents = await documents.populate(popOptions);
   else documents = await documents;
   let totalCount = await Model.find(query).countDocuments();
-  return {documents, totalCount};
+  return { documents, totalCount };
 };
+
+exports.applyJob = catchAsync(async (req, res, next) => {
+  const application = await JobApplication.creat({
+    ..._.pick(req.body, ['applicant', 'job', 'questionsAnswers']),
+    lastUpdate: Date.now()
+  });
+  res.status(200).json(application);
+});
 
 const getModel = {
   skills: Skill,
