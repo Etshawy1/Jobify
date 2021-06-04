@@ -77,11 +77,12 @@ exports.getMany = (Model, popOptions) =>
     res.status(200).json(doc);
   });
 
-exports.getAll = Model =>
+exports.getAll = (Model, popOptions)  =>
   catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Model.find({}), req.query)
       .filter()
       .offset();
+    if (popOptions) query = features.query.populate(popOptions);
     const docs = await features.query;
     const totalCount = await Model.find({}).countDocuments();
     

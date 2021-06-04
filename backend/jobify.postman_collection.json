@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test23132@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"applicant\"\n}",
+							"raw": "{\n\t\"email\": \"test2222@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"recruiter\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4115,7 +4115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+							"raw": "{\r\n    \"skills\": [\r\n        \"C++\",\r\n        \"Java\",\r\n        \"Git\"\r\n    ],\r\n    \"screeningQuestions\": [\r\n        \"what makes you different?\",\r\n        \"why should we hire you?\"\r\n    ],\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"imaaaaaage\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4142,7 +4142,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+									"raw": "{\r\n    \"skills\": [\r\n        \"C++\",\r\n        \"Java\",\r\n        \"Git\"\r\n    ],\r\n    \"screeningQuestions\": [\r\n        \"what makes you different?\",\r\n        \"why should we hire you?\"\r\n    ],\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 3000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"imaaaaaage\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4215,11 +4215,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "902"
+									"value": "885"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"386-mHAtfBDh0WY8Qcrr8bFcXcA7PSs\""
+									"value": "W/\"375-YLPPEtl5bewCQmhpnSTOoa9j5Vs\""
 								},
 								{
 									"key": "Vary",
@@ -4227,7 +4227,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 20:54:13 GMT"
+									"value": "Fri, 04 Jun 2021 00:28:51 GMT"
 								},
 								{
 									"key": "Connection",
@@ -4235,7 +4235,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"_id\": \"60b7eff5c245d1080c2917d5\",\n    \"deleted\": false,\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 3000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"Android developer full time\",\n    \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n    \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n    \"__v\": 0\n}"
+							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"_id\": \"60b973c30e222736649bc6e0\",\n    \"deleted\": false,\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 3000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"imaaaaaage\",\n    \"recruiter\": \"60b9734b0e222736649bc6dd\",\n    \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n    \"__v\": 0\n}"
 						}
 					]
 				},
@@ -4420,7 +4420,7 @@
 							"variable": [
 								{
 									"key": "{id}",
-									"value": "60b7eff5c245d1080c2917d5"
+									"value": "60b96a7110acff2080a7e2e5"
 								}
 							]
 						}
@@ -4802,7 +4802,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}api/v1/jobs?limit=1&offset=1",
+							"raw": "{{URL}}api/v1/jobs?limit=10&offset=0",
 							"host": [
 								"{{URL}}api"
 							],
@@ -4813,11 +4813,11 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "1"
+									"value": "10"
 								},
 								{
 									"key": "offset",
-									"value": "1"
+									"value": "0"
 								}
 							]
 						}
@@ -4829,7 +4829,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}api/v1/jobs?limit=1&offset=1",
+									"raw": "{{URL}}api/v1/jobs?limit=10&offset=0",
 									"host": [
 										"{{URL}}api"
 									],
@@ -4840,11 +4840,11 @@
 									"query": [
 										{
 											"key": "limit",
-											"value": "1"
+											"value": "10"
 										},
 										{
 											"key": "offset",
-											"value": "1"
+											"value": "0"
 										}
 									]
 								}
@@ -4902,28 +4902,32 @@
 									"value": "application/json; charset=utf-8"
 								},
 								{
-									"key": "Content-Length",
-									"value": "945"
-								},
-								{
 									"key": "ETag",
-									"value": "W/\"3b1-+pqxpZpgipJSWz6BbW3I2U3prsI\""
+									"value": "W/\"4c6-Kcp1T3WY8eEIj7mldpJjtOjHGK4\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
 								},
 								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 23:15:44 GMT"
+									"value": "Fri, 04 Jun 2021 00:33:07 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"total\": 2,\n    \"items\": [\n        {\n            \"skills\": [\n                \"C++\",\n                \"Java\",\n                \"Git\"\n            ],\n            \"screeningQuestions\": [\n                \"what makes you different?\",\n                \"why should we hire you?\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60b7f3fc6a63e60300f0e3ae\",\n            \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n            \"field\": \"IT/Software Development\",\n            \"salary\": 3000,\n            \"careerLevel\": \"Entry Level\",\n            \"experience\": \"No experience\",\n            \"jobTitle\": \"Android developer full time\",\n            \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n            \"createdAt\": \"2021-06-02T21:11:24.815Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 1,\n    \"offset\": 1\n}"
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"skills\": [\n                \"C++\",\n                \"Java\",\n                \"Git\"\n            ],\n            \"screeningQuestions\": [\n                \"what makes you different?\",\n                \"why should we hire you?\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60b973c30e222736649bc6e0\",\n            \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n            \"field\": \"IT/Software Development\",\n            \"salary\": 3000,\n            \"careerLevel\": \"Entry Level\",\n            \"experience\": \"No experience\",\n            \"jobTitle\": \"imaaaaaage\",\n            \"recruiter\": {\n                \"deleted\": false,\n                \"_id\": \"60b9734b0e222736649bc6dd\",\n                \"email\": \"test2222@gmail.com\",\n                \"type\": \"recruiter\",\n                \"last_login\": \"2021-06-04T00:26:51.756Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"_id\": \"60b9734c0e222736649bc6de\",\n                    \"name\": \"360 imaging\"\n                },\n                \"onModel\": \"RecruiterData\"\n            },\n            \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 10,\n    \"offset\": 0\n}"
 						}
 					]
 				}

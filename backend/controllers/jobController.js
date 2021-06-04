@@ -20,11 +20,16 @@ exports.getRecruiterJobs = catchAsync(async (req, res, next) => {
     .offset();
   const jobs = await features.query;
   const totalCount = await Job.find(query).countDocuments();
-  
   res.status(200).json(helpers.getPaging(jobs, req, totalCount));
 });
 
 exports.updateJob = factory.updateOne(Job);
 exports.deleteJob = factory.softDelete(Job);
 exports.getJob = factory.getOne(Job);
-exports.getAllJobs = factory.getAll(Job);
+exports.getAllJobs = factory.getAll(Job, {
+  path: 'recruiter',
+  populate: {
+    path: 'additionalData',
+    select: 'name'
+  }
+});
