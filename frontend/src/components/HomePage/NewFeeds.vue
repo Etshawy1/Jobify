@@ -1,10 +1,16 @@
 <template>
     <v-container>
-        <v-row no-gutters>
+        <div class="text-center" v-if="loadingState">
+        <v-progress-circular
+            indeterminate
+            color="primary"
+        ></v-progress-circular>
+        </div>
+        <v-row no-gutters v-if="!loadingState">
             <v-flex md8>
                 <v-card
-                    v-for="n in 5"
-                    v-bind:key="n"
+                    v-for="item in items"
+                    v-bind:key="item"
                     class="mx-auto job-card"
                     elevation="10"
                     outlined
@@ -12,8 +18,8 @@
                     <v-container wrap>
                         <v-row no-gutters >
                             <v-flex md10>
-                                <v-card-title>Android Developer Full Time</v-card-title>
-                                <v-card-subtitle>360 imaging, Dokki</v-card-subtitle>
+                                <v-card-title>{{item.jobTitle}}</v-card-title>
+                                <v-card-subtitle>{{item.recruiter.additionalData.name}}</v-card-subtitle>
                             </v-flex>
                             <v-spacer></v-spacer>
                             <v-flex md1>
@@ -24,16 +30,15 @@
                                 id = "company-image">
                                 <v-avatar>
                                     <img
-                                    src="../../assets/man.png"
+                                    v-bind:src="item.recruiter.imageUrl" 
                                     alt="John">
                                 </v-avatar>
                                 </v-btn>
                             </v-flex>
                         </v-row>
                     </v-container>
-                    <v-card-text>Entry Level · 1-3 Yrs of Exp · Information Technology (IT) · Computer Science 
-                                · Software Development · Software Engineering · Programming · Cross-Platform 
-                                · WebGL · iOS · Android · Native Mobile Development
+                    <v-card-text>
+                        {{item.jobDescription}}
                     </v-card-text>    
                     <v-card-actions>
                         <v-btn
@@ -83,8 +88,38 @@ export default {
         return {
             id: 12,
             type: true,
-            currUserId: localStorage.getItem('userID')
+            currUserId: localStorage.getItem('userID'),
+            loadingState: true,
+            errorMessage: "",
+            response: {},
+            items: []
         }
+    },
+    async mounted(){
+      console.log("on mounted function")
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+          this.response = await this.$store.dispatch("getNewFeeds", {
+          userToken : localStorage.getItem('userToken'),
+          limit : 10,
+          offset : 0
+        })
+        this.items = this.response.items;
+        this.loadingState = false;
+        console.log(this.response);
+      } 
+      catch (error) {
+        console.log("an error occured")
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+        console.log(error);
+      }
     }
 };
 </script>
