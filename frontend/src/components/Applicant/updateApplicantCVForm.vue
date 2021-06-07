@@ -49,7 +49,7 @@
           <v-col cols="3">
             <v-btn
               block
-              color="green"
+              color="blue"
               v-if="userCVUrl"
               :href="userCVUrl"
               class="white--text"

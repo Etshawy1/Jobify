@@ -20,7 +20,6 @@
                         v-for="item in items"
                         :key="item.title"
                         :to="item.toUrl"
-                        link
                     >
                         <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
