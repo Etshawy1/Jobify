@@ -10,8 +10,8 @@
                     <v-container wrap>
                         <v-row no-gutters >
                             <v-flex md10>
-                                <v-card-title>Android Developer Full Time</v-card-title>
-                                <v-card-subtitle>360 imaging, Dokki</v-card-subtitle>
+                                <v-card-title>{{item.jobTitle}}</v-card-title>
+                                <v-card-subtitle>{{item.recruiter}}</v-card-subtitle>
                             </v-flex>
                             <v-spacer></v-spacer>
                             <v-flex md1>
@@ -31,7 +31,7 @@
                     </v-container>
                     
                     <c-card-text id="job-date">
-                        Full-Time Job, Posted 10 days ago
+                        Posted at {{getJobDate(item.createdAt)}}
                     </c-card-text>
 
                     <v-card-title class="font-weight-light">
@@ -76,17 +76,15 @@
                             <v-flex md3>
                                 <v-card-text class="font-weight-black">Experience Needed:</v-card-text>
                                 <v-card-text class="font-weight-black">Career Level:</v-card-text>
-                                <v-card-text class="font-weight-black">Education Level:</v-card-text>
                                 <v-card-text class="font-weight-black">Salary:</v-card-text>
                                 <v-card-text class="font-weight-black">Job Category:</v-card-text>
                             </v-flex>
                             <v-spacer></v-spacer>                            
                             <v-flex md9>
-                                <v-card-text>1 To 3 Years</v-card-text>
-                                <v-card-text>Entry Level</v-card-text>
-                                <v-card-text>Bachelor's Degree</v-card-text>
-                                <v-card-text>Competitive Salary, 200k Medical Insurance Including Optics, Dentistry.</v-card-text>
-                                <v-card-text>IT/Software Development</v-card-text>
+                                <v-card-text>{{item.experience}}</v-card-text>
+                                <v-card-text>{{item.careerLevel}}</v-card-text>
+                                <v-card-text>{{item.salary}}</v-card-text>
+                                <v-card-text>{{item.field}}</v-card-text>
                             </v-flex>
                         </v-row>    
                     </v-container>                   
@@ -98,8 +96,8 @@
                     outlined>
                     <v-card-title>Skills and Tools</v-card-title>
                     <div wrap style="margin:10px">
-                        <v-btn rounded depressed class="skills-buttons" v-for="n in 17" v-bind:key="n">
-                            IT
+                        <v-btn rounded depressed class="skills-buttons" v-for="n in item.skills" v-bind:key="n">
+                            {{n}}
                         </v-btn>
                     </div>                    
                 </v-card>
@@ -110,29 +108,7 @@
                     outlined>
                     <v-card-title>Job Description</v-card-title>
                     <v-card-text class="text--primary">
-                        We are looking for a senior computer vision engineer for Mobile platforms, developers who can 
-                        combine the programming skills with the art of image processing.
-                        This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL 
-                        libraries to develop features for various image, video editing.
-                        This position should take responsibility for the completion of designated software features; 
-                        designing suitable solutions to complex problems with assistance from management.   
-                    </v-card-text>
-                </v-card>
-                <v-card
-                    class="mx-auto job-card"
-                    elevation="10"
-                    outlined>
-                    <v-card-title>Job Requirements</v-card-title>
-                    <v-card-text class="text--primary">
-                        1 -3 years of experience in developing, deploying, and maintaining nontrivial apps for Android 
-                        Published or completed at least 1-3 Applications.
-                        Fluent in Java, Kotlin, Android Studio
-                        Worked with a cross-platform code base (Android NDK, JNI, C++, Kotlin Multiplatform) (is a plus)
-                        Able to translate UI/UX design into code
-                        Experience in performance and tuning including memory usage, CPU utilization and memory leak analysis
-                        Have experience in Agile Development and able to work in Scrum Team
-                        Excellent problem-solving ability
-                        Strong verbal and written communication skills in English
+                        {{item.jobDescription}}  
                     </v-card-text>
                 </v-card>
                 <v-container>
@@ -211,6 +187,48 @@
 </template>
 <script>
 export default {
+    
+    props: {
+        job_id: String
+    },    
+    data () {
+        return {
+           loadingState: true,
+           errorMessage: "",
+           response: {},
+           item: {}
+        }
+    },
+    methods: {
+        getJobDate: function(d){
+            return d.substring(0, 10);
+        }
+    },
+    async mounted(){
+      console.log("on mounted function for job apply")
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+          this.response = await this.$store.dispatch("getJobDetails", {
+          userToken : localStorage.getItem('userToken'),
+          id : "60b973c30e222736649bc6e0"
+        })
+        this.item = this.response;
+        this.loadingState = false;
+        console.log(this.response);
+      } 
+      catch (error) {
+        console.log("an error occured")
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+        console.log(error);
+      }
+    }
 };
 </script>
 
