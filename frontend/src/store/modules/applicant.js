@@ -27,6 +27,45 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    // an action to update the applicant's CV
+    updateCV({state}, payload) {
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append('file' , payload.file); 
+            const url = 'v1/users/updatecv'
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                    'content-type' : 'multipart/form-data'
+                }
+            }
+            axios.put(url , formData, config)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data)
+            })
+        })
+    },
+    getApplicantProfileData({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = `v1/users/profile/${payload.id}`;
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+
+            axios.get(url, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     }
 };
 

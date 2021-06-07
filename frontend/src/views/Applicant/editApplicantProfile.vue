@@ -1,5 +1,6 @@
 <template>
   <div class="editApplicant">
+      <nav-bar/>
       <v-container>
           <v-row>
               <v-col cols="3">
@@ -43,11 +44,15 @@
 </template>
 
 <script>
+import NavBar from "../../components/HomePage/NavBar.vue"
+
 export default {
     name: "editApplicantProfile",
+    components: {
+        NavBar
+    },
     data() {
-        return {
-            currUserId: '',
+        return { 
             items: [
                 {
                     title: 'Personal inforamtion',
@@ -71,6 +76,7 @@ export default {
             ]
         }
     },
+
 }
 </script>
 
