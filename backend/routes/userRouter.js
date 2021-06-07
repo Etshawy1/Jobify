@@ -48,6 +48,5 @@ router.patch('/updateOnlinePresence', userController.updateOnlinePresence);
 router.get('/searchskills/:keyword', userController.searchSkills);
 router.get('/searchjobtitles/:keyword', userController.searchJobTitles);
 router.get('/searchcategories/:keyword', userController.searchCategories);
-router.post('/applyjob', userController.applyJob);
 
 module.exports = router;

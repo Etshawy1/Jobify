@@ -6,21 +6,19 @@ const jobApplicationSchema = new mongoose.Schema({
   applicant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: constants.MODELS_NAMES.user,
-    required: [true, 'applcation should belong to an applicant']
+    required: [true, 'applcation should belong to an applicant'],
   },
-  status:{
+  status: {
     type: String,
-    enum: ["viewd", "In Consideration", "Not Selected"]
+    enum: ['applied', 'In Consideration', 'Not Selected'],
   },
   job: {
     type: mongoose.Schema.Types.ObjectId,
     ref: constants.MODELS_NAMES.job,
-    required: [true, 'application should belon to a job']
+    required: [true, 'application should belon to a job'],
   },
-  questionsAnswers:[
-    String
-  ],
-  lastUpdate: Date
+  questionsAnswers: [String],
+  lastUpdate: Date,
 });
 
 jobApplicationSchema.plugin(mongoose_delete, {

@@ -27,13 +27,15 @@ exports.softDelete = Model =>
     res.status(204).json({});
   });
 
-exports.updateOne = Model =>
+exports.updateOne = (Model,popOptions, additionalData) =>
   catchAsync(async (req, res, next) => {
-    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    req.body = {...req.body, ...additionalData};
+    let query = Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     });
-
+    if (popOptions) query = query.populate(popOptions);
+    const doc = await query;
     if (!doc) {
       return next(new AppError('No document found with that ID', 404));
     }
@@ -84,7 +86,8 @@ exports.getAll = (Model, popOptions)  =>
       .offset();
     if (popOptions) query = features.query.populate(popOptions);
     const docs = await features.query;
-    const totalCount = await Model.find({}).countDocuments();
+    const totalCount = await new APIFeatures(Model.find({}), req.query)
+      .filter().query.countDocuments();
     
     res.status(200).json(helpers.getPaging(docs, req, totalCount));
   });

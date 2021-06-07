@@ -18,18 +18,32 @@ exports.getRecruiterJobs = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Job.find(query), req.query)
     .filter()
     .offset();
-  const jobs = await features.query;
+  const jobs = await features.query.populate({
+    path: 'recruiter',
+    populate: {
+      path: 'additionalData'
+    }
+  });
   const totalCount = await Job.find(query).countDocuments();
   res.status(200).json(helpers.getPaging(jobs, req, totalCount));
 });
 
-exports.updateJob = factory.updateOne(Job);
+exports.updateJob = factory.updateOne(Job, {
+  path: 'recruiter',
+  populate: {
+    path: 'additionalData'
+  }
+});
 exports.deleteJob = factory.softDelete(Job);
-exports.getJob = factory.getOne(Job);
+exports.getJob = factory.getOne(Job, {
+  path: 'recruiter',
+  populate: {
+    path: 'additionalData'
+  }
+});
 exports.getAllJobs = factory.getAll(Job, {
   path: 'recruiter',
   populate: {
-    path: 'additionalData',
-    select: 'name'
+    path: 'additionalData'
   }
 });

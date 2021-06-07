@@ -18,7 +18,7 @@
             icon id="user-img">
           <v-avatar>
             <img
-              src="../../assets/man.png"
+              v-bind:src="profile_img"
               alt="John">
           </v-avatar>
           </v-btn>           
@@ -30,7 +30,7 @@
                 <v-avatar size="35">
                 <img
                   width="35" height="35"
-                  src="../../assets/man.png"
+                  v-bind:src="profile_img"
                   alt="John">
                 </v-avatar>
               </v-flex>
@@ -39,7 +39,11 @@
               </v-flex>
             </v-list-item>
             
+<<<<<<< HEAD
             <v-list-item row wrap align-center v-show="!type" @click="$router.push('/jobs/' + currUserId)">
+=======
+            <v-list-item row wrap align-center v-show="t" @click="$router.push('/jobs/' + profile_id)">
+>>>>>>> main
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-briefcase</v-icon>
               </v-flex>
@@ -84,6 +88,7 @@
 export default {
   data(){
     return{
+<<<<<<< HEAD
       type: false,
       currUserId: localStorage.getItem('userID'),
       currUserType : localStorage.getItem('userType')
@@ -97,6 +102,12 @@ export default {
       else {
         return `/editrecruiterprofile/${this.currUserId}`
       }
+=======
+      profile_id: localStorage.getItem('userID'),
+      profile_img: localStorage.getItem('userImageUrl'),
+      userType: localStorage.getItem('userType'),
+      t: (localStorage.getItem('userType')=="recruiter")
+>>>>>>> main
     }
   }
 };
