@@ -10,7 +10,7 @@ const jobApplicationSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['applied', 'viewed', 'In Consideration', 'Not Selected'],
+    enum: ['applied', 'In Consideration', 'Not Selected'],
   },
   job: {
     type: mongoose.Schema.Types.ObjectId,

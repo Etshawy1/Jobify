@@ -21,8 +21,7 @@ exports.getRecruiterJobs = catchAsync(async (req, res, next) => {
   const jobs = await features.query.populate({
     path: 'recruiter',
     populate: {
-      path: 'additionalData',
-      select: 'name'
+      path: 'additionalData'
     }
   });
   const totalCount = await Job.find(query).countDocuments();
@@ -32,22 +31,19 @@ exports.getRecruiterJobs = catchAsync(async (req, res, next) => {
 exports.updateJob = factory.updateOne(Job, {
   path: 'recruiter',
   populate: {
-    path: 'additionalData',
-    select: 'name'
+    path: 'additionalData'
   }
 });
 exports.deleteJob = factory.softDelete(Job);
 exports.getJob = factory.getOne(Job, {
   path: 'recruiter',
   populate: {
-    path: 'additionalData',
-    select: 'name'
+    path: 'additionalData'
   }
 });
 exports.getAllJobs = factory.getAll(Job, {
   path: 'recruiter',
   populate: {
-    path: 'additionalData',
-    select: 'name'
+    path: 'additionalData'
   }
 });
