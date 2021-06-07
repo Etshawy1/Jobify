@@ -41,7 +41,7 @@
                     </c-card-text>
 
                     <v-card-title class="font-weight-light">
-                       119 Applicants for this position
+                       {{item.recruiter.additionalData.employeesCount}}
                     </v-card-title>    
                     <v-card-actions>
                         <v-btn
@@ -182,6 +182,9 @@
                     outlined>
                     <v-card-title>More about {{item.recruiter.additionalData.name}}</v-card-title>
                     <v-card-subtitle>Specialized in {{item.field}}</v-card-subtitle>
+                    <v-card-text class="text--primary">
+                             {{item.recruiter.additionalData.description}}
+                    </v-card-text>
                     <v-card-text class="text--primary">
                             Contact Info: 
                     </v-card-text>
