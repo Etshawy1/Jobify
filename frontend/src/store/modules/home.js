@@ -40,7 +40,25 @@ const actions = {
                 reject(error.response.data);
             })
         })
-    }
+    },
+    getMyJobs({state}, payload) {
+        console.log("token: " + payload.userToken);
+        console.log("recruiter_user_id: " + payload.recruiter_user_id);
+        return new Promise((resolve, reject) => {
+            axios.get(`/v1/jobs/recruiter/${payload.recruiter_user_id}?limit=100&offset=0`,
+            {
+            headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    } 
 };
 
 

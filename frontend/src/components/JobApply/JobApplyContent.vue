@@ -1,6 +1,12 @@
 <template>
     <v-container>
-        <v-row no-gutters>
+        <div class="text-center" v-if="loadingState">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+        <v-row no-gutters  v-if="!loadingState">
             <v-flex md8>
                 <v-card
                     class="mx-auto job-card"
@@ -11,7 +17,7 @@
                         <v-row no-gutters >
                             <v-flex md10>
                                 <v-card-title>{{item.jobTitle}}</v-card-title>
-                                <v-card-subtitle>{{item.recruiter}}</v-card-subtitle>
+                                <v-card-subtitle>{{item.recruiter.additionalData.name}}</v-card-subtitle>
                             </v-flex>
                             <v-spacer></v-spacer>
                             <v-flex md1>
@@ -22,7 +28,7 @@
                                 id = "company-image">
                                 <v-avatar>
                                     <img
-                                    src="../../assets/man.png"
+                                    v-bind:src="item.recruiter.imageUrl"
                                     alt="John">
                                 </v-avatar>
                                 </v-btn>
@@ -41,7 +47,9 @@
                         <v-btn
                             color="primary"
                             large
-                            width = "120">
+                            width = "120"
+                            v-show="checkUserType()"
+                            >
                             Apply
                         </v-btn>
                         <v-spacer></v-spacer>
@@ -64,7 +72,6 @@
                         </v-tooltip>
                     </v-card-actions>
                 </v-card>
-                
                 
                 <v-card
                     class="mx-auto job-card"
@@ -111,11 +118,12 @@
                         {{item.jobDescription}}  
                     </v-card-text>
                 </v-card>
-                <v-container>
-                    <h2>More Jobs Posted By this campany</h2>
+                <v-container v-if="suggest_list.length-1">
+                    <h2 >More Jobs Posted By this campany</h2>
                     <v-card
-                        v-for="n in 5"
-                        v-bind:key="n"
+                        v-for="item in suggest_list"
+                        v-bind:key="item"
+                        v-show="checkRepeat(item._id)"
                         class="mx-auto job-card"
                         elevation="10"
                         outlined
@@ -123,8 +131,8 @@
                         <v-container wrap>
                             <v-row no-gutters >
                                 <v-flex md10>
-                                    <v-card-title>Android Developer Full Time</v-card-title>
-                                    <v-card-subtitle>360 imaging, Dokki</v-card-subtitle>
+                                    <v-card-title>{{item.jobTitle}}</v-card-title>
+                                    <v-card-subtitle>{{item.recruiter.additionalData.name}}</v-card-subtitle>
                                 </v-flex>
                                 <v-spacer></v-spacer>
                                 <v-flex md1>
@@ -135,17 +143,17 @@
                                     id = "company-image">
                                     <v-avatar>
                                         <img
-                                        src="../../assets/man.png"
+                                        v-bind:src="item.recruiter.imageUrl" 
                                         alt="John">
                                     </v-avatar>
                                     </v-btn>
                                 </v-flex>
                             </v-row>
                         </v-container>
-                        <v-card-text>Entry Level · 1-3 Yrs of Exp · Information Technology (IT) · Computer Science 
-                                    · Software Development · Software Engineering · Programming · Cross-Platform 
-                                    · WebGL · iOS · Android · Native Mobile Development
+                        <v-card-text>
+                            {{item.jobDescription}}
                         </v-card-text>    
+                        <!--
                         <v-card-actions>
                             <v-btn
                                 color="blue darken-2"
@@ -154,10 +162,12 @@
                             </v-btn>
                             <v-btn
                                 color="blue darken-2"
-                                text>
+                                text
+                                @click="$router.push('/apply/' + item._id)">
                                 Details
                             </v-btn>
                         </v-card-actions>
+                        -->
                     </v-card>                                
                 </v-container>
             </v-flex>
@@ -170,15 +180,13 @@
                     elevation="2"
                     max-width="450"
                     outlined>
-                    <v-card-title>About 360 Imaging</v-card-title>
-                    <v-card-subtitle>Information Technology Services, Internet/E-commerce</v-card-subtitle>
+                    <v-card-title>More about {{item.recruiter.additionalData.name}}</v-card-title>
+                    <v-card-subtitle>Specialized in {{item.field}}</v-card-subtitle>
                     <v-card-text class="text--primary">
-                        At Beyond Apps Group (www.beyond-apps-group.com ) we are 
-                        using state of the art trends, technologies developing unique, awesome 
-                        products with enhanced feature sets. Our major product lines using such 
-                        technologies as Image Processing, Machine Learning, VR and AI, Multi Camera 
-                        Live Streaming Broadcast and Cyber Security for data backups using advanced 
-                        encryption/decryption algorithms. We are product based company.
+                            Contact Info: 
+                    </v-card-text>
+                    <v-card-text class="text--primary">
+                        <a :href="`mailto:${item.recruiter.email}`">{{item.recruiter.email}}</a>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -187,7 +195,6 @@
 </template>
 <script>
 export default {
-    
     props: {
         job_id: String
     },    
@@ -196,12 +203,29 @@ export default {
            loadingState: true,
            errorMessage: "",
            response: {},
-           item: {}
+           item: {},
+           suggest_list: [],
+           response2:{}
         }
     },
     methods: {
         getJobDate: function(d){
             return d.substring(0, 10);
+        },
+        checkUserType: function(){
+            if(localStorage.getItem('userType')=="recruiter")
+                return false;
+            return true;    
+        },
+        checkRepeat: function(s_id){
+            if(s_id == this.job_id)
+                return false;
+            return true;    
+        },
+        checkSugestLength: function(){
+            if(suggest_list.length == 0)
+                return false;
+            return true;    
         }
     },
     async mounted(){
@@ -211,11 +235,37 @@ export default {
       try {
           this.response = await this.$store.dispatch("getJobDetails", {
           userToken : localStorage.getItem('userToken'),
-          id : "60b973c30e222736649bc6e0"
+          id : this.job_id
         })
         this.item = this.response;
-        this.loadingState = false;
         console.log(this.response);
+        //getSugestions(this.item.recruiter._id);
+        console.log("get suggestions function in job apply")
+        this.loadingState = true;
+        this.errorMessage = ""
+        try {
+            this.response2 = await this.$store.dispatch("getMyJobs", {
+            userToken : localStorage.getItem('userToken'),
+            limit : 10,
+            offset : 0,
+            recruiter_user_id: this.item.recruiter._id
+            })
+            this.suggest_list = this.response2.items;
+            this.loadingState = false;
+            console.log(this.response2);
+        } 
+        catch (error) {
+            console.log("an error occured")
+            this.loadingState = false
+            if(error.status === "fail") {
+            this.errorMessage = error.msg
+            }
+            else {
+            this.errorMessage = "Please try again later !"
+            }
+            console.log(error);
+        }
+        this.loadingState = false;
       } 
       catch (error) {
         console.log("an error occured")

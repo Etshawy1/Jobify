@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav-bar-app/>
-        <review-applicants-app/>
+        <review-applicants-app :job_id="job_id"/>
     </div>
 </template>
 

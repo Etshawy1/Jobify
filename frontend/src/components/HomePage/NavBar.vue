@@ -4,7 +4,6 @@
       dark
       prominent
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title large style="cursor: pointer" @click="$router.push('/home')" >Jobify</v-toolbar-title>
       <v-spacer></v-spacer>
           
@@ -37,7 +36,7 @@
               </v-flex>
             </v-list-item>
             
-            <v-list-item row wrap align-center v-show="!type" @click="$router.push('/jobs/' + profile_id)">
+            <v-list-item row wrap align-center v-show="t" @click="$router.push('/jobs/' + profile_id)">
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-briefcase</v-icon>
               </v-flex>
@@ -82,9 +81,10 @@
 export default {
   data(){
     return{
-      type: false,
-      profile_id: 7,
-      profile_img: localStorage.getItem('userImageUrl')
+      profile_id: localStorage.getItem('userID'),
+      profile_img: localStorage.getItem('userImageUrl'),
+      userType: localStorage.getItem('userType'),
+      t: (localStorage.getItem('userType')=="recruiter")
     }
   }
 };

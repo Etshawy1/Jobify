@@ -1,10 +1,16 @@
 <template>
     <v-container>
-        <v-row no-gutters>
+        <div class="text-center" v-if="loadingState">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+        <v-row no-gutters  v-if="!loadingState">            
             <v-flex md8>
                 <v-card
-                    v-for="n in 3"
-                    v-bind:key="n"
+                    v-for="item in items"
+                    v-bind:key="item"
                     class="mx-auto job-card"
                     elevation="10"
                     outlined
@@ -12,8 +18,8 @@
                     <v-container wrap>
                         <v-row no-gutters >
                             <v-flex md10>
-                                <v-card-title>Android Developer Full Time</v-card-title>
-                                <v-card-subtitle>360 imaging, Dokki</v-card-subtitle>
+                                <v-card-title>{{item.jobTitle}}</v-card-title>
+                                <v-card-subtitle>{{item.recruiter.additionalData.name}}</v-card-subtitle>
                             </v-flex>
                             <v-spacer></v-spacer>
                             <v-flex md1>
@@ -54,9 +60,8 @@
                             </v-flex>
                         </v-row>
                     </v-container>
-                    <v-card-text>Entry Level · 1-3 Yrs of Exp · Information Technology (IT) · Computer Science 
-                                · Software Development · Software Engineering · Programming · Cross-Platform 
-                                · WebGL · iOS · Android · Native Mobile Development
+                    <v-card-text>
+                        {{item.jobDescription}}
                     </v-card-text>    
                     <v-card-actions>
                         <v-btn
@@ -67,7 +72,7 @@
                         <v-btn
                             color="blue darken-2"
                             text
-                            @click="$router.push('/review/' + job_id)">
+                            @click="$router.push('/review/' + item._id)">
                             Review Applicants
                         </v-btn>
                     </v-card-actions>
@@ -99,10 +104,44 @@
 </template>
 <script>
 export default {
+    props: {
+        profile_id: String
+    },
     data () {
         return {
-            job_id: 15
+            job_id: 15,
+            loadingState: true,
+            errorMessage: "",
+            response: {},
+            items: []
         }
+    },
+    async mounted(){
+      console.log("on mounted function in my jobs")
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+          this.response = await this.$store.dispatch("getMyJobs", {
+          userToken : localStorage.getItem('userToken'),
+          limit : 100,
+          offset : 0,
+          recruiter_user_id: this.profile_id
+        })
+        this.items = this.response.items;
+        this.loadingState = false;
+        console.log(this.response);
+      } 
+      catch (error) {
+        console.log("an error occured")
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+        console.log(error);
+      }
     }
 };
 </script>

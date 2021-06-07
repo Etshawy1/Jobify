@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar-app/>
-    <jobs-history-app/>
+    <jobs-history-app :profile_id="profile_id"/>
   </div>
 </template>
 
