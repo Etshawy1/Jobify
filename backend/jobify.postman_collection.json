@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test2222@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"recruiter\"\n}",
+							"raw": "{\n\t\"email\": \"test212@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"applicant\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test23132@gmail.com\",\n\t\"password\": \"password\"\n}\n",
+							"raw": "{\n\t\"email\": \"test@gmail.com\",\n\t\"password\": \"password\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1064,7 +1064,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"ahmad\",\n}",
+							"raw": "{\n\t\"firstName\": \"ahmad\",\n    \"lastName\": \"etshawy\",\n    \"gender\": \"male\",\n    \"dateOfBirth\": \"1999-12-12\",\n    \"phone\": \"01155431271\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1085,13 +1085,13 @@
 					},
 					"response": [
 						{
-							"name": "update all user data",
+							"name": "update user data",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"email\": \"test25@test.com\",\n\t\"gender\": \"male\",\n\t\"dateOfBirth\": \"1999-05-31\",\n\t\"phone\": \"1216595487\",\n\t\"name\": \"nice\"\n\t\n}",
+									"raw": "{\n\t\"firstName\": \"ahmad\",\n    \"lastName\": \"etshawy\",\n    \"gender\": \"male\",\n    \"dateOfBirth\": \"1999-12-12\",\n    \"phone\": \"01155431271\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1099,14 +1099,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL}}api/v1/me/",
+									"raw": "{{URL}}api/v1/users/updateapplicantdata",
 									"host": [
 										"{{URL}}api"
 									],
 									"path": [
 										"v1",
-										"me",
-										""
+										"users",
+										"updateapplicantdata"
 									]
 								}
 							},
@@ -1119,8 +1119,16 @@
 									"value": "*"
 								},
 								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
 								},
 								{
 									"key": "X-Frame-Options",
@@ -1139,154 +1147,44 @@
 									"value": "nosniff"
 								},
 								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
 									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "1000"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "999"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 06 Apr 2020 12:23:04 GMT"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1586179275"
+									"value": "0"
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json; charset=utf-8"
 								},
 								{
+									"key": "Content-Length",
+									"value": "449"
+								},
+								{
 									"key": "ETag",
-									"value": "W/\"746-uxb8H/QUWe6FQH1Ds6JLNTiPG+Q\""
+									"value": "W/\"1c1-j5IGw2jNHvym/+Bopr3ibPnWJ90\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"queue\": {\n        \"currentlyPlaying\": {\n            \"currentTrack\": \"http://ec2-54-197-122-205.compute-1.amazonaws.com/api/v1/me/player/tracks/5e7d2dc03429e24340ff1396\",\n            \"device\": \"5e8a6b01ed210008a53e2f7f\"\n        },\n        \"queueTracks\": [],\n        \"previousTrack\": null,\n        \"repeat\": false,\n        \"shuffle\": false,\n        \"play\": false,\n        \"repeatOnce\": false,\n        \"devices\": [\n            {\n                \"_id\": \"5e8a107fdf9ed11c1cc2de92\"\n            },\n            {\n                \"_id\": \"5e8a10c3df9ed11c1cc2de95\"\n            },\n            {\n                \"_id\": \"5e8a10cbd56ea252c3860a0a\"\n            },\n            {\n                \"_id\": \"5e8a113bdf9ed11c1cc2de97\"\n            },\n            {\n                \"_id\": \"5e8a1144d56ea252c3860a0c\"\n            },\n            {\n                \"_id\": \"5e8a1185d56ea252c3860a0e\"\n            },\n            {\n                \"_id\": \"5e8a118cdf9ed11c1cc2de99\"\n            },\n            {\n                \"_id\": \"5e8a1d9373973e2554164b1c\"\n            },\n            {\n                \"_id\": \"5e8a206cd021d52aecca8cf7\"\n            },\n            {\n                \"_id\": \"5e8a20a81688d1074869b9d0\"\n            },\n            {\n                \"_id\": \"5e8a2100d56ea252c3860a16\"\n            },\n            {\n                \"_id\": \"5e8a29a7d56ea252c3860a18\"\n            },\n            {\n                \"_id\": \"5e8a29b152566818b8f6822f\"\n            },\n            {\n                \"_id\": \"5e8a29e97e47b03d0428d140\"\n            },\n            {\n                \"_id\": \"5e8a2a7aa8350f239c4b48a4\"\n            },\n            {\n                \"_id\": \"5e8a2a9af04fa83bd860fae7\"\n            },\n            {\n                \"_id\": \"5e8a4d8d7b6f286c4816cbe5\"\n            },\n            {\n                \"_id\": \"5e8a4f39b4d0ab6f38e74f0d\"\n            },\n            {\n                \"_id\": \"5e8a4f4db4d0ab6f38e74f0f\"\n            },\n            {\n                \"_id\": \"5e8a4f4fb4d0ab6f38e74f11\"\n            },\n            {\n                \"_id\": \"5e8a5bc7b2859207bf1fc2eb\"\n            },\n            {\n                \"_id\": \"5e8a5c53b2859207bf1fc2ed\"\n            },\n            {\n                \"_id\": \"5e8a5ce9ed210008a53e2f7b\"\n            },\n            {\n                \"_id\": \"5e8a6578834519135aea4399\"\n            },\n            {\n                \"_id\": \"5e8a65e3834519135aea439b\"\n            },\n            {\n                \"_id\": \"5e8a667c94163072d0c444fb\"\n            },\n            {\n                \"_id\": \"5e8a66b4fbb91d735d629352\"\n            },\n            {\n                \"_id\": \"5e8a66f8ae59df73fc63fbb7\"\n            },\n            {\n                \"_id\": \"5e8a67d4a4ae9f757d0dc54c\"\n            },\n            {\n                \"_id\": \"5e8a67eda4ae9f757d0dc54e\"\n            },\n            {\n                \"_id\": \"5e8a6b01ed210008a53e2f7f\"\n            },\n            {\n                \"_id\": \"5e8a9aaef30cd40c365b8cb8\",\n                \"devicesName\": \"Chrome\"\n            }\n        ]\n    },\n    \"followedUsers\": [],\n    \"tracks\": [],\n    \"ownedPlaylists\": [],\n    \"followedAlbums\": [],\n    \"_id\": \"5e80b341b19a24084cb9b7e7\",\n    \"email\": \"test25@test.com\",\n    \"name\": \"nice\",\n    \"dateOfBirth\": \"1999-05-31T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"artist\",\n    \"__v\": 35,\n    \"last_login\": \"2020-04-06T11:57:33.763Z\",\n    \"passwordChangedAt\": \"2020-03-29T16:53:43.598Z\",\n    \"playlists\": [],\n    \"imageUrl\": \"http://zasymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"phone\": \"1216595487\"\n}"
-						},
-						{
-							"name": "update one user data only",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"email\": \"test29@test.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}api/v1/me/",
-									"host": [
-										"{{URL}}api"
-									],
-									"path": [
-										"v1",
-										"me",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "1; mode=block"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "1000"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "998"
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 06 Apr 2020 12:25:57 GMT"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1586179275"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"746-QT/Lwpu/iZCGkQw+2ZTYZW+MuXg\""
-								},
-								{
-									"key": "Vary",
-									"value": "Accept-Encoding"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
+									"value": "Mon, 07 Jun 2021 18:29:44 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"queue\": {\n        \"currentlyPlaying\": {\n            \"currentTrack\": \"http://ec2-54-197-122-205.compute-1.amazonaws.com/api/v1/me/player/tracks/5e7d2dc03429e24340ff1396\",\n            \"device\": \"5e8a6b01ed210008a53e2f7f\"\n        },\n        \"queueTracks\": [],\n        \"previousTrack\": null,\n        \"repeat\": false,\n        \"shuffle\": false,\n        \"play\": false,\n        \"repeatOnce\": false,\n        \"devices\": [\n            {\n                \"_id\": \"5e8a107fdf9ed11c1cc2de92\"\n            },\n            {\n                \"_id\": \"5e8a10c3df9ed11c1cc2de95\"\n            },\n            {\n                \"_id\": \"5e8a10cbd56ea252c3860a0a\"\n            },\n            {\n                \"_id\": \"5e8a113bdf9ed11c1cc2de97\"\n            },\n            {\n                \"_id\": \"5e8a1144d56ea252c3860a0c\"\n            },\n            {\n                \"_id\": \"5e8a1185d56ea252c3860a0e\"\n            },\n            {\n                \"_id\": \"5e8a118cdf9ed11c1cc2de99\"\n            },\n            {\n                \"_id\": \"5e8a1d9373973e2554164b1c\"\n            },\n            {\n                \"_id\": \"5e8a206cd021d52aecca8cf7\"\n            },\n            {\n                \"_id\": \"5e8a20a81688d1074869b9d0\"\n            },\n            {\n                \"_id\": \"5e8a2100d56ea252c3860a16\"\n            },\n            {\n                \"_id\": \"5e8a29a7d56ea252c3860a18\"\n            },\n            {\n                \"_id\": \"5e8a29b152566818b8f6822f\"\n            },\n            {\n                \"_id\": \"5e8a29e97e47b03d0428d140\"\n            },\n            {\n                \"_id\": \"5e8a2a7aa8350f239c4b48a4\"\n            },\n            {\n                \"_id\": \"5e8a2a9af04fa83bd860fae7\"\n            },\n            {\n                \"_id\": \"5e8a4d8d7b6f286c4816cbe5\"\n            },\n            {\n                \"_id\": \"5e8a4f39b4d0ab6f38e74f0d\"\n            },\n            {\n                \"_id\": \"5e8a4f4db4d0ab6f38e74f0f\"\n            },\n            {\n                \"_id\": \"5e8a4f4fb4d0ab6f38e74f11\"\n            },\n            {\n                \"_id\": \"5e8a5bc7b2859207bf1fc2eb\"\n            },\n            {\n                \"_id\": \"5e8a5c53b2859207bf1fc2ed\"\n            },\n            {\n                \"_id\": \"5e8a5ce9ed210008a53e2f7b\"\n            },\n            {\n                \"_id\": \"5e8a6578834519135aea4399\"\n            },\n            {\n                \"_id\": \"5e8a65e3834519135aea439b\"\n            },\n            {\n                \"_id\": \"5e8a667c94163072d0c444fb\"\n            },\n            {\n                \"_id\": \"5e8a66b4fbb91d735d629352\"\n            },\n            {\n                \"_id\": \"5e8a66f8ae59df73fc63fbb7\"\n            },\n            {\n                \"_id\": \"5e8a67d4a4ae9f757d0dc54c\"\n            },\n            {\n                \"_id\": \"5e8a67eda4ae9f757d0dc54e\"\n            },\n            {\n                \"_id\": \"5e8a6b01ed210008a53e2f7f\"\n            },\n            {\n                \"_id\": \"5e8a9aaef30cd40c365b8cb8\",\n                \"devicesName\": \"Chrome\"\n            }\n        ]\n    },\n    \"followedUsers\": [],\n    \"tracks\": [],\n    \"ownedPlaylists\": [],\n    \"followedAlbums\": [],\n    \"_id\": \"5e80b341b19a24084cb9b7e7\",\n    \"email\": \"test29@test.com\",\n    \"name\": \"etsh\",\n    \"dateOfBirth\": \"1999-05-31T00:00:00.000Z\",\n    \"gender\": \"male\",\n    \"type\": \"artist\",\n    \"__v\": 35,\n    \"last_login\": \"2020-04-06T11:57:33.763Z\",\n    \"passwordChangedAt\": \"2020-03-29T16:53:43.598Z\",\n    \"playlists\": [],\n    \"imageUrl\": \"http://zasymphonia.ddns.net/api/v1/images/users/default.png\",\n    \"phone\": \"1216595487\"\n}"
+							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60be651946f60427a4997008\",\n    \"user\": \"60be651846f60427a4997007\",\n    \"skills\": [],\n    \"jobTitles\": [],\n    \"categories\": [],\n    \"languages\": [],\n    \"__v\": 0,\n    \"dateOfBirth\": \"1999-12-12T00:00:00.000Z\",\n    \"firstName\": \"ahmad\",\n    \"gender\": \"male\",\n    \"lastName\": \"etshawy\",\n    \"phone\": \"01155431271\"\n}"
 						}
 					]
 				},
@@ -4276,7 +4174,7 @@
 							"variable": [
 								{
 									"key": "{id}",
-									"value": "60b7eff5c245d1080c2917d5"
+									"value": "60b973c30e222736649bc6e0"
 								}
 							]
 						}
@@ -4309,7 +4207,7 @@
 									"variable": [
 										{
 											"key": "{id}",
-											"value": "60b7eff5c245d1080c2917d5"
+											"value": "60b973c30e222736649bc6e0"
 										}
 									]
 								}
@@ -4367,28 +4265,32 @@
 									"value": "application/json; charset=utf-8"
 								},
 								{
-									"key": "Content-Length",
-									"value": "907"
-								},
-								{
 									"key": "ETag",
-									"value": "W/\"38b-sM4x9UxEnPsfpDLdwia0h4vA6rY\""
+									"value": "W/\"4b0-rMfrl5pwvZs/OAG7aWOjRIJrTp4\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
 								},
 								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 20:55:32 GMT"
+									"value": "Mon, 07 Jun 2021 19:22:57 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"60b7eff5c245d1080c2917d5\",\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 5000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"Android Java developer full time\",\n    \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n    \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n    \"__v\": 0\n}"
+							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"60b973c30e222736649bc6e0\",\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 5000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"Android Java developer full time\",\n    \"recruiter\": {\n        \"deleted\": false,\n        \"_id\": \"60b9734b0e222736649bc6dd\",\n        \"email\": \"test2222@gmail.com\",\n        \"type\": \"recruiter\",\n        \"last_login\": \"2021-06-04T00:26:51.756Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n        \"__v\": 0,\n        \"additionalData\": {\n            \"_id\": \"60b9734c0e222736649bc6de\",\n            \"name\": \"360 imaging\"\n        },\n        \"onModel\": \"RecruiterData\"\n    },\n    \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n    \"__v\": 0\n}"
 						}
 					]
 				},
@@ -4543,7 +4445,7 @@
 							"variable": [
 								{
 									"key": "{id}",
-									"value": "60b7eff5c245d1080c2917d5"
+									"value": "60b973c30e222736649bc6e0"
 								}
 							]
 						}
@@ -4567,7 +4469,7 @@
 									"variable": [
 										{
 											"key": "{id}",
-											"value": "60b7eff5c245d1080c2917d5"
+											"value": "60b973c30e222736649bc6e0"
 										}
 									]
 								}
@@ -4625,28 +4527,32 @@
 									"value": "application/json; charset=utf-8"
 								},
 								{
-									"key": "Content-Length",
-									"value": "934"
-								},
-								{
 									"key": "ETag",
-									"value": "W/\"3a6-RM29LcfoYYrtoWSBvQrCcXX/TQk\""
+									"value": "W/\"49a-eXz6gwxff05P7BAL77zIRzdtoZE\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
 								},
 								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 20:55:00 GMT"
+									"value": "Mon, 07 Jun 2021 19:20:20 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"items\": {\n        \"skills\": [\n            \"C++\",\n            \"Java\",\n            \"Git\"\n        ],\n        \"screeningQuestions\": [\n            \"what makes you different?\",\n            \"why should we hire you?\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60b7eff5c245d1080c2917d5\",\n        \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n        \"field\": \"IT/Software Development\",\n        \"salary\": 3000,\n        \"careerLevel\": \"Entry Level\",\n        \"experience\": \"No experience\",\n        \"jobTitle\": \"Android developer full time\",\n        \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n        \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n        \"__v\": 0\n    },\n    \"limit\": 20,\n    \"offset\": 0\n}"
+							"body": "{\n    \"skills\": [\n        \"C++\",\n        \"Java\",\n        \"Git\"\n    ],\n    \"screeningQuestions\": [\n        \"what makes you different?\",\n        \"why should we hire you?\"\n    ],\n    \"deleted\": false,\n    \"_id\": \"60b973c30e222736649bc6e0\",\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n    \"field\": \"IT/Software Development\",\n    \"salary\": 3000,\n    \"careerLevel\": \"Entry Level\",\n    \"experience\": \"No experience\",\n    \"jobTitle\": \"imaaaaaage\",\n    \"recruiter\": {\n        \"deleted\": false,\n        \"_id\": \"60b9734b0e222736649bc6dd\",\n        \"email\": \"test2222@gmail.com\",\n        \"type\": \"recruiter\",\n        \"last_login\": \"2021-06-04T00:26:51.756Z\",\n        \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n        \"__v\": 0,\n        \"additionalData\": {\n            \"_id\": \"60b9734c0e222736649bc6de\",\n            \"name\": \"360 imaging\"\n        },\n        \"onModel\": \"RecruiterData\"\n    },\n    \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n    \"__v\": 0\n}"
 						}
 					]
 				},
@@ -4689,31 +4595,42 @@
 							"variable": [
 								{
 									"key": "{recruiter_user_id}",
-									"value": "60b7bca7db1c5a25f81abfe1"
+									"value": "60b9734b0e222736649bc6dd"
 								}
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "get job",
+							"name": "get recruiter jobs",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}api/v1/jobs/:{id}",
+									"raw": "{{URL}}api/v1/jobs/recruiter/:{recruiter_user_id}?limit=1&offset=0",
 									"host": [
 										"{{URL}}api"
 									],
 									"path": [
 										"v1",
 										"jobs",
-										":{id}"
+										"recruiter",
+										":{recruiter_user_id}"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
 									],
 									"variable": [
 										{
-											"key": "{id}",
-											"value": "60b7eff5c245d1080c2917d5"
+											"key": "{recruiter_user_id}",
+											"value": "60b9734b0e222736649bc6dd"
 										}
 									]
 								}
@@ -4771,28 +4688,32 @@
 									"value": "application/json; charset=utf-8"
 								},
 								{
-									"key": "Content-Length",
-									"value": "934"
-								},
-								{
 									"key": "ETag",
-									"value": "W/\"3a6-RM29LcfoYYrtoWSBvQrCcXX/TQk\""
+									"value": "W/\"4c5-wWchdN9rJVmBIpxhTD9nU1Ada94\""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept-Encoding"
 								},
 								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 20:55:00 GMT"
+									"value": "Mon, 07 Jun 2021 19:19:25 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"items\": {\n        \"skills\": [\n            \"C++\",\n            \"Java\",\n            \"Git\"\n        ],\n        \"screeningQuestions\": [\n            \"what makes you different?\",\n            \"why should we hire you?\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60b7eff5c245d1080c2917d5\",\n        \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n        \"field\": \"IT/Software Development\",\n        \"salary\": 3000,\n        \"careerLevel\": \"Entry Level\",\n        \"experience\": \"No experience\",\n        \"jobTitle\": \"Android developer full time\",\n        \"recruiter\": \"60b7bca7db1c5a25f81abfe1\",\n        \"createdAt\": \"2021-06-02T20:54:13.824Z\",\n        \"__v\": 0\n    },\n    \"limit\": 20,\n    \"offset\": 0\n}"
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"skills\": [\n                \"C++\",\n                \"Java\",\n                \"Git\"\n            ],\n            \"screeningQuestions\": [\n                \"what makes you different?\",\n                \"why should we hire you?\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60b973c30e222736649bc6e0\",\n            \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n            \"field\": \"IT/Software Development\",\n            \"salary\": 3000,\n            \"careerLevel\": \"Entry Level\",\n            \"experience\": \"No experience\",\n            \"jobTitle\": \"imaaaaaage\",\n            \"recruiter\": {\n                \"deleted\": false,\n                \"_id\": \"60b9734b0e222736649bc6dd\",\n                \"email\": \"test2222@gmail.com\",\n                \"type\": \"recruiter\",\n                \"last_login\": \"2021-06-04T00:26:51.756Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"_id\": \"60b9734c0e222736649bc6de\",\n                    \"name\": \"360 imaging\"\n                },\n                \"onModel\": \"RecruiterData\"\n            },\n            \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 1,\n    \"offset\": 0\n}"
 						}
 					]
 				},
@@ -4928,6 +4849,636 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"skills\": [\n                \"C++\",\n                \"Java\",\n                \"Git\"\n            ],\n            \"screeningQuestions\": [\n                \"what makes you different?\",\n                \"why should we hire you?\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60b973c30e222736649bc6e0\",\n            \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n            \"field\": \"IT/Software Development\",\n            \"salary\": 3000,\n            \"careerLevel\": \"Entry Level\",\n            \"experience\": \"No experience\",\n            \"jobTitle\": \"imaaaaaage\",\n            \"recruiter\": {\n                \"deleted\": false,\n                \"_id\": \"60b9734b0e222736649bc6dd\",\n                \"email\": \"test2222@gmail.com\",\n                \"type\": \"recruiter\",\n                \"last_login\": \"2021-06-04T00:26:51.756Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"_id\": \"60b9734c0e222736649bc6de\",\n                    \"name\": \"360 imaging\"\n                },\n                \"onModel\": \"RecruiterData\"\n            },\n            \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 10,\n    \"offset\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "job Application",
+			"item": [
+				{
+					"name": "Add job application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job\": \"60b7e9e80e508148bc43bdee\",\r\n    \"questionsAnswers\": [\"yes\", \"very nice\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/jobapplications",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobapplications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All job applications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/jobapplications?_id=60be6a0b1ff7192bd0c82600",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobapplications"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "60be6a0b1ff7192bd0c82600"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All job applications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobapplications",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobapplications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8e3-+wTZuSwY+UQFKb3NaxWsdA2yHlw\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 18:41:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"questionsAnswers\": [],\n            \"deleted\": false,\n            \"_id\": \"60be6685a183fb4bec3ef464\",\n            \"applicant\": {\n                \"deleted\": false,\n                \"_id\": \"60be651846f60427a4997007\",\n                \"email\": \"test212@gmail.com\",\n                \"type\": \"applicant\",\n                \"last_login\": \"2021-06-07T18:27:36.780Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"onlinePresence\": {\n                        \"linkedIn\": \"\",\n                        \"facebook\": \"\",\n                        \"twitter\": \"\",\n                        \"behance\": \"\",\n                        \"instagram\": \"\",\n                        \"gitHub\": \"\",\n                        \"stackOverflow\": \"\",\n                        \"youTube\": \"\",\n                        \"blog\": \"\",\n                        \"website\": \"\",\n                        \"other\": \"\"\n                    },\n                    \"jobType\": [],\n                    \"deleted\": false,\n                    \"_id\": \"60be651946f60427a4997008\",\n                    \"user\": \"60be651846f60427a4997007\",\n                    \"skills\": [],\n                    \"jobTitles\": [],\n                    \"categories\": [],\n                    \"languages\": [],\n                    \"__v\": 0,\n                    \"dateOfBirth\": \"1999-12-12T00:00:00.000Z\",\n                    \"firstName\": \"ahmad\",\n                    \"gender\": \"male\",\n                    \"lastName\": \"etshawy\",\n                    \"phone\": \"01155431271\"\n                },\n                \"onModel\": \"ApplicantData\"\n            },\n            \"status\": \"applied\",\n            \"job\": {\n                \"skills\": [\n                    \"C++\",\n                    \"Java\",\n                    \"Git\"\n                ],\n                \"screeningQuestions\": [\n                    \"what makes you different?\",\n                    \"why should we hire you?\"\n                ],\n                \"deleted\": false,\n                \"_id\": \"60b973c30e222736649bc6e0\",\n                \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n                \"field\": \"IT/Software Development\",\n                \"salary\": 3000,\n                \"careerLevel\": \"Entry Level\",\n                \"experience\": \"No experience\",\n                \"jobTitle\": \"imaaaaaage\",\n                \"recruiter\": {\n                    \"deleted\": false,\n                    \"_id\": \"60b9734b0e222736649bc6dd\",\n                    \"email\": \"test2222@gmail.com\",\n                    \"type\": \"recruiter\",\n                    \"last_login\": \"2021-06-04T00:26:51.756Z\",\n                    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                    \"__v\": 0,\n                    \"additionalData\": {\n                        \"deleted\": false,\n                        \"_id\": \"60b9734c0e222736649bc6de\",\n                        \"user\": \"60b9734b0e222736649bc6dd\",\n                        \"__v\": 0,\n                        \"address\": \"Maadi, Cairo, Egypt\",\n                        \"description\": \"imaging\",\n                        \"employeesCount\": \"1-50 Employees\",\n                        \"field\": \"IT/Software Development\",\n                        \"name\": \"360 imaging\"\n                    },\n                    \"onModel\": \"RecruiterData\"\n                },\n                \"createdAt\": \"2021-06-04T00:28:51.055Z\",\n                \"__v\": 0\n            },\n            \"lastUpdate\": \"2021-06-07T18:33:41.778Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						},
+						{
+							"name": "Get All job applications for a specific job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobapplications?job=60b7e9e80e508148bc43bdee",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobapplications"
+									],
+									"query": [
+										{
+											"key": "job",
+											"value": "60b7e9e80e508148bc43bdee"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5f-dux6ONn4owJrFKjfw0yvw+dYPF8\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 18:50:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 2,\n    \"items\": [\n        {\n            \"questionsAnswers\": [],\n            \"deleted\": false,\n            \"_id\": \"60be6a0b1ff7192bd0c82600\",\n            \"applicant\": {\n                \"deleted\": false,\n                \"_id\": \"60aa3988a6dd1c5b9466595b\",\n                \"email\": \"test13@test.com\",\n                \"type\": \"applicant\",\n                \"last_login\": \"2021-06-07T18:47:20.313Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/images/users/default.png\",\n                \"__v\": 0\n            },\n            \"status\": \"applied\",\n            \"job\": {\n                \"skills\": [],\n                \"screeningQuestions\": [],\n                \"deleted\": false,\n                \"_id\": \"60b7e9e80e508148bc43bdee\",\n                \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n                \"field\": \"IT/Software Development\",\n                \"salary\": 3000,\n                \"careerLevel\": \"Entry Level\",\n                \"experience\": \"No experience\",\n                \"jobTitle\": \"Android developer full time\",\n                \"recruiter\": {\n                    \"deleted\": false,\n                    \"_id\": \"60b7bca7db1c5a25f81abfe1\",\n                    \"email\": \"test3@gmail.com\",\n                    \"type\": \"recruiter\",\n                    \"last_login\": \"2021-06-02T20:17:51.194Z\",\n                    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                    \"__v\": 0\n                },\n                \"__v\": 0\n            },\n            \"lastUpdate\": \"2021-06-07T18:48:43.489Z\",\n            \"__v\": 0\n        },\n        {\n            \"questionsAnswers\": [\n                \"yes\",\n                \"very nice\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60be6a401ff7192bd0c82601\",\n            \"applicant\": {\n                \"deleted\": false,\n                \"_id\": \"60aa298b5a5f92587c21216e\",\n                \"email\": \"test123@test.com\",\n                \"type\": \"applicant\",\n                \"last_login\": \"2021-06-07T18:49:33.299Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/images/users/7856575c86c2821dcfd1-1621767888331.jpg\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"onlinePresence\": {\n                        \"linkedIn\": \"\",\n                        \"facebook\": \"\",\n                        \"twitter\": \"\",\n                        \"behance\": \"\",\n                        \"instagram\": \"\",\n                        \"gitHub\": \"\",\n                        \"stackOverflow\": \"\",\n                        \"youTube\": \"\",\n                        \"blog\": \"\",\n                        \"website\": \"\",\n                        \"other\": \"\"\n                    },\n                    \"jobType\": [],\n                    \"deleted\": false,\n                    \"_id\": \"60aa298b5a5f92587c21216f\",\n                    \"user\": \"60aa298b5a5f92587c21216e\",\n                    \"skills\": [],\n                    \"jobTitles\": [],\n                    \"categories\": [],\n                    \"languages\": [],\n                    \"__v\": 0\n                },\n                \"onModel\": \"ApplicantData\"\n            },\n            \"status\": \"applied\",\n            \"job\": {\n                \"skills\": [],\n                \"screeningQuestions\": [],\n                \"deleted\": false,\n                \"_id\": \"60b7e9e80e508148bc43bdee\",\n                \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n                \"field\": \"IT/Software Development\",\n                \"salary\": 3000,\n                \"careerLevel\": \"Entry Level\",\n                \"experience\": \"No experience\",\n                \"jobTitle\": \"Android developer full time\",\n                \"recruiter\": {\n                    \"deleted\": false,\n                    \"_id\": \"60b7bca7db1c5a25f81abfe1\",\n                    \"email\": \"test3@gmail.com\",\n                    \"type\": \"recruiter\",\n                    \"last_login\": \"2021-06-02T20:17:51.194Z\",\n                    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                    \"__v\": 0\n                },\n                \"__v\": 0\n            },\n            \"lastUpdate\": \"2021-06-07T18:49:36.780Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						},
+						{
+							"name": "Get All job applications with job and applicant filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobapplications?job=60b7e9e80e508148bc43bdee&applicant=60aa298b5a5f92587c21216e",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobapplications"
+									],
+									"query": [
+										{
+											"key": "job",
+											"value": "60b7e9e80e508148bc43bdee"
+										},
+										{
+											"key": "applicant",
+											"value": "60aa298b5a5f92587c21216e"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"716-Q1pArknswoSfBiyB3u3pCw1FXDQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 18:55:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"questionsAnswers\": [\n                \"yes\",\n                \"very nice\"\n            ],\n            \"deleted\": false,\n            \"_id\": \"60be6a401ff7192bd0c82601\",\n            \"applicant\": {\n                \"deleted\": false,\n                \"_id\": \"60aa298b5a5f92587c21216e\",\n                \"email\": \"test123@test.com\",\n                \"type\": \"applicant\",\n                \"last_login\": \"2021-06-07T18:49:33.299Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/images/users/7856575c86c2821dcfd1-1621767888331.jpg\",\n                \"__v\": 0,\n                \"additionalData\": {\n                    \"onlinePresence\": {\n                        \"linkedIn\": \"\",\n                        \"facebook\": \"\",\n                        \"twitter\": \"\",\n                        \"behance\": \"\",\n                        \"instagram\": \"\",\n                        \"gitHub\": \"\",\n                        \"stackOverflow\": \"\",\n                        \"youTube\": \"\",\n                        \"blog\": \"\",\n                        \"website\": \"\",\n                        \"other\": \"\"\n                    },\n                    \"jobType\": [],\n                    \"deleted\": false,\n                    \"_id\": \"60aa298b5a5f92587c21216f\",\n                    \"user\": \"60aa298b5a5f92587c21216e\",\n                    \"skills\": [],\n                    \"jobTitles\": [],\n                    \"categories\": [],\n                    \"languages\": [],\n                    \"__v\": 0\n                },\n                \"onModel\": \"ApplicantData\"\n            },\n            \"status\": \"applied\",\n            \"job\": {\n                \"skills\": [],\n                \"screeningQuestions\": [],\n                \"deleted\": false,\n                \"_id\": \"60b7e9e80e508148bc43bdee\",\n                \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n                \"field\": \"IT/Software Development\",\n                \"salary\": 3000,\n                \"careerLevel\": \"Entry Level\",\n                \"experience\": \"No experience\",\n                \"jobTitle\": \"Android developer full time\",\n                \"recruiter\": {\n                    \"deleted\": false,\n                    \"_id\": \"60b7bca7db1c5a25f81abfe1\",\n                    \"email\": \"test3@gmail.com\",\n                    \"type\": \"recruiter\",\n                    \"last_login\": \"2021-06-02T20:17:51.194Z\",\n                    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                    \"__v\": 0\n                },\n                \"__v\": 0\n            },\n            \"lastUpdate\": \"2021-06-07T18:49:36.780Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						},
+						{
+							"name": "Get A job appliaction using its id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/jobapplications?_id=60be6a0b1ff7192bd0c82600",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobapplications"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "60be6a0b1ff7192bd0c82600"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"574-xIZgrVDCjSt4FCTsgoLoIEB8MAU\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 19:00:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [\n        {\n            \"questionsAnswers\": [],\n            \"deleted\": false,\n            \"_id\": \"60be6a0b1ff7192bd0c82600\",\n            \"applicant\": {\n                \"deleted\": false,\n                \"_id\": \"60aa3988a6dd1c5b9466595b\",\n                \"email\": \"test13@test.com\",\n                \"type\": \"applicant\",\n                \"last_login\": \"2021-06-07T18:47:20.313Z\",\n                \"imageUrl\": \"http://localhost:3000/api/v1/images/users/default.png\",\n                \"__v\": 0\n            },\n            \"status\": \"applied\",\n            \"job\": {\n                \"skills\": [],\n                \"screeningQuestions\": [],\n                \"deleted\": false,\n                \"_id\": \"60b7e9e80e508148bc43bdee\",\n                \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\n                \"field\": \"IT/Software Development\",\n                \"salary\": 3000,\n                \"careerLevel\": \"Entry Level\",\n                \"experience\": \"No experience\",\n                \"jobTitle\": \"Android developer full time\",\n                \"recruiter\": {\n                    \"deleted\": false,\n                    \"_id\": \"60b7bca7db1c5a25f81abfe1\",\n                    \"email\": \"test3@gmail.com\",\n                    \"type\": \"recruiter\",\n                    \"last_login\": \"2021-06-02T20:17:51.194Z\",\n                    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n                    \"__v\": 0\n                },\n                \"__v\": 0\n            },\n            \"lastUpdate\": \"2021-06-07T18:48:43.489Z\",\n            \"__v\": 0\n        }\n    ],\n    \"limit\": 20,\n    \"offset\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit application status by recruiter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"viewed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/jobapplications/:{application_id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"jobapplications",
+								":{application_id}"
+							],
+							"variable": [
+								{
+									"key": "{application_id}",
+									"value": "60be6a0b1ff7192bd0c82600"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"viewed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}api/v1/jobapplications/60be6a0b1ff7192bd0c82600",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"jobapplications",
+										"60be6a0b1ff7192bd0c82600"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-G13P68wfM3EOAEviBX2V893pIiM\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Jun 2021 19:06:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"questionsAnswers\": [],\n    \"deleted\": false,\n    \"_id\": \"60be6a0b1ff7192bd0c82600\",\n    \"applicant\": \"60aa3988a6dd1c5b9466595b\",\n    \"status\": \"viewed\",\n    \"job\": \"60b7e9e80e508148bc43bdee\",\n    \"lastUpdate\": \"2021-06-07T18:48:43.489Z\",\n    \"__v\": 0\n}"
 						}
 					]
 				}

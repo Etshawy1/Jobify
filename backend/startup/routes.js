@@ -3,6 +3,7 @@ const userRouter = require('../routes/userRouter');
 const adminRouter = require('../routes/adminRouter');
 const recruiterRouter = require('../routes/recruiterRouter');
 const jobRouter = require('../routes/jobRouter');
+const jobApplicationRouter = require('../routes/jobApplicationRouter');
 const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/errorController');
 const staticRouter = require('../routes/staticRouter');
@@ -26,6 +27,7 @@ module.exports = function (app) {
   app.use('/api/v1/admins', adminRouter);
   app.use('/api/v1/recruiters', recruiterRouter);
   app.use('/api/v1/jobs', jobRouter);
+  app.use('/api/v1/jobapplications', jobApplicationRouter);
 
   /* istanbul ignore next */
   // if any link is visited and not mentioned above will go to that next middleware

@@ -363,14 +363,6 @@ exports.getSearchQuery = async function getSearchQuery (
   return { documents, totalCount };
 };
 
-exports.applyJob = catchAsync(async (req, res, next) => {
-  const application = await JobApplication.creat({
-    ..._.pick(req.body, ['applicant', 'job', 'questionsAnswers']),
-    lastUpdate: Date.now()
-  });
-  res.status(200).json(application);
-});
-
 const getModel = {
   skills: Skill,
   jobTitles: JobTitle,
