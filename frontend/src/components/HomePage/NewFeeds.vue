@@ -49,7 +49,7 @@
                         <v-btn
                             color="blue darken-2"
                             text
-                            @click="$router.push('/apply/' + id)">
+                            @click="$router.push('/apply/' + item._id)">
                             Details
                         </v-btn>
                     </v-card-actions>

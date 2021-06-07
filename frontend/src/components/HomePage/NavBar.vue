@@ -16,7 +16,7 @@
             icon id="user-img">
           <v-avatar>
             <img
-              src="../../assets/man.png"
+              v-bind:src="profile_img"
               alt="John">
           </v-avatar>
           </v-btn>           
@@ -28,7 +28,7 @@
                 <v-avatar size="35">
                 <img
                   width="35" height="35"
-                  src="../../assets/man.png"
+                  v-bind:src="profile_img"
                   alt="John">
                 </v-avatar>
               </v-flex>
@@ -83,7 +83,8 @@ export default {
   data(){
     return{
       type: false,
-      profile_id: 7
+      profile_id: 7,
+      profile_img: localStorage.getItem('userImageUrl')
     }
   }
 };
