@@ -39,11 +39,7 @@
               </v-flex>
             </v-list-item>
             
-<<<<<<< HEAD
             <v-list-item row wrap align-center v-show="!type" @click="$router.push('/jobs/' + currUserId)">
-=======
-            <v-list-item row wrap align-center v-show="t" @click="$router.push('/jobs/' + profile_id)">
->>>>>>> main
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-briefcase</v-icon>
               </v-flex>
@@ -88,10 +84,12 @@
 export default {
   data(){
     return{
-<<<<<<< HEAD
       type: false,
       currUserId: localStorage.getItem('userID'),
-      currUserType : localStorage.getItem('userType')
+      currUserType : localStorage.getItem('userType'),
+      profile_img: localStorage.getItem('userImageUrl'),
+      userType: localStorage.getItem('userType'),
+      t: (localStorage.getItem('userType')=="recruiter")
     }
   },
   computed: {
@@ -102,12 +100,7 @@ export default {
       else {
         return `/editrecruiterprofile/${this.currUserId}`
       }
-=======
-      profile_id: localStorage.getItem('userID'),
-      profile_img: localStorage.getItem('userImageUrl'),
-      userType: localStorage.getItem('userType'),
-      t: (localStorage.getItem('userType')=="recruiter")
->>>>>>> main
+    
     }
   }
 };
