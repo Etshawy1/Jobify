@@ -110,7 +110,7 @@ export default {
             userToken : localStorage.getItem('userToken'),
             jobCategories : this.userJobCategories
         };
-        let response = await this.$store.dispatch('updateApplicantJobCategroies', payload);
+        let response = await this.$store.dispatch('updateApplicantJobCategories', payload);
         this.isSuccessful = true
       } 
       catch (error) {

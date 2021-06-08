@@ -207,11 +207,11 @@ const actions = {
             })
         })
     },
-    updateApplicantJobTitles({ state }, payload) {
+    updateApplicantJobCategories({ state }, payload) {
         return new Promise((resolve, reject) => {
             const url = "v1/users/updatecategory";
             const body = {
-                jobCategories : payload.jobCategories 
+                categoryNames : payload.jobCategories 
             }
             const config = {
                 headers: {
