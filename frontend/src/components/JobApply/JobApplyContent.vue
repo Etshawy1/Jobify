@@ -11,8 +11,7 @@
                 <v-card
                     class="mx-auto job-card"
                     elevation="10"
-                    outlined
-                    hover>
+                    outlined>
                     <v-container wrap>
                         <v-row no-gutters >
                             <v-flex md10>
@@ -48,31 +47,25 @@
                             color="primary"
                             large
                             width = "120"
-                            v-show="checkUserType()"
+                            v-show="showApply()"
+                            v-on:click="applyJob()"
                             >
                             Apply
                         </v-btn>
-                        <v-spacer></v-spacer>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    class="mx-2"
-                                    fab
-                                    dark
-                                    small
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    color="primary">
-                                    <v-icon dark>
-                                    mdi-share
-                                </v-icon>
-                                </v-btn>                        
-                            </template>
-                            <span>Share</span>
-                        </v-tooltip>
                     </v-card-actions>
+                    <div v-if="current_status=='applied'" style="margin:20px">
+                        <v-icon color="orange">mdi-filter</v-icon>
+                        <span style="margin-left:10px; color:orange">Pending</span>
+                    </div>
+                    <div v-if="current_status=='In Consideration'" style="margin:20px">
+                        <v-icon color="green">mdi-checkbox-marked-circle</v-icon>
+                        <span style="margin-left:10px; color:green">In Consideration</span>
+                    </div>
+                    <div v-if="current_status=='Not Selected'" style="margin:20px">
+                        <v-icon color="red">mdi-account-off</v-icon>
+                        <span style="margin-left:10px; color:red">Not Selected</span>
+                    </div>
                 </v-card>
-                
                 <v-card
                     class="mx-auto job-card"
                     elevation="10"
@@ -186,6 +179,9 @@
                              {{item.recruiter.additionalData.description}}
                     </v-card-text>
                     <v-card-text class="text--primary">
+                             {{item.recruiter.additionalData.address}}
+                    </v-card-text>
+                    <v-card-text class="text--primary">
                             Contact Info: 
                     </v-card-text>
                     <v-card-text class="text--primary">
@@ -208,15 +204,18 @@ export default {
            response: {},
            item: {},
            suggest_list: [],
-           response2:{}
+           response2:{},
+           response_status:{},
+           current_status: "no",
+           job_apply:{}
         }
     },
     methods: {
         getJobDate: function(d){
             return d.substring(0, 10);
         },
-        checkUserType: function(){
-            if(localStorage.getItem('userType')=="recruiter")
+        showApply: function(){
+            if(localStorage.getItem('userType')=="recruiter" || this.current_status!="no")
                 return false;
             return true;    
         },
@@ -229,6 +228,27 @@ export default {
             if(suggest_list.length == 0)
                 return false;
             return true;    
+        },
+        async applyJob(){
+            console.log("job apply function");
+            this.errorMessage = ""
+            try {
+                this.job_apply = await this.$store.dispatch("applyJob", {
+                    userToken : localStorage.getItem('userToken'),
+                    job: this.job_id
+                });
+                console.log(this.job_apply);
+                this.current_status = "applied";
+            } 
+            catch (error) {
+                console.log("an error occured")
+                if(error.status === "fail") {
+                this.errorMessage = error.msg
+                }
+                else {
+                this.errorMessage = "Please try again later !"
+                }
+            }
         }
     },
     async mounted(){
@@ -254,8 +274,32 @@ export default {
             recruiter_user_id: this.item.recruiter._id
             })
             this.suggest_list = this.response2.items;
-            this.loadingState = false;
             console.log(this.response2);
+            if(localStorage.getItem('userType')=="applicant"){
+                console.log("Try to get status");
+                this.errorMessage = ""
+                try {
+                    this.response_status = await this.$store.dispatch("getStatus", {
+                        userToken : localStorage.getItem('userToken'),
+                        job: this.item._id,
+                        applicant: localStorage.getItem('userID')
+                    });
+                    console.log(this.response_status);
+                    this.current_status = this.response_status.items[0].status;
+                    this.loadingState = true;
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    this.current_status = "no";
+                    if(error.status === "fail") {
+                        this.errorMessage = error.msg
+                    }
+                    else {
+                        this.errorMessage = "Please try again later !"
+                    }
+                } 
+            }else
+                this.loadingState = false
         } 
         catch (error) {
             console.log("an error occured")

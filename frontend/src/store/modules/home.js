@@ -114,7 +114,70 @@ const actions = {
                 reject(error.response.data);
             })
         })
-    } 
+    },
+    editJob({state}, payload) {
+        console.log(payload.form_input);
+        return new Promise((resolve, reject) => {
+            axios.put(`/v1/jobs/${payload.form_input._id}`,{
+                jobDescription: payload.form_input.jobDescription,
+                field: payload.form_input.field,
+                salary: payload.form_input.salary,
+                careerLevel: payload.form_input.careerLevel,
+                experience: payload.form_input.experience,
+                jobTitle: payload.form_input.jobTitle,
+                skills: payload.form_input.skills                
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
+    getStatus({state}, payload) {
+        console.log("get Status request:");
+        console.log(payload);
+        return new Promise((resolve, reject) => {
+            axios.get(`/v1/jobapplications?job=${payload.job}&applicant=${payload.applicant}`,
+            {
+            headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
+    applyJob({state}, payload) {
+        console.log("entering applyJob request:");
+        console.log(payload);
+        return new Promise((resolve, reject) => {
+            axios.post('/v1/jobapplications',{
+                job: payload.job              
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    }  
 };
 
 
