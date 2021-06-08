@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="checkLocalStorage()">
         <h2 style="text-align: center; margin: 10px">Posting a new Job</h2>
         <v-form class="form-post" ref="form">
             <v-text-field 
@@ -178,10 +178,16 @@ export default {
             else
                 alert("invalid input");
       },
-
       getSelectedSkills(selected){
           this.selected_data.skills = selected;
-      }
+      },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }  
     }
 };
 </script>

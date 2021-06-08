@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="checkLocalStorage()">
     <v-app-bar
       app
       dark 
@@ -9,7 +9,6 @@
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
       <v-toolbar-title large style="cursor: pointer" @click="$router.push('/home')" >Jobify</v-toolbar-title>
       <v-spacer></v-spacer>
-          
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn 
@@ -114,6 +113,13 @@ export default {
         localStorage.removeItem("onModel");
         localStorage.clear();
         this.$router.push({path: '/login'})
+    },
+    checkLocalStorage: function(){
+      console.log("entering check local storage");
+      console.log(localStorage.getItem('userToken'));
+      if(localStorage.getItem('userToken') == null)
+        return false;
+      return true;  
     }
   },
 };

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="checkLocalStorage()">
         <h2 style="text-align: center; margin: 10px">Update Job</h2>
         <div class="text-center" v-if="loadingState">
             <v-progress-circular
@@ -212,7 +212,14 @@ export default {
             else
                 alert("invalid input");
 
-            },
+        },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }  
     }
 };
 </script>
