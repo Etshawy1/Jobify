@@ -22,6 +22,9 @@ router.post('/forgotpassword', authController.forgotPassword);
 router.patch('/resetpassword/:token', authController.resetPassword);
 router.get('/profile/:id', userController.getUserProfile);
 router.get('/getskills', userController.getSkills);
+router.get('/getcategories', userController.getCategories);
+router.get('/getlanguages', userController.getLanguages);
+router.get('/getjobtitles', userController.getJobTitles);
 
 // any endpoint written after the following line is protected
 router.use(authController.protect(true));

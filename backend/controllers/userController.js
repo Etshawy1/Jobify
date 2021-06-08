@@ -239,6 +239,10 @@ async function updateModelData (id, object) {
   return applicantData;
 }
 exports.getSkills = factory.getAll(Skill);
+exports.getCategories = factory.getAll(Category);
+exports.getLanguages = factory.getAll(Language);
+exports.getJobTitles = factory.getAll(JobTitle);
+
 
 exports.searchSkills = catchAsync(async (req, res, next) => {
   const keyword = req.params.keyword;
