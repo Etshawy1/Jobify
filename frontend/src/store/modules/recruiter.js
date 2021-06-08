@@ -30,6 +30,19 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    getRecruiterProfileData({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = `v1/users/profile/${payload.id}`;
+
+            axios.get(url, {})
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     }
 };
 

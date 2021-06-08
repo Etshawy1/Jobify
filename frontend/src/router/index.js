@@ -16,6 +16,7 @@ import editOnlinePresenceForm from "../components/Applicant/editOnlinePresenceFo
 import editCareerInterests from "../components/Applicant/editCareerInterests.vue";
 import EditJob from "../views/Recuiter/EditJob.vue";
 import applicantProfile from "../views/Applicant/applicantProfile.vue"
+import editRecruiterProfile from "../views/Recuiter/editRecruiterProfile.vue"
 
 Vue.use(VueRouter);
 
@@ -107,6 +108,11 @@ const routes = [
     path : "/applicantprofile/:id",
     name : "applicantProfile",
     component: applicantProfile
+  },
+  {
+    path : "/editrecruiterprofile/:id",
+    name : "editRecruiterProfile",
+    component : editRecruiterProfile
   }
   
 ];
