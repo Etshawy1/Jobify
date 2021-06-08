@@ -1,17 +1,28 @@
 <template>
   <div>
     <nav-bar-app />
-    <crud-table />
+    <v-container>
+      <v-row no-gutters>
+        <v-flex md3 lg1>
+          <side-bar-app />
+        </v-flex>
+        <v-flex md9 lg11>
+          <skills-table-app />
+        </v-flex>
+      </v-row>
+    </v-container>
   </div>
 </template>
 <script>
-import NavBar from "../../components/Admin/sidebar.vue";
-import Crud from "../../components/Admin/CrudTable.vue";
+import SideBar from "../../components/Admin/sidebar.vue";
+import NavBar from "../../components/Admin/navbar.vue";
+import skillsTable from "../../components/Admin/skillsTable.vue";
 export default {
-  name: "Skills",
+  name: "Home",
   components: {
     "nav-bar-app": NavBar,
-    "crud-table": Crud,
-  },
+    "side-bar-app": SideBar,
+    "skills-table-app": skillsTable,
+  }
 };
 </script>
