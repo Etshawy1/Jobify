@@ -7,7 +7,7 @@
                     <div class="text-h4 mt-2 ml-3">General Information</div>
                 </v-row>
                 <v-row>
-                    <v-col cols="4">
+                    <v-col cols="4" class="ml-2">
                         <v-avatar 
                         rounded="circle"
                         size="large">
