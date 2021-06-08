@@ -39,7 +39,7 @@
               </v-flex>
             </v-list-item>
             
-            <v-list-item row wrap align-center v-show="!type" @click="$router.push('/jobs/' + currUserId)">
+            <v-list-item row wrap align-center v-show="t" @click="$router.push('/jobs/' + currUserId)">
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-briefcase</v-icon>
               </v-flex>
