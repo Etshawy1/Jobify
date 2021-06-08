@@ -37,7 +37,6 @@ const actions = {
                     localStorage.setItem("userType", response.data.user.type);
                     localStorage.setItem("userImageUrl", response.data.user.imageUrl);
 
-                    
                     resolve(payload.type);
                 })
                 .catch(error => {
@@ -63,7 +62,6 @@ const actions = {
                     localStorage.setItem("additionalData", response.data.user.additionalData);
                     localStorage.setItem("onModel", response.data.user.onModel);
 
-                    
                     resolve(response.data.user.type);
                 })
                 .catch(error => {

@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container v-if="checkLocalStorage()">
         <div class="text-center" v-if="loadingState">
             <v-progress-circular
                 indeterminate
@@ -11,8 +11,7 @@
                 <v-card
                     class="mx-auto job-card"
                     elevation="10"
-                    outlined
-                    hover>
+                    outlined>
                     <v-container wrap>
                         <v-row no-gutters >
                             <v-flex md10>
@@ -42,37 +41,56 @@
 
                     <v-card-title class="font-weight-light">
                        {{item.recruiter.additionalData.employeesCount}}
-                    </v-card-title>    
-                    <v-card-actions>
-                        <v-btn
+                    </v-card-title>  
+
+                    <v-dialog 
+                        max-width="600px" 
+                        v-model="dialog" 
+                        persistent>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                            style="margin-left:20px; margin-bottom:10px"
+                            v-show="showApply()"
                             color="primary"
-                            large
-                            width = "120"
-                            v-show="checkUserType()"
-                            >
+                            dark
+                            v-bind="attrs"
+                            v-on="on">
                             Apply
-                        </v-btn>
-                        <v-spacer></v-spacer>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    class="mx-2"
-                                    fab
-                                    dark
-                                    small
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    color="primary">
-                                    <v-icon dark>
-                                    mdi-share
-                                </v-icon>
-                                </v-btn>                        
-                            </template>
-                            <span>Share</span>
-                        </v-tooltip>
-                    </v-card-actions>
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-card-text>
+                                <v-form class="px-3">
+                                    <v-textarea v-model="q1_answer" :rules="ValidationRulesText" required label="What makes you different?"></v-textarea>
+                                    <v-textarea v-model="q2_answer" :rules="ValidationRulesText" required label="Why we should hire you?"></v-textarea>
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                        color="blue darken-1"
+                                        text
+                                        @click="dialog = false">Close
+                                    </v-btn>
+                                    <v-btn
+                                        color="blue darken-1"
+                                        text
+                                        @click="applyJob()">Submit
+                                    </v-btn>
+                                </v-form>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>  
+                    <div v-if="current_status=='applied'" style="margin:20px">
+                        <v-icon color="orange">mdi-filter</v-icon>
+                        <span style="margin-left:10px; color:orange">Pending</span>
+                    </div>
+                    <div v-if="current_status=='In Consideration'" style="margin:20px">
+                        <v-icon color="green">mdi-checkbox-marked-circle</v-icon>
+                        <span style="margin-left:10px; color:green">In Consideration</span>
+                    </div>
+                    <div v-if="current_status=='Not Selected'" style="margin:20px">
+                        <v-icon color="red">mdi-account-off</v-icon>
+                        <span style="margin-left:10px; color:red">Not Selected</span>
+                    </div>
                 </v-card>
-                
                 <v-card
                     class="mx-auto job-card"
                     elevation="10"
@@ -186,6 +204,9 @@
                              {{item.recruiter.additionalData.description}}
                     </v-card-text>
                     <v-card-text class="text--primary">
+                             {{item.recruiter.additionalData.address}}
+                    </v-card-text>
+                    <v-card-text class="text--primary">
                             Contact Info: 
                     </v-card-text>
                     <v-card-text class="text--primary">
@@ -208,15 +229,22 @@ export default {
            response: {},
            item: {},
            suggest_list: [],
-           response2:{}
+           response2:{},
+           response_status:{},
+           current_status: "no",
+           job_apply:{},
+           q1_answer: "",
+           q2_answer: "",
+           dialog: false,
+           ValidationRulesText: [v => !!v || 'This field is required']
         }
     },
     methods: {
         getJobDate: function(d){
             return d.substring(0, 10);
         },
-        checkUserType: function(){
-            if(localStorage.getItem('userType')=="recruiter")
+        showApply: function(){
+            if(localStorage.getItem('userType')=="recruiter" || this.current_status!="no")
                 return false;
             return true;    
         },
@@ -229,7 +257,39 @@ export default {
             if(suggest_list.length == 0)
                 return false;
             return true;    
-        }
+        },
+        async applyJob(){
+            if(this.q1_answer.length>0 && this.q2_answer.length>0){
+                this.dialog = false;
+                console.log("job apply function");
+                this.errorMessage = ""
+                try {
+                    this.job_apply = await this.$store.dispatch("applyJob", {
+                        userToken : localStorage.getItem('userToken'),
+                        job: this.job_id,
+                        questionsAnswers: [this.q1_answer, this.q2_answer]
+                    });
+                    console.log(this.job_apply);
+                    this.current_status = "applied";
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                    }
+                    else {
+                    this.errorMessage = "Please try again later !"
+                    }
+                }
+            }
+        },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }        
     },
     async mounted(){
       console.log("on mounted function for job apply")
@@ -254,8 +314,32 @@ export default {
             recruiter_user_id: this.item.recruiter._id
             })
             this.suggest_list = this.response2.items;
-            this.loadingState = false;
             console.log(this.response2);
+            if(localStorage.getItem('userType')=="applicant"){
+                console.log("Try to get status");
+                this.errorMessage = ""
+                try {
+                    this.response_status = await this.$store.dispatch("getStatus", {
+                        userToken : localStorage.getItem('userToken'),
+                        job: this.item._id,
+                        applicant: localStorage.getItem('userID')
+                    });
+                    console.log(this.response_status);
+                    this.current_status = this.response_status.items[0].status;
+                    this.loadingState = true;
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    this.current_status = "no";
+                    if(error.status === "fail") {
+                        this.errorMessage = error.msg
+                    }
+                    else {
+                        this.errorMessage = "Please try again later !"
+                    }
+                } 
+            }else
+                this.loadingState = false
         } 
         catch (error) {
             console.log("an error occured")
