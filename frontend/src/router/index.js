@@ -13,6 +13,7 @@ import editPersonalInfoForm from "../components/Applicant/editPersonalInfoForm.v
 import updateApplicantCVForm from "../components/Applicant/updateApplicantCVForm.vue";
 import updateSkillsForm from "../components/Applicant/updateSkillsForm.vue";
 import editOnlinePresenceForm from "../components/Applicant/editOnlinePresenceForm.vue";
+import editCareerInterests from "../components/Applicant/editCareerInterests.vue";
 import EditJob from "../views/Recuiter/EditJob.vue";
 
 Vue.use(VueRouter);
@@ -93,6 +94,11 @@ const routes = [
         path:"onlinepresence",
         name: "onlinepresence",
         component: editOnlinePresenceForm
+      },
+      {
+        path: "careerinterests",
+        name: "careerinterests",
+        component: editCareerInterests
       }
     ]
   }

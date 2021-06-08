@@ -104,6 +104,26 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    // update the current applicant salary
+    updateSalary({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = 'v1/users/updatesalary'
+            const body = {salary : payload.salary};
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            };
+
+            axios.patch(url, body, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     }
 };
 
