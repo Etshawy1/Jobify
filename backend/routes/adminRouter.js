@@ -11,7 +11,7 @@ router.patch('/skill/:id', adminController.updateSkill);
 
 router.post('/language', adminController.addLanguage);
 router.delete('/language/:id', adminController.deleteLanguage);
-router.patch('/language/:id', adminController.updataLanguage);
+router.patch('/language/:id', adminController.updateLanguage);
 
 router.post('/jobtitle', adminController.addJobTitle);
 router.delete('/jobtitle/:id', adminController.deleteJobTitle);

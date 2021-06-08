@@ -23,7 +23,7 @@ exports.updateJobTitle = factory.updateOne(JobTitle);
 exports.deleteJobTitle = factory.deleteOne(JobTitle);
 
 exports.addCategory = factory.createOne(Category);
-exports.updateCategory = factory.updateOne(Skill);
+exports.updateCategory = factory.updateOne(Category);
 exports.deleteCategory = factory.deleteOne(Category);
 
 exports.getCountJobs = catchAsync(async (req, res, next) => {
