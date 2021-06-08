@@ -6,6 +6,7 @@
             style="margin: 20px"
             label="Job Title"
             outlined
+            v-model="selected_data.jobTitle"
             :rules="ValidationRulesText"
             required
             ></v-text-field>
@@ -15,6 +16,7 @@
             :items="exprience_needed_list"
             label="Experience Needed"
             outlined
+            v-model="selected_data.experience"
             :rules="ValidationRulesText"
             required
             ></v-select>
@@ -23,6 +25,7 @@
             :items="career_level_list"
             label="Career Level"
             outlined
+            v-model="selected_data.careerLevel"
             :rules="ValidationRulesText"
             required
             ></v-select>
@@ -31,24 +34,27 @@
             label="Salary (LE)"
             type="number"
             outlined
+            v-model="selected_data.salary"
             :rules="ValidationRulesNumbers"
             required
             ></v-text-field>
             <v-select
             style="margin: 20px"
             :items="job_category_list"
-            label="Job Category"
+            v-model="selected_data.field"
+            label="Job Field"
             outlined
             :rules="ValidationRulesText"
             required
             ></v-select>
             <v-select
             v-model="e7"
-            :items="job_category_list"
+            :items="skills_list"
             label="Skills and Tools"
             multiple
             style="margin: 20px"
             chips
+            v-on:change="getSelectedSkills"
             hint="You Can Select multiple skills"
             persistent-hint
             :rules="ValidationRulesSelect"
@@ -58,24 +64,22 @@
             style="margin: 20px; margin-top:30px"
             outlined
             label="Job Description"
+            v-model="selected_data.jobDescription"
             :rules="ValidationRulesText"
             required
             ></v-textarea>     
-            <v-textarea
-            style="margin: 20px;"
-            outlined
-            label="Job Requirements"
-            :rules="ValidationRulesText"
-            required
-            ></v-textarea>          
             <div style="margin:40px; text-align:center;">
                 <v-btn
                     color="primary"
                     large
                     width = "120"
+                    :disabled="addedSuccessfully"
                     @click="submitForm">
                     Post
                 </v-btn>
+                <v-alert v-if="show_success" style="margin-top: 20px"
+                    type="success"
+                >Job is posted successfully</v-alert>
             </div>
         </v-form>  
     </div>
@@ -90,6 +94,7 @@ export default {
             exprience_needed_list:[],
             career_level_list:[],
             job_category_list:[],
+            skills_list:[],
             ValidationRulesText: [
                 v => !!v || 'This field is required'
             ],
@@ -98,21 +103,84 @@ export default {
             ],
             ValidationRulesSelect: [
                 v => v.length>0 || 'This field is required'
-            ]
+            ],
+            loadingState: true,
+            errorMessage: "",
+            response: {},
+            items: [],
+            selected_data: {},
+            create_response: {},
+            addedSuccessfully: false,
+            show_success: false
         }    
     },
-   mounted() {
+   props: {
+   }, 
+   async mounted() {
      this.exprience_needed_list = exprience_needed_list,
      this.career_level_list = career_level_list,
-     this.job_category_list = job_category_list
+     this.job_category_list = job_category_list,
+    
+    console.log("on mounted function in post job page")
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+          this.response = await this.$store.dispatch("getAllSkills", {
+          userToken : localStorage.getItem('userToken'),
+          limit : 100,
+          offset : 0
+        })
+        this.items = this.response.items;
+        this.loadingState = false;
+        console.log(this.response);
+        this.skills_list = this.items.map(value => value.name);
+      } 
+      catch (error) {
+        console.log("an error occured")
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+        console.log(error);
+      }
+
    },
    methods: {
-       submitForm(){
+       async submitForm(){
             if(this.$refs.form.validate()){
-                 console.log("valid");
+                this.addedSuccessfully = true;
+                console.log(this.selected_data);
+                console.log("valid input");
+                this.errorMessage = ""
+                try {
+                    this.create_response = await this.$store.dispatch("postJob", {
+                    userToken : localStorage.getItem('userToken'),
+                    form_input: this.selected_data
+                    });
+                    console.log(this.create_response);
+                    this.show_success=true;
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    this.$router.push({path: 'home'});
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                    }
+                    else {
+                    this.errorMessage = "Please try again later !"
+                    }
+                }
             } 
             else
                 alert("invalid input");
+      },
+
+      getSelectedSkills(selected){
+          this.selected_data.skills = selected;
       }
     }
 };

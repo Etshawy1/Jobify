@@ -125,17 +125,13 @@ export default {
   },
   methods: {
     async onSubmit() {
-      console.log("on submit function")
-      this.loadingState = true;
       this.errorMessage = ""
       try {
         let userType = await this.$store.dispatch("loginUser", this.formData)
-        this.loadingState = false;
-        console.log(userType)
+        this.$router.push({path: 'home'});
       } 
       catch (error) {
         console.log("an error occured")
-        this.loadingState = false
         if(error.status === "fail") {
           this.errorMessage = error.msg
         }

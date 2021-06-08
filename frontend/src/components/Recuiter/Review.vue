@@ -1,5 +1,6 @@
 <template>
     <v-container>
+        <h1>{{job_id}}</h1>
         <v-row no-gutters>
             <v-flex md8>
                 <v-card
@@ -87,6 +88,9 @@ export default {
             id: 12,
             type: true
         }
+    },
+    props:{
+        job_id: String
     }
 };
 </script>

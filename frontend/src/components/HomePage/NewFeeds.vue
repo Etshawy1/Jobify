@@ -11,6 +11,7 @@
                 <v-card
                     v-for="item in items"
                     v-bind:key="item"
+                    v-show="checkVisibilty(item.recruiter._id)"
                     class="mx-auto job-card"
                     elevation="10"
                     outlined
@@ -86,7 +87,6 @@
 export default {
     data () {
         return {
-            id: 12,
             type: true,
             currUserId: localStorage.getItem('userID'),
             loadingState: true,
@@ -120,7 +120,14 @@ export default {
         }
         console.log(error);
       }
-    }
+    },
+    methods: {
+        checkVisibilty: function(itemID){
+            if(itemID==this.currUserId)
+                return false;
+            return true;    
+        }
+    },
 };
 </script>
 

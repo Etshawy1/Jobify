@@ -72,13 +72,11 @@ export default {
   components: {SkillCard},
   data() {
     return {
-      userSkills: [
-          {skillName: 'C', yearOfExperiance: '3-5 years'}
-      ],
-      availableSkills: ['C', 'java', 'javascript'],
+      userSkills: [],
+      availableSkills: [],
       yearsOfExperiance: ['Less than 1 year', '1-3 years', '3-5 years', '5-7 years'],
       selectedSkill: '',
-      selectedExperiance: '',
+      selectedExperiance: '1-3 years',
       errorMessage: "",
       loadingState: false,
       required(propertyType) {
@@ -87,12 +85,61 @@ export default {
       },
     };
   },
+  async mounted() {
+    try {
+      // get the available skills for the user to choose from
+      let response = await this.$store.dispatch('getAvailableskills', {
+      userToken : localStorage.getItem('userToken')
+      })
+      for(let i = 0; i < response.items.length; i++) {
+        this.availableSkills.push(response.items[i].name)
+      }
+
+      // get the alread chosen skills by the user
+      const payload = {
+        id : this.$route.params.id,
+        userToken : localStorage.getItem('userID')
+      }
+      response = await this.$store.dispatch('getApplicantProfileData', payload)
+      let returnedSkills = response.additionalData.skills;
+      for(let i = 0; i < returnedSkills.length; i++) {
+        this.userSkills.push({skillName : returnedSkills[i].skill, yearOfExperiance : returnedSkills[i].yearsExperiance})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    
+  },
   methods: {
     async addSkill() {
-        this.userSkills.push({
-            skillName: this.selectedSkill,
-            yearOfExperiance: this.selectedExperiance
-        })
+      let skillToAdd = {
+        skillName : this.selectedSkill,
+        yearOfExperiance: this.selectedExperiance
+      };
+
+      let skillAlreadyIncluded = this.userSkills.some((skill) => {
+        return skill.skillName === skillToAdd.skillName && skill.yearOfExperiance === skillToAdd.yearOfExperiance
+      })
+
+      if(!skillAlreadyIncluded) {
+        try {
+          this.errorMessage = ''
+          const payload = {
+            userToken : localStorage.getItem('userToken'),
+            skill : skillToAdd
+          }
+          let response = await this.$store.dispatch('addSkillToApplicant', payload);
+          this.userSkills.push(skillToAdd)
+        } catch (error) {
+          if(error.status === 'fail') {
+            this.errorMessage = error.msg;
+          }
+          else {
+            this.errorMessage = "Please try again later"
+          }
+        }
+        
+      }
     },
   },
   computed: {

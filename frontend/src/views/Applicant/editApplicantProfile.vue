@@ -1,5 +1,6 @@
 <template>
   <div class="editApplicant">
+      <nav-bar/>
       <v-container>
           <v-row>
               <v-col cols="3">
@@ -19,7 +20,6 @@
                         v-for="item in items"
                         :key="item.title"
                         :to="item.toUrl"
-                        link
                     >
                         <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
@@ -43,11 +43,15 @@
 </template>
 
 <script>
+import NavBar from "../../components/HomePage/NavBar.vue"
+
 export default {
     name: "editApplicantProfile",
+    components: {
+        NavBar
+    },
     data() {
-        return {
-            currUserId: '',
+        return { 
             items: [
                 {
                     title: 'Personal inforamtion',
@@ -71,6 +75,7 @@ export default {
             ]
         }
     },
+
 }
 </script>
 
