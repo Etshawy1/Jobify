@@ -7,7 +7,7 @@ const jobTitleSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 3,
-    maxlength: 30,
+    maxlength: 300,
     unique: true
   }
 });
