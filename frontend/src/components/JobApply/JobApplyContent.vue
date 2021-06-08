@@ -41,18 +41,43 @@
 
                     <v-card-title class="font-weight-light">
                        {{item.recruiter.additionalData.employeesCount}}
-                    </v-card-title>    
-                    <v-card-actions>
-                        <v-btn
-                            color="primary"
-                            large
-                            width = "120"
+                    </v-card-title>  
+
+                    <v-dialog 
+                        max-width="600px" 
+                        v-model="dialog" 
+                        persistent>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                            style="margin-left:20px; margin-bottom:10px"
                             v-show="showApply()"
-                            v-on:click="applyJob()"
-                            >
+                            color="primary"
+                            dark
+                            v-bind="attrs"
+                            v-on="on">
                             Apply
-                        </v-btn>
-                    </v-card-actions>
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-card-text>
+                                <v-form class="px-3">
+                                    <v-textarea v-model="q1_answer" :rules="ValidationRulesText" required label="What makes you different?"></v-textarea>
+                                    <v-textarea v-model="q2_answer" :rules="ValidationRulesText" required label="Why we should hire you?"></v-textarea>
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                        color="blue darken-1"
+                                        text
+                                        @click="dialog = false">Close
+                                    </v-btn>
+                                    <v-btn
+                                        color="blue darken-1"
+                                        text
+                                        @click="applyJob()">Submit
+                                    </v-btn>
+                                </v-form>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>  
                     <div v-if="current_status=='applied'" style="margin:20px">
                         <v-icon color="orange">mdi-filter</v-icon>
                         <span style="margin-left:10px; color:orange">Pending</span>
@@ -207,7 +232,11 @@ export default {
            response2:{},
            response_status:{},
            current_status: "no",
-           job_apply:{}
+           job_apply:{},
+           q1_answer: "",
+           q2_answer: "",
+           dialog: false,
+           ValidationRulesText: [v => !!v || 'This field is required']
         }
     },
     methods: {
@@ -230,26 +259,30 @@ export default {
             return true;    
         },
         async applyJob(){
-            console.log("job apply function");
-            this.errorMessage = ""
-            try {
-                this.job_apply = await this.$store.dispatch("applyJob", {
-                    userToken : localStorage.getItem('userToken'),
-                    job: this.job_id
-                });
-                console.log(this.job_apply);
-                this.current_status = "applied";
-            } 
-            catch (error) {
-                console.log("an error occured")
-                if(error.status === "fail") {
-                this.errorMessage = error.msg
-                }
-                else {
-                this.errorMessage = "Please try again later !"
+            if(this.q1_answer.length>0 && this.q2_answer.length>0){
+                this.dialog = false;
+                console.log("job apply function");
+                this.errorMessage = ""
+                try {
+                    this.job_apply = await this.$store.dispatch("applyJob", {
+                        userToken : localStorage.getItem('userToken'),
+                        job: this.job_id,
+                        questionsAnswers: [this.q1_answer, this.q2_answer]
+                    });
+                    console.log(this.job_apply);
+                    this.current_status = "applied";
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                    }
+                    else {
+                    this.errorMessage = "Please try again later !"
+                    }
                 }
             }
-        }
+        },
     },
     async mounted(){
       console.log("on mounted function for job apply")

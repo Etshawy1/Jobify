@@ -163,7 +163,8 @@ const actions = {
         console.log(payload);
         return new Promise((resolve, reject) => {
             axios.post('/v1/jobapplications',{
-                job: payload.job              
+                job: payload.job,
+                questionsAnswers: payload.questionsAnswers              
             },
             {
                 headers: {
