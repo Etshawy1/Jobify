@@ -98,6 +98,22 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    deleteJob({state}, payload) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`/v1/jobs/${payload.id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     } 
 };
 

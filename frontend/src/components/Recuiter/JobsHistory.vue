@@ -11,6 +11,7 @@
                 <v-card
                     v-for="item in items"
                     v-bind:key="item"
+                    v-show="!item.deleted"
                     class="mx-auto job-card"
                     elevation="10"
                     outlined
@@ -36,16 +37,16 @@
                                 <v-list width="150">
                                 <v-list-item-group>
                                                                         
-                                    <v-list-item row wrap align-center>
+                                    <v-list-item row wrap align-center @click="$router.push('/editjob/' + item._id)">
                                     <v-flex md6>
-                                        <v-icon color="blue darken-2" @click="$router.push('/editjob/' + job_id)">mdi-pencil</v-icon>
+                                        <v-icon color="blue darken-2" >mdi-pencil</v-icon>
                                     </v-flex>
                                     <v-flex md6>
                                         <span class="spans-menu">Edit</span>
                                     </v-flex>  
                                     </v-list-item>
 
-                                    <v-list-item row wrap align-center>
+                                    <v-list-item row wrap align-center v-on:click="deleteItem(item)">
                                     <v-flex md6>
                                         <v-icon color="red darken-4">mdi-delete</v-icon>
                                     </v-flex>
@@ -105,11 +106,11 @@
 <script>
 export default {
     props: {
-        profile_id: String
+        profile_id: String,
+        job_id: String,
     },
     data () {
         return {
-            job_id: 15,
             loadingState: true,
             errorMessage: "",
             response: {},
@@ -142,7 +143,32 @@ export default {
         }
         console.log(error);
       }
-    }
+    },
+    methods: {
+        async deleteItem (item){
+            item.deleted=true;
+            console.log("delete function in my jobs")
+            this.errorMessage = ""
+            try {
+                this.response = await this.$store.dispatch("deleteJob", {
+                    userToken : localStorage.getItem('userToken'),
+                    id: item._id
+                })
+                console.log(this.response);
+                console.log("deleted successfully");
+            } 
+            catch (error) {
+                console.log("an error occured")
+                if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                }
+                else {
+                    this.errorMessage = "Please try again later !"
+                }
+                console.log(error);
+            }            
+        }
+    },
 };
 </script>
 
