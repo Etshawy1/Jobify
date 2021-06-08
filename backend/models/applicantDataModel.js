@@ -2,31 +2,32 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const mongoose_delete = require('mongoose-delete');
 const constants = require('../utils/constants');
+const _ = require('lodash');
 
 const applicantDataSchema = new mongoose.Schema({
   firstName: {
     type: String,
     minlength: 3,
-    maxlength: 30
+    maxlength: 30,
   },
   lastName: {
     type: String,
     minlength: 3,
-    maxlength: 30
+    maxlength: 30,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'applicant data should belong to a user']
+    required: [true, 'applicant data should belong to a user'],
   },
   gender: {
     type: String,
-    enum: ['male', 'female']
+    enum: ['male', 'female'],
   },
   dateOfBirth: {
     type: Date,
     min: '1-1-1900',
-    max: '1-1-2000'
+    max: '1-1-2000',
   },
   careerLevel: {
     type: String,
@@ -35,9 +36,9 @@ const applicantDataSchema = new mongoose.Schema({
       'Entry Level',
       'Experienced',
       'Manager',
-      'Senior Management'
+      'Senior Management',
     ],
-    default: 'Student'
+    default: 'Student',
   },
   currentJob: {
     type: String,
@@ -46,9 +47,9 @@ const applicantDataSchema = new mongoose.Schema({
       'I am actively looking for new opportunities and jobs',
       "I am happy where I am but don't mind finding good opportunities",
       'I am only interested in very specific opportunities',
-      'I am not looking for a job'
+      'I am not looking for a job',
     ],
-    default: 'I am unemployed and desperate for a job'
+    default: 'I am unemployed and desperate for a job',
   },
   jobType: [
     {
@@ -58,10 +59,10 @@ const applicantDataSchema = new mongoose.Schema({
         'Part Time',
         'Freelance/Project',
         'Full Time',
-        'Work From Home'
+        'Work From Home',
       ],
-      default: 'Internship'
-    }
+      default: 'Internship',
+    },
   ],
   skills: [
     {
@@ -71,40 +72,24 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 50,
         index: {
           unique: true,
-          partialFilterExpression: { skill: { $type: 'string' } }
-        }
+          partialFilterExpression: { skill: { $type: 'string' } },
+        },
       },
       yearsExperiance: {
         type: String,
-        enum: ['Less than 1 year', '1-3 years', '3-5 years', '5-7 years']
-      }
-    }
+        enum: ['Less than 1 year', '1-3 years', '3-5 years', '5-7 years'],
+      },
+    },
   ],
   jobTitles: [
     {
-      jobTitle: {
-        type: String,
-        minlength: 3,
-        maxlength: 30,
-        index: {
-          unique: true,
-          partialFilterExpression: { jobTitle: { $type: 'string' } }
-        }
-      }
-    }
+      type: String,
+    },
   ],
   categories: [
     {
-      category: {
-        type: String,
-        minlength: 3,
-        maxlength: 30,
-        index: {
-          unique: true,
-          partialFilterExpression: { category: { $type: 'string' } }
-        }
-      }
-    }
+      type: String,
+    },
   ],
   languages: [
     {
@@ -114,73 +99,73 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 30,
         index: {
           unique: true,
-          partialFilterExpression: { language: { $type: 'string' } }
-        }
+          partialFilterExpression: { language: { $type: 'string' } },
+        },
       },
       Reading: {
         type: Number,
-        enum: [1, 2, 3, 4, 5]
+        enum: [1, 2, 3, 4, 5],
       },
       Writing: {
         type: Number,
-        enum: [1, 2, 3, 4, 5]
+        enum: [1, 2, 3, 4, 5],
       },
       Listening: {
         type: Number,
-        enum: [1, 2, 3, 4, 5]
+        enum: [1, 2, 3, 4, 5],
       },
       Speaking: {
         type: Number,
-        enum: [1, 2, 3, 4, 5]
-      }
-    }
+        enum: [1, 2, 3, 4, 5],
+      },
+    },
   ],
   phone: String,
   onlinePresence: {
     linkedIn: {
       type: String,
-      default: ''
+      default: '',
     },
     facebook: {
       type: String,
-      default: ''
+      default: '',
     },
     twitter: {
       type: String,
-      default: ''
+      default: '',
     },
     behance: {
       type: String,
-      default: ''
+      default: '',
     },
     instagram: {
       type: String,
-      default: ''
+      default: '',
     },
     gitHub: {
       type: String,
-      default: ''
+      default: '',
     },
     stackOverflow: {
       type: String,
-      default: ''
+      default: '',
     },
     youTube: {
       type: String,
-      default: ''
+      default: '',
     },
     blog: {
       type: String,
-      default: ''
+      default: '',
     },
     website: {
       type: String,
-      default: ''
+      default: '',
     },
     other: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   salary: {
     type: Number,
@@ -189,15 +174,21 @@ const applicantDataSchema = new mongoose.Schema({
       validator: function (el) {
         return el >= 0;
       },
-      message: 'Salary must be postive number!'
-    }
+      message: 'Salary must be postive number!',
+    },
   },
   cvURL: String,
-  cvLastUpdated: Date
+  cvLastUpdated: Date,
 });
 
 applicantDataSchema.plugin(mongoose_delete, {
-  overrideMethods: 'all'
+  overrideMethods: 'all',
+});
+
+applicantDataSchema.pre('save', function (next) {
+  this.jobTitles = _.uniq(this.jobTitles);
+  this.categories = _.uniq(this.categories);
+  next();
 });
 
 const ApplicantData = mongoose.model(

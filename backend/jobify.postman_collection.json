@@ -2204,7 +2204,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"jobTitleName\":\"Back-end Develope\"\r\n}",
+							"raw": "{\r\n    \"jobTitleNames\":[\"Back-end Develope\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2231,7 +2231,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"jobTitleName\":\"Back-end Develope\"\r\n}",
+									"raw": "{\r\n    \"jobTitleNames\":[\"Back-end Develope\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2304,11 +2304,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "667"
+									"value": "835"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"29b-riXIRM/4NTEGxpJUg11jXSeg1GI\""
+									"value": "W/\"343-K6ICVTmrtX6+86u8TXp2IfOIDlU\""
 								},
 								{
 									"key": "Vary",
@@ -2316,7 +2316,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 22:39:42 GMT"
+									"value": "Tue, 08 Jun 2021 14:01:01 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2324,7 +2324,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0\n}"
+							"body": "{\n    \"deleted\": false,\n    \"_id\": \"60bf49dbd8b1a143188c14e1\",\n    \"email\": \"test2112@gmail.com\",\n    \"type\": \"applicant\",\n    \"last_login\": \"2021-06-08T14:00:51.648Z\",\n    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n    \"__v\": 0,\n    \"additionalData\": {\n        \"onlinePresence\": {\n            \"linkedIn\": \"\",\n            \"facebook\": \"\",\n            \"twitter\": \"\",\n            \"behance\": \"\",\n            \"instagram\": \"\",\n            \"gitHub\": \"\",\n            \"stackOverflow\": \"\",\n            \"youTube\": \"\",\n            \"blog\": \"\",\n            \"website\": \"\",\n            \"other\": \"\"\n        },\n        \"careerLevel\": \"Student\",\n        \"currentJob\": \"I am unemployed and desperate for a job\",\n        \"jobType\": [\n            \"Internship\",\n            \"Part Time\"\n        ],\n        \"jobTitles\": [\n            \"Back-end Develope\"\n        ],\n        \"categories\": [],\n        \"deleted\": false,\n        \"_id\": \"60bf49dbd8b1a143188c14e2\",\n        \"user\": \"60bf49dbd8b1a143188c14e1\",\n        \"skills\": [],\n        \"languages\": [],\n        \"__v\": 4,\n        \"dateOfBirth\": \"1999-12-12T00:00:00.000Z\",\n        \"firstName\": \"ahmad\",\n        \"gender\": \"male\",\n        \"lastName\": \"etshawy\",\n        \"phone\": \"01155431271\"\n    },\n    \"onModel\": \"ApplicantData\"\n}"
 						}
 					]
 				},
@@ -2470,7 +2470,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoryName\": \"IT/Sotfware Development\"\r\n}",
+							"raw": "{\r\n    \"categoryNames\": [\"IT/Sotfware Development\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2497,7 +2497,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"categoryName\": \"IT/Sotfware Development\"\r\n}",
+									"raw": "{\r\n    \"categoryNames\": [\"IT/Sotfware Development\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2570,11 +2570,11 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "738"
+									"value": "861"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"2e2-76mulLP+Rtyb4CMHv0MwyPBxv80\""
+									"value": "W/\"35d-Rx1DimoCE/QjDEs6VCKO7vxBPZg\""
 								},
 								{
 									"key": "Vary",
@@ -2582,7 +2582,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 02 Jun 2021 22:40:33 GMT"
+									"value": "Tue, 08 Jun 2021 14:05:26 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2590,7 +2590,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"onlinePresence\": {\n        \"linkedIn\": \"\",\n        \"facebook\": \"\",\n        \"twitter\": \"\",\n        \"behance\": \"\",\n        \"instagram\": \"\",\n        \"gitHub\": \"\",\n        \"stackOverflow\": \"\",\n        \"youTube\": \"\",\n        \"blog\": \"\",\n        \"website\": \"\",\n        \"other\": \"\"\n    },\n    \"jobType\": [],\n    \"deleted\": false,\n    \"_id\": \"60b7fb945e74d34934ac9731\",\n    \"user\": \"60b7fb945e74d34934ac9730\",\n    \"skills\": [\n        {\n            \"_id\": \"60b8076b9b729723b42a40c9\",\n            \"skill\": \"C\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        },\n        {\n            \"_id\": \"60b8077e9b729723b42a40ca\",\n            \"skill\": \"C#\",\n            \"yearsExperiance\": \"Less than 1 year\"\n        }\n    ],\n    \"jobTitles\": [\n        {\n            \"_id\": \"60b808ae0a69dd632c1d6b84\",\n            \"jobTitle\": \"Back-end Develope\"\n        }\n    ],\n    \"categories\": [\n        {\n            \"_id\": \"60b808e10a69dd632c1d6b85\",\n            \"category\": \"IT/Sotfware Development\"\n        }\n    ],\n    \"languages\": [\n        {\n            \"_id\": \"60b8088f0a69dd632c1d6b83\",\n            \"language\": \"Arabic\",\n            \"Reading\": 5,\n            \"Writing\": 1,\n            \"Listening\": 2,\n            \"Speaking\": 3\n        }\n    ],\n    \"__v\": 0\n}"
+							"body": "{\n    \"deleted\": false,\n    \"_id\": \"60bf49dbd8b1a143188c14e1\",\n    \"email\": \"test2112@gmail.com\",\n    \"type\": \"applicant\",\n    \"last_login\": \"2021-06-08T14:00:51.648Z\",\n    \"imageUrl\": \"http://localhost:3000/api/v1/static/images/users/default.png\",\n    \"__v\": 0,\n    \"additionalData\": {\n        \"onlinePresence\": {\n            \"linkedIn\": \"\",\n            \"facebook\": \"\",\n            \"twitter\": \"\",\n            \"behance\": \"\",\n            \"instagram\": \"\",\n            \"gitHub\": \"\",\n            \"stackOverflow\": \"\",\n            \"youTube\": \"\",\n            \"blog\": \"\",\n            \"website\": \"\",\n            \"other\": \"\"\n        },\n        \"careerLevel\": \"Student\",\n        \"currentJob\": \"I am unemployed and desperate for a job\",\n        \"jobType\": [\n            \"Internship\",\n            \"Part Time\"\n        ],\n        \"jobTitles\": [\n            \"Back-end Develope\"\n        ],\n        \"categories\": [\n            \"IT/Sotfware Development\"\n        ],\n        \"deleted\": false,\n        \"_id\": \"60bf49dbd8b1a143188c14e2\",\n        \"user\": \"60bf49dbd8b1a143188c14e1\",\n        \"skills\": [],\n        \"languages\": [],\n        \"__v\": 10,\n        \"dateOfBirth\": \"1999-12-12T00:00:00.000Z\",\n        \"firstName\": \"ahmad\",\n        \"gender\": \"male\",\n        \"lastName\": \"etshawy\",\n        \"phone\": \"01155431271\"\n    },\n    \"onModel\": \"ApplicantData\"\n}"
 						}
 					]
 				},

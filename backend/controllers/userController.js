@@ -77,21 +77,18 @@ exports.deleteSkills = catchAsync(async (req, res, next) => {
   res.status(202).json(applicantData);
 });
 
+
 exports.updateCategories = catchAsync(async (req, res, next) => {
-  const categoryId = await Category.findOne({ name: req.body.categoryName });
-  if (!categoryId) return next(new AppError('This is not a  category!', 400));
-  const categories = req.user.additionalData.categories;
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i].category === req.body.categoryName)
-      return next(new AppError('category aleardy added!', 400));
-  }
-  const applicantData = await updateModelData(req.user.additionalData._id, {
-    categories: {
-      category: categoryId.name
-    }
-  });
-  res.status(200).json(applicantData);
+  const categoriesObject = await Category.find({ name: {$in:req.body.categoryNames} });
+  const categories = categoriesObject.map(element=> element.name);
+  console.log(categories);
+  const newUser = await ApplicantData.findById(req.user.additionalData._id);
+  newUser.categories.push(...categories);
+  await newUser.save();
+  req.user.additionalData = newUser;
+  res.status(200).json(req.user);
 });
+
 
 exports.deleteCategories = catchAsync(async (req, res, next) => {
   const categoryId = await Category.findOne({ name: req.body.categoryName });
@@ -195,21 +192,16 @@ exports.updateOnlinePresence = catchAsync(async (req, res, next) => {
 });
 
 exports.updateJobTitles = catchAsync(async (req, res, next) => {
-  const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
-  if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
-  const jobTitles = req.user.additionalData.jobTitles;
-  for (let i = 0; i < jobTitles.length; i++) {
-    if (jobTitles[i].jobTitle === req.body.jobTitleName)
-      return next(new AppError('job Title aleardy added!', 400));
-  }
-  const applicantData = await updateModelData(req.user.additionalData._id, {
-    jobTitles: {
-      jobTitle: jobTitleId.name
-    }
-  });
-
-  res.status(200).json(applicantData);
+  const jobTitlesObject = await JobTitle.find({ name: {$in:req.body.jobTitleNames} });
+  const jobTitles = jobTitlesObject.map(element=> element.name);
+  const newUser = await ApplicantData.findById(req.user.additionalData._id);
+  newUser.jobTitles.push(...jobTitles);
+  await newUser.save();
+  req.user.additionalData = newUser;
+  res.status(200).json(req.user);
 });
+
+
 exports.deleteJobTitles = catchAsync(async (req, res, next) => {
   const jobTitleId = await JobTitle.findOne({ name: req.body.jobTitleName });
   if (!jobTitleId) return next(new AppError('This is not a job Title!', 400));
