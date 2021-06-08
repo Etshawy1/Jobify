@@ -43,7 +43,14 @@
                         <v-btn rounded depressed class="skills-buttons" v-for="skill_item in item.applicant.additionalData.skills" v-bind:key="skill_item">
                             {{skill_item.skill}}
                         </v-btn>
-                    </div>         
+                    </div> 
+                    <v-card-text>
+                        <strong>What Makes You Different?</strong><br> {{item.questionsAnswers[0]}}
+                    </v-card-text>
+                    <v-card-text>
+                        <strong>Why We Should Hire You?</strong><br> {{item.questionsAnswers[1]}}
+                    </v-card-text>
+  
                     <v-card-actions>
                         <v-tooltip bottom v-if="item.status == 'applied'">
                             <template v-slot:activator="{ on, attrs }">

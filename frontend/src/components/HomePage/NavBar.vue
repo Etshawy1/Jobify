@@ -56,7 +56,7 @@
                 <span class="spans-menu">Edit Profile</span>
               </v-flex>  
             </v-list-item>
-            <v-list-item row wrap align-center>
+            <v-list-item row wrap align-center v-on:click="logout">
               <v-flex md3>
                 <v-icon class="icons_menu">mdi-export</v-icon>
               </v-flex>
@@ -102,7 +102,19 @@ export default {
       }
     
     }
-  }
+  },
+  methods: {
+    logout: function(){
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userID");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userType");
+        localStorage.removeItem("userImageUrl");
+        localStorage.removeItem("additionalData");
+        localStorage.removeItem("onModel");
+        this.$router.push({path: '/login'})
+    }
+  },
 };
 </script>
 
