@@ -64,13 +64,19 @@ export default {
                     toUrl: `/editapplicantprofile/${this.$route.params.id}/updatecv`
                 },
                 {
-                    title: 'Update Salary',
-                    icon: 'mdi-cash'
+                    title: 'Career Interests',
+                    icon: 'mdi-cash',
+                    toUrl: `/editapplicantprofile/${this.$route.params.id}/careerinterests`
                 },
                 {
                     title: 'Update Skills',
                     icon: 'mdi-brain',
                     toUrl: `/editapplicantprofile/${this.$route.params.id}/updateskills`
+                },
+                {
+                    title: "Online Presence",
+                    icon: 'mdi-account-group',
+                    toUrl: `/editapplicantprofile/${this.$route.params.id}/onlinepresence`
                 }
             ]
         }

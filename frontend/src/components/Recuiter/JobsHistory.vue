@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container v-if="checkLocalStorage()">
         <div class="text-center" v-if="loadingState">
             <v-progress-circular
                 indeterminate
@@ -167,7 +167,14 @@ export default {
                 }
                 console.log(error);
             }            
-        }
+        },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }  
     },
 };
 </script>

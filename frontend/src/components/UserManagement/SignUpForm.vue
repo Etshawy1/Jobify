@@ -131,9 +131,7 @@ export default {
       try {
         let userType = await this.$store.dispatch("registerUser", this.formData)
         this.loadingState = false;
-        if(userType === 'applicant'){
-          this.$router.push('/completeprofile')
-        }
+        this.$router.push('/completeprofile')
       } 
       catch (error) {
         console.log("an error occured")

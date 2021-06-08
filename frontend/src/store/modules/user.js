@@ -37,7 +37,6 @@ const actions = {
                     localStorage.setItem("userType", response.data.user.type);
                     localStorage.setItem("userImageUrl", response.data.user.imageUrl);
 
-                    
                     resolve(payload.type);
                 })
                 .catch(error => {
@@ -63,7 +62,6 @@ const actions = {
                     localStorage.setItem("additionalData", response.data.user.additionalData);
                     localStorage.setItem("onModel", response.data.user.onModel);
 
-                    
                     resolve(response.data.user.type);
                 })
                 .catch(error => {
@@ -71,6 +69,39 @@ const actions = {
                 });
         });
     },
+    // update the online presence for a user or a recruiter
+    updateOnlinePresence({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = 'v1/users/updateOnlinePresence';
+            const body = {
+                linkedIn: payload.linkedIn,
+                facebook: payload.facebook,
+                twitter: payload.twitter,
+                behance: payload.behance,
+                instagram: payload.instagram,
+                gitHub: payload.gitHub,
+                stackOverflow: payload.stackOverflow,
+                youTube: payload.youTube,
+                blog: payload.blog,
+                website: payload.website,
+                other : payload.other
+            }
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+            axios
+                .patch(url, body, config)
+                .then(response => {
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    reject(error.response.data);
+                });
+        });
+    }
+
 };
 
 

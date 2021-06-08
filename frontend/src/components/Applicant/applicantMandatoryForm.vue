@@ -171,7 +171,6 @@ export default {
   },
   methods: {
     async onSubmit() {
-      console.log("on submit function")
       this.loadingState = true;
       this.errorMessage = ""
       try {
