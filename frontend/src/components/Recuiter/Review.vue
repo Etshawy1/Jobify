@@ -45,24 +45,24 @@
                         </v-btn>
                     </div>         
                     <v-card-actions>
-                        
-                        <v-tooltip bottom>
+                        <v-tooltip bottom v-if="item.status == 'applied'">
                             <template v-slot:activator="{ on, attrs }">
                             <v-btn
+                                v-on:click="editStatus('In Consideration', item)"
                                 v-bind="attrs"
                                 v-on="on"
                                 color="blue darken-2"
-                                icon
-                                >
+                                icon>
                                 <v-icon size="29" color="green"> mdi-checkbox-marked-circle</v-icon>
                             </v-btn>
                             </template>
                             <span>In Consideration</span>
                         </v-tooltip>
 
-                        <v-tooltip bottom>
+                        <v-tooltip bottom v-if="item.status == 'applied'">
                             <template v-slot:activator="{ on, attrs }">
                             <v-btn
+                                v-on:click="editStatus('Not Selected', item)"
                                 v-bind="attrs"
                                 v-on="on"
                                 color="blue darken-2"
@@ -80,6 +80,15 @@
                             <v-icon color="blue darken-2">mdi-linkedin</v-icon>
                         </v-btn>
                     </v-card-actions>
+
+                    <div v-if="item.status == 'In Consideration'" style="margin:20px">
+                        <v-icon color="green">mdi-checkbox-marked-circle</v-icon>
+                        <span style="margin-left:10px; color:green">In Consideration</span>
+                    </div>
+                    <div v-if="item.status == 'Not Selected'" style="margin:20px">
+                        <v-icon color="red">mdi-account-off</v-icon>
+                        <span style="margin-left:10px; color:red">Not Selected</span>
+                    </div>
                 </v-card>                
             </v-flex>
         </v-row>
@@ -93,7 +102,8 @@ export default {
             loadingState: true,
             errorMessage: "",
             response: {},
-            items: []
+            items: [],
+            status_update:{}
         }
     },
     props:{
@@ -109,6 +119,7 @@ export default {
                 job: this.job_id
             })
             this.items = this.response.items;
+            console.log("returned from get applicants successfuly");
             this.loadingState = false;
             console.log(this.response);
         } 
@@ -123,7 +134,32 @@ export default {
             }
             console.log(error);
         }
-    }
+    },
+    methods: {
+        async editStatus(status_new, item){
+            console.log("entering edit status function");
+            this.errorMessage = ""
+            try {
+                this.status_update = await this.$store.dispatch("updateStatus", {
+                    userToken : localStorage.getItem('userToken'),
+                    app_id: item._id,
+                    status: status_new
+                });
+                console.log(this.status_update);
+                item.status = status_new;
+            } 
+            catch (error) {
+                console.log("an error occured")
+                if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                }
+                else {
+                    this.errorMessage = "Please try again later !"
+                }
+            }
+
+        }
+    },
 };
 </script>
 

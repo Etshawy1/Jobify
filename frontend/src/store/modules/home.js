@@ -195,6 +195,27 @@ const actions = {
             })
         })
     },
+
+    updateStatus({state}, payload) {
+        console.log("entering update status request:");
+        console.log(payload);
+        return new Promise((resolve, reject) => {
+            axios.patch(`/v1/jobapplications/${payload.app_id}`,{
+                status: payload.status              
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    }
 };
 
 
