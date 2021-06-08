@@ -177,7 +177,24 @@ const actions = {
                 reject(error.response.data);
             })
         })
-    }  
+    },
+    getApplications({state}, payload) {
+        console.log("entering get applications request");
+        return new Promise((resolve, reject) => {
+            axios.get(`/v1/jobapplications?job=${payload.job}`,
+            {
+            headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
 };
 
 
