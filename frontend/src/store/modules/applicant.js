@@ -147,6 +147,86 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    // get job Titles for applicant    
+    getAvailableJobTitles({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = "v1/users/getjobtitles?limit=20&offset=0"
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+
+            axios.get(url, config)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
+    updateApplicantJobTitles({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = "v1/users/updatejobtitle";
+            const body = {
+                jobTitleNames : payload.jobTitleNames 
+            }
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+
+            axios.patch(url, body, config)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
+    // get job categories for applicant    
+    getAvailableJobCategories({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = "v1/users/getcategories?limit=20&offset=0"
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+
+            axios.get(url, config)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
+    },
+    updateApplicantJobTitles({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = "v1/users/updatecategory";
+            const body = {
+                jobCategories : payload.jobCategories 
+            }
+            const config = {
+                headers: {
+                    Authorization : `Bearer ${payload.userToken}`,
+                }
+            }
+
+            axios.patch(url, body, config)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     }
 };
 
