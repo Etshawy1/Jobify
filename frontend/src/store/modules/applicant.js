@@ -52,13 +52,8 @@ const actions = {
     getApplicantProfileData({ state }, payload) {
         return new Promise((resolve, reject) => {
             const url = `v1/users/profile/${payload.id}`;
-            const config = {
-                headers: {
-                    Authorization : `Bearer ${payload.userToken}`,
-                }
-            }
 
-            axios.get(url, config)
+            axios.get(url, {})
             .then((response) => {
                 resolve(response.data);
             })
