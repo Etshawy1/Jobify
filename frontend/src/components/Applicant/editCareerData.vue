@@ -21,9 +21,9 @@
         </v-row>
         <!-- job title -->
         <v-row>
-          <v-radio-group v-model="formData.jobTitle" col class="ml-10 mb-3">
+          <v-radio-group v-model="formData.jobType" col class="ml-10 mb-3">
             <template v-slot:label> <div>What Job title are you looking for ?</div> </template>
-            <v-radio :value=jt.value v-for="jt in jobTitles" :key="jt.value">
+            <v-radio :value=jt.value v-for="jt in jobTypes" :key="jt.value">
               <template v-slot:label>
                 <strong>{{ jt.label }}</strong>
               </template>
@@ -55,6 +55,19 @@
             </v-alert>
           </v-col>
         </v-row>
+        <v-row justify="center">
+          <v-col cols = "10">
+            <v-alert 
+            id="backsuccess-alert" 
+            v-if="isSuccessful"
+            dense
+            outlined
+            type="success">
+              <div>Online Presence was successfully updated </div>
+            </v-alert>
+          </v-col>
+        </v-row>
+
         <v-row justify="end">
           <v-col cols="5">
             <v-btn
@@ -81,7 +94,7 @@ export default {
       formData: {
         valid: false,
         careerLevel : 'Student',
-        jobTitle : 'Internship',
+        jobType : 'Internship',
         employmentState : 'I am unemployed and desperate for a job'
       },
       careerLevels : [
@@ -92,7 +105,7 @@ export default {
             {value: 'Senior Management', label: 'A Senior Manager'}
         ],
 
-        jobTitles : [
+        jobTypes : [
             {value: 'Internship' , label: 'An Internship'},
             {value: 'Part Time', label: 'A part time job'},
             {value: 'Freelance/Project', label: 'Freelancing'},
@@ -109,11 +122,49 @@ export default {
         ],
       errorMessage: "",
       loadingState: false,
+      isSuccessful: false
     };
+  },
+  async mounted() {
+    try {
+        const payload = {
+            userToken : localStorage.getItem('userToken'),
+            id : this.$route.params.id
+        }
+        let response = await this.$store.dispatch('getApplicantProfileData', payload);
+        let additionalData = response.additionalData;
+        this.formData.careerLevel = additionalData.careerLevel;
+        this.formData.jobType = additionalData.jobType[0];
+        this.formData.employmentState = additionalData.currentJob;
+    
+      
+    } catch (error) {
+        console.log(error)
+        this.errorMessage = "Can't retrieve user data currently"
+    }
   },
   methods: {
     async onSubmit() {
-      
+      try {
+        this.isSuccessful = false;
+        const payload = {
+            careerLevel : this.formData.careerLevel,
+            currentJob : this.formData.employmentState,
+            jobType : this.formData.jobType,
+            userToken: localStorage.getItem('userToken')
+        } 
+        let response = await this.$store.dispatch('UpdateCareerInfo', payload);
+        this.isSuccessful = true
+      } 
+      catch (error) {
+          console.log(error)
+          if(error.status === 'fail') {
+              this.errorMessage = error.msg
+          }
+          else {
+              this.errorMessage = "Please try again later !"
+          }
+      }
     },
   },
 };

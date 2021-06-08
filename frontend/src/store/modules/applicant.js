@@ -124,6 +124,29 @@ const actions = {
                 reject(error.response.data);
             })
         })
+    },
+    // update user's career level
+    UpdateCareerInfo({state}, payload) {
+        return new Promise((resolve, reject) => {
+            const url = '/v1/users/updateapplicantdata'
+            const body = {
+                careerLevel: payload.careerLevel,
+                currentJob: payload.currentJob,
+                jobType: payload.jobType
+            }
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${payload.userToken}`
+                }
+            }
+            axios.patch(url , body, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            })
+        })
     }
 };
 
