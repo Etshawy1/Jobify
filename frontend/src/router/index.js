@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import SignUp from '../views/UserManagement/SignUp.vue'
 import AdminHome from '../views/Admin/AdminHome.vue'
 import Skills from '../views/Admin/Skills.vue'
+import JobTitles from '../views/Admin/JobTitles.vue'
+import Categories from '../views/Admin/Categories.vue'
 import Login from '../views/UserManagement/Login.vue'
 import CompleteProfile from '../views/UserManagement/CompleteProfile.vue'
 import JobApply from '../views/JobApply/JobApply.vue'
@@ -33,6 +35,16 @@ const routes = [
     path: '/admin/skills',
     name: 'Skills',
     component: Skills
+  },
+  {
+    path: '/admin/job-titles',
+    name: 'Jobtitles',
+    component: JobTitles
+  },
+  {
+    path: '/admin/categories',
+    name: 'Categories',
+    component: Categories
   },
   {
     path: '/about',
