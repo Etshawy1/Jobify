@@ -11,53 +11,50 @@ const { Category } = require('../models/categoryModel');
 const { JobApplication } = require('../models/jobApplicationModel');
 
 exports.addSkill = factory.createOne(Skill);
-exports.deleteSkill = factory.createOne(Skill);
+exports.deleteSkill = factory.deleteOne(Skill);
 
 exports.addLanguage = factory.createOne(Language);
 exports.deleteLanguage = factory.deleteOne(Language);
 
 exports.addJobTitle = factory.createOne(JobTitle);
 
-exports.deleteJobTitle = factory.createOne(JobTitle);
+exports.deleteJobTitle = factory.deleteOne(JobTitle);
 
 exports.addCategory = factory.createOne(Category);
 
-exports.deleteCategory = factory.createOne(Category);
-exports.updateSkill = factory.createOne(Skill);
+exports.deleteCategory = factory.deleteOne(Category);
+exports.updateSkill = factory.updateOne(Skill);
 exports.getCountJobs = catchAsync(async (req, res, next) => {
-  let today = new Date().toISOString();
+  let day = new Date();
+  day.setDate(day.getDate() - 7);
+  day = day.toISOString();
+  console.log(day);
 
-  const lastWeek = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() - 6
-  );
-  today = new Date().toISOString();
-  const lastMonth = new Date(
-    today.getFullYear(),
-    today.getMonth() - 1,
-    today.getDate() + 1
-  );
-  today = new Date().toISOString();
-
-  const lastYear = new Date(
-    today.getFullYear() - 1,
-    today.getMonth(),
-    today.getDate() + 1
-  );
   const jobsLastWeak = await Job.find({
     createdAt: {
-      $gt: lastWeek
+      $gt: day
     }
   });
+
+  day = new Date();
+  day.setMonth(day.getMonth() - 1);
+  day = day.toISOString();
+  console.log(day);
+
   const jobsLastMonth = await Job.find({
     createdAt: {
-      $gt: lastMonth
+      $gt: day
     }
   });
+
+  day = new Date();
+  day.setFullYear(day.getFullYear() - 1);
+  day = day.toISOString();
+  console.log(day);
+
   const jobsLastYeas = await Job.find({
     createdAt: {
-      $gt: lastYear
+      $gt: day
     }
   });
   res.status(200).json({
