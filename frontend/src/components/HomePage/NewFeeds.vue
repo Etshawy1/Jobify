@@ -44,11 +44,6 @@
                     <v-card-actions>
                         <v-btn
                             color="blue darken-2"
-                            text>
-                            Share
-                        </v-btn>
-                        <v-btn
-                            color="blue darken-2"
                             text
                             @click="$router.push('/apply/' + item._id)">
                             Details

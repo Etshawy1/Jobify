@@ -1,7 +1,7 @@
 <template>
   <div>
-    <nav-bar-app/>
-    <new-feeds-app/>
+      <nav-bar-app/>
+      <new-feeds-app/>
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
     components: {
       "nav-bar-app":NavBar,
       "new-feeds-app": NewFeeds        
-  },
+  }
 };
 </script>
 

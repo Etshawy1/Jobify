@@ -112,12 +112,12 @@ export default {
         localStorage.removeItem("userImageUrl");
         localStorage.removeItem("additionalData");
         localStorage.removeItem("onModel");
+        localStorage.clear();
         this.$router.push({path: '/login'})
     }
   },
 };
 </script>
-
 <style>
 a{
     text-decoration: none;
