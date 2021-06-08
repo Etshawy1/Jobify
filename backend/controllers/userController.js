@@ -3,7 +3,6 @@ const { Skill } = require('./../models/skillModel');
 const { Language } = require('./../models/languageModel');
 const { JobTitle } = require('../models/jobTitlesModel');
 const { ApplicantData } = require('./../models/applicantDataModel');
-const { JobApplication } = require('../models/jobApplicationModel');
 const { Category } = require('./../models/categoryModel');
 const _ = require('lodash');
 const AppError = require('../utils/appError');
@@ -27,7 +26,10 @@ exports.updateData = catchAsync(async (req, res, next) => {
         'lastName',
         'gender',
         'dateOfBirth',
-        'phone'
+        'phone',
+        'careerLevel',
+        'currentJob',
+        'jobType'
       ])
     },
     { new: true, runValidators: true }

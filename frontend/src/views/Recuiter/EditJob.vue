@@ -1,7 +1,7 @@
 <template>
   <div>
-    <nav-bar-app/>
-    <edit-job-app/>
+    <nav-bar-app />
+    <edit-job-app :job_id="job_id"/>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   name: "EditJob",
   data () {
       return {
-        post_id: this.$route.params.post_id,
+        job_id: this.$route.params.job_id,
       }
   },
   components: {
