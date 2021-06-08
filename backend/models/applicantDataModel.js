@@ -36,7 +36,8 @@ const applicantDataSchema = new mongoose.Schema({
       'Experienced',
       'Manager',
       'Senior Management'
-    ]
+    ],
+    default: 'Student'
   },
   currentJob: {
     type: String,
@@ -46,7 +47,8 @@ const applicantDataSchema = new mongoose.Schema({
       "I am happy where I am but don't mind finding good opportunities",
       'I am only interested in very specific opportunities',
       'I am not looking for a job'
-    ]
+    ],
+    default: 'I am unemployed and desperate for a job'
   },
   jobType: [
     {
@@ -57,7 +59,8 @@ const applicantDataSchema = new mongoose.Schema({
         'Freelance/Project',
         'Full Time',
         'Work From Home'
-      ]
+      ],
+      default: 'Internship'
     }
   ],
   skills: [
@@ -68,7 +71,7 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 50,
         index: {
           unique: true,
-          partialFilterExpression: {skill: {$type: 'string'}}
+          partialFilterExpression: { skill: { $type: 'string' } }
         }
       },
       yearsExperiance: {
@@ -85,7 +88,7 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 30,
         index: {
           unique: true,
-          partialFilterExpression: {jobTitle: {$type: 'string'}}
+          partialFilterExpression: { jobTitle: { $type: 'string' } }
         }
       }
     }
@@ -98,7 +101,7 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 30,
         index: {
           unique: true,
-          partialFilterExpression: {category: {$type: 'string'}}
+          partialFilterExpression: { category: { $type: 'string' } }
         }
       }
     }
@@ -111,7 +114,7 @@ const applicantDataSchema = new mongoose.Schema({
         maxlength: 30,
         index: {
           unique: true,
-          partialFilterExpression: {language: {$type: 'string'}}
+          partialFilterExpression: { language: { $type: 'string' } }
         }
       },
       Reading: {
@@ -190,7 +193,7 @@ const applicantDataSchema = new mongoose.Schema({
     }
   },
   cvURL: String,
-  cvLastUpdated: Date,
+  cvLastUpdated: Date
 });
 
 applicantDataSchema.plugin(mongoose_delete, {
