@@ -18,7 +18,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="First name"
+              label="First Name"
               dense
               type="text"
               v-model="formData.firstname"
@@ -30,7 +30,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="Last name"
+              label="Last Name"
               dense
               type="text"
               v-model="formData.lastname"
@@ -77,7 +77,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="Phone number"
+              label="Phone Number"
               dense
               type="text"
               v-model="formData.phone"
@@ -102,6 +102,19 @@
           </v-radio-group>
         </v-row>
 
+        <!-- alert to show that data is updated successfully -->
+        <v-row justify="center">
+          <v-col cols = "10">
+            <v-alert 
+            id="backsuccess-alert" 
+            v-if="isSuccessful"
+            dense
+            outlined
+            type="success">
+              <div>Information is successfully updated </div>
+            </v-alert>
+          </v-col>
+        </v-row>
         <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -149,6 +162,7 @@ export default {
       },
       dateMenu: false,
       errorMessage: "",
+      isSuccessful: false,
       loadingState: false,
       required(propertyType) {
         return (v) =>
@@ -165,9 +179,58 @@ export default {
       },
     };
   },
+
+  async mounted() {
+    try {
+      const payload = {
+        userToken : localStorage.getItem('userToken'),
+        id : this.$route.params.id
+      }
+      let response = await this.$store.dispatch('getApplicantProfileData', payload);
+      
+      let additionalData = response.additionalData
+      this.formData.firstname = additionalData.firstName
+      this.formData.lastname = additionalData.lastName
+
+      const dob = new Date(additionalData.dateOfBirth)
+      this.formData.dateOfBirth =  `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`
+
+      this.formData.phone = additionalData.phone
+      this.formData.gender = additionalData.gender
+    } catch (error) {
+      console.log(error)
+      this.errorMessage = "Can't retrieve user data currently"
+    }
+  },
+
   methods: {
     async onSubmit() {
-      console.log("on submit function")
+      this.loadingState = true;
+      this.errorMessage = ""
+      this.isSuccessful = false
+      try {
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          firstname : this.formData.firstname,
+          lastname : this.formData.lastname,
+          dateOfBirth : this.formData.dateOfBirth,
+          phone : this.formData.phone,
+          gender: this.formData.gender
+        }
+        let response = await this.$store.dispatch("setApplicantMandatoryData", payload);
+        this.loadingState = false;
+        this.isSuccessful = true;
+      } 
+      catch (error) {
+        console.log(error)
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+      }
     },
   },
 };
