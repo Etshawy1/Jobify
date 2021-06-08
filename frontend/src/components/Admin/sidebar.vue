@@ -16,7 +16,7 @@
     </v-list>
     <v-divider></v-divider>
     <v-list nav dense>
-      <v-list-item link @click="$router.push('/admin/dashboard')">
+      <v-list-item link @click="$router.push('/admin')">
         <v-list-item-icon>
           <v-icon>mdi-view-dashboard</v-icon>
         </v-list-item-icon>

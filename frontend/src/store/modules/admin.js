@@ -242,6 +242,86 @@ const actions = {
         });
     });
   },
+  adminGetAllLanguages({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/v1/users/getLanguages', {
+          headers: {
+            Authorization: `Bearer ${payload.userToken}`,
+          },
+          params: {
+            limit: payload.limit,
+            offset: payload.offset,
+          },
+        })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
+  adminAddLanguage({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(
+          '/v1/admins/Language',
+          {
+            name: payload.name,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${payload.userToken}`,
+            },
+          },
+        )
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
+  adminDeleteLanguage({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .delete(`/v1/admins/Language/${payload._id}`, {
+          headers: {
+            Authorization: `Bearer ${payload.userToken}`,
+          },
+        })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
+  adminUpdateLanguage({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .patch(
+          `/v1/admins/Language/${payload._id}`,
+          {
+            name: payload.name,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${payload.userToken}`,
+            },
+          },
+        )
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
 };
 
 export default {

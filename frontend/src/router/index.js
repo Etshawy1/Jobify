@@ -5,6 +5,7 @@ import SignUp from '../views/UserManagement/SignUp.vue'
 import AdminHome from '../views/Admin/AdminHome.vue'
 import Skills from '../views/Admin/Skills.vue'
 import JobTitles from '../views/Admin/JobTitles.vue'
+import Languages from '../views/Admin/Languages.vue'
 import Categories from '../views/Admin/Categories.vue'
 import Login from '../views/UserManagement/Login.vue'
 import CompleteProfile from '../views/UserManagement/CompleteProfile.vue'
@@ -27,7 +28,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/adminhome',
+    path: '/admin',
     name: 'AdminHome',
     component: AdminHome
   },
@@ -45,6 +46,11 @@ const routes = [
     path: '/admin/categories',
     name: 'Categories',
     component: Categories
+  },
+  {
+    path: '/admin/languages',
+    name: 'Languages',
+    component: Languages
   },
   {
     path: '/about',
