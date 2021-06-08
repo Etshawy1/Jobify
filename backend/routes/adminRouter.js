@@ -6,13 +6,20 @@ const router = express.Router();
 router.use(authController.protect(true));
 router.use(authController.restrictTo(constants.USER_TYPES.ADMIN));
 router.post('/skill', adminController.addSkill);
-router.post('/language', adminController.addLanguage);
-router.post('/jobtitle', adminController.addJobTitle);
-router.post('/category', adminController.addCategory);
 router.delete('/skill/:id', adminController.deleteSkill);
-router.delete('/language/:id', adminController.deleteLanguage);
-router.delete('/jobtitle/:id', adminController.deleteJobTitle);
-router.delete('/category/:id', adminController.deleteCategory);
 router.patch('/skill/:id', adminController.updateSkill);
+
+router.post('/language', adminController.addLanguage);
+router.delete('/language/:id', adminController.deleteLanguage);
+router.patch('/language/:id', adminController.updataLanguage);
+
+router.post('/jobtitle', adminController.addJobTitle);
+router.delete('/jobtitle/:id', adminController.deleteJobTitle);
+router.patch('/jobtitle/:id', adminController.updateJobTitle);
+
+router.post('/category', adminController.addCategory);
+router.delete('/category/:id', adminController.deleteCategory);
+router.patch('/category/:id', adminController.updateCategory);
+
 router.get('/appliedjobscount', adminController.getCountJobs);
 module.exports = router;
