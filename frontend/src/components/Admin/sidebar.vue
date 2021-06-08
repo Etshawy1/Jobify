@@ -46,7 +46,7 @@
         </v-list-item-icon>
         <v-list-item-title>Job Title</v-list-item-title>
       </v-list-item>
-      <v-list-item link>
+      <v-list-item link @click="logOut">
         <v-list-item-icon> <v-icon>mdi-export</v-icon> </v-list-item-icon>
         <v-list-item-title>Log out</v-list-item-title>
       </v-list-item>
@@ -54,5 +54,13 @@
   </v-navigation-drawer>
 </template>
 <script>
-export default {};
+export default {
+
+  methods : {
+    logOut() {
+      localStorage.clear();
+      this.$router.push({path: '/'})
+    }
+  }
+};
 </script>

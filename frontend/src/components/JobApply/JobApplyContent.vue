@@ -6,7 +6,7 @@
                 color="primary"
             ></v-progress-circular>
         </div>
-        <v-row no-gutters  v-if="!loadingState">
+        <v-row no-gutters  v-if="!lfoadingState">
             <v-flex md8>
                 <v-card
                     class="mx-auto job-card"
@@ -197,8 +197,9 @@
                     class="mx-auto"
                     elevation="2"
                     max-width="450"
-                    outlined>
-                    <v-card-title>More about {{item.recruiter.additionalData.name}}</v-card-title>
+                    outlined
+                    hover>
+                    <v-card-title @click="$router.push(`/recruiterprofile/${item.recruiter._id}`)">More about {{item.recruiter.additionalData.name}}</v-card-title>
                     <v-card-subtitle>Specialized in {{item.field}}</v-card-subtitle>
                     <v-card-text class="text--primary">
                              {{item.recruiter.additionalData.description}}

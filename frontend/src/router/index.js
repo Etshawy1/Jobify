@@ -23,10 +23,16 @@ import editCareerInterests from '../components/Applicant/editCareerInterests.vue
 import applicantProfile from '../views/Applicant/applicantProfile.vue';
 import RecruiterProfile from '../views/Recuiter/RecruiterProfile.vue';
 import editRecruiterProfile from '../views/Recuiter/editRecruiterProfile.vue';
+import entry from '../views/entry.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: "entry",
+    component : entry
+  },
   {
     path: '/home',
     name: 'Home',
@@ -56,15 +62,6 @@ const routes = [
     path: '/admin/languages',
     name: 'Languages',
     component: Languages,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
     path: '/signup',
@@ -160,6 +157,21 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name == "Login" && (localStorage.getItem('userToken'))) {
+    next({
+      path: "/home"
+    });
+  } else if (to.name == "SignUp" && (localStorage.getItem('userToken'))) {
+    next({
+      path: "/home"
+    });
+  } 
+  else {
+    next();
+  }
 });
 
 export default router;

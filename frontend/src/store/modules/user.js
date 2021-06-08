@@ -61,7 +61,8 @@ const actions = {
                     localStorage.setItem("userImageUrl", response.data.user.imageUrl);
                     localStorage.setItem("additionalData", response.data.user.additionalData);
                     localStorage.setItem("onModel", response.data.user.onModel);
-
+                    console.log("from loginUser")
+                    console.log(response.data.user.type)
                     resolve(response.data.user.type);
                 })
                 .catch(error => {

@@ -128,7 +128,12 @@ export default {
       this.errorMessage = ""
       try {
         let userType = await this.$store.dispatch("loginUser", this.formData)
-        this.$router.push({path: 'home'});
+        if(userType == 'admin') {
+          this.$router.push({path: '/admin'})
+        }
+        else {
+          this.$router.push({path: '/home'});
+        }
       } 
       catch (error) {
         console.log("an error occured")

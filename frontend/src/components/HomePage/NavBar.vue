@@ -24,7 +24,7 @@
         </template>
         <v-list width="300">
           <v-list-item-group>
-            <v-list-item row wrap align-center>
+            <v-list-item row wrap align-center :to="viewPath">
               <v-flex md3>
                 <v-avatar size="35">
                 <img
@@ -63,16 +63,6 @@
                 <span class="spans-menu">Logout</span>
               </v-flex>  
             </v-list-item>
-            <router-link to="/about">
-              <v-list-item row wrap align-center>
-                  <v-flex md3>
-                      <v-icon class="icons_menu">mdi-information</v-icon>
-                  </v-flex>
-                  <v-flex md9>  
-                    <span class="spans-menu">About</span>
-                  </v-flex>  
-              </v-list-item>
-            </router-link>
           </v-list-item-group>
         </v-list>
       </v-menu>
@@ -100,6 +90,14 @@ export default {
         return `/editrecruiterprofile/${this.currUserId}`
       }
     
+    },
+    viewPath() {
+      if(this.currUserType === 'applicant') {
+        return `/applicantprofile/${this.currUserId}`
+      }
+      else {
+        return `/recruiterprofile/${this.currUserId}`
+      }
     }
   },
   methods: {
