@@ -1,10 +1,16 @@
 <template>
   <div>
     <nav-bar-app />
-    <side-bar-app />
-    <div>
-      <PieChart />
-    </div>
+    <v-container>
+      <v-row no-gutters>
+        <v-flex md3 lg1>
+          <side-bar-app />
+        </v-flex>
+        <v-flex md9 lg11>
+          <PieChart />
+        </v-flex>
+      </v-row>
+    </v-container>
   </div>
 </template>
 <script>
@@ -20,29 +26,6 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-size: 1rem;
-  font-family: Tahoma;
-  background-color: #333;
-  color: #fefefe;
-}
-#app {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  width: 100%;
-  padding: 20px;
-}
-</style>
 
 
 

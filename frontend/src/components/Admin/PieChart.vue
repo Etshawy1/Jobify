@@ -1,24 +1,94 @@
   
 <template>
-  <div class="div">
-    <h1>Chart</h1>
-    <div class="pie-chart" :style="pieStyle"></div>
-  </div>
+  <v-container>
+    <v-row no-gutters>
+      <v-flex md6 lg6>
+        <apexchart
+          width="500"
+          type="pie"
+          :options="chartOptions1"
+          :series="postedJobs"
+        ></apexchart>
+      </v-flex>
+      <v-flex md6 lg6>
+        <apexchart
+          width="500"
+          type="pie"
+          :options="chartOptions2"
+          :series="rejectedJobs"
+        ></apexchart>
+      </v-flex>
+    </v-row>
+    <v-row>
+      <v-flex md6 lg6>
+        <apexchart
+          width="500"
+          type="pie"
+          :options="chartOptions3"
+          :series="inConsiderationJobs"
+        ></apexchart>
+      </v-flex>
+    </v-row>
+  </v-container>
 </template>
-
 <script>
 export default {
   data: () => {
     return {
-      pieStyle: {},
+      postedJobs: [0, 0, 0],
+      rejectedJobs: [0, 0, 0],
+      inConsiderationJobs: [0, 0, 0],
+      chartOptions1: {
+        chart: {
+          width: 380,
+          type: "pie",
+        },
+        labels: [
+          "Posted Jobs From Last Weak ",
+          "Posted Jobs From Last Month",
+          "Posted Jobs From Last Year",
+        ],
+        responsive: [],
+      },
+      chartOptions2: {
+        chart: {
+          width: 380,
+          type: "pie",
+        },
+        labels: [
+          "Rejected Applicant From Last Weak ",
+          "Rejected Applicant From Last Month",
+          "Rejected Applicant From Last Year",
+        ],
+        responsive: [],
+      },
+      chartOptions3: {
+        chart: {
+          width: 380,
+          type: "pie",
+        },
+        labels: [
+          "In Consideration Applicant From Last Weak ",
+          "In Consideration Applicant From Last Month",
+          "In Consideration Applicant From Last Year",
+        ],
+        responsive: [],
+      },
     };
   },
-  computed: {},
+  watch: {
+    options: {
+      handler() {
+        console.log(this.chartOptions1);
+      },
+      deep: true,
+    },
+  },
   methods: {
     async initialize() {
-      const style = await this.getRejectedJobsFromApi();
-      console.log(style);
-      this.pieStyle = style;
+      await this.getPostedJobsFromApi();
+      await this.getApplicantJobsFromApi();
+      await this.getRejectedJobsFromApi();
     },
     async getPostedJobsFromApi() {
       this.errorMessage = "";
@@ -26,22 +96,11 @@ export default {
         this.response = await this.$store.dispatch("adminPostedJobs", {
           userToken: localStorage.getItem("userToken"),
         });
-        console.log(this.response);
-        this.pieData = [
-          { color: "#0B6487", value: this.response.jobsLastWeak },
-          { color: "#9D1F37", value: this.response.jobsLastMonth },
-          { color: "#F6931C", value: this.response.jobsLastYear },
+        this.postedJobs = [
+          this.response.jobsLastWeak,
+          this.response.jobsLastMonth,
+          this.response.jobsLastYear,
         ];
-        let total =
-          this.response.jobsLastWeak +
-          this.response.jobsLastMonth +
-          this.response.jobsLastYear;
-        let sum = 0;
-        let styles = this.pieData.map(
-          (piePart) =>
-            `${piePart.color} 0 ${(sum += piePart.value / total) * 100}%`
-        );
-        return { background: "conic-gradient(" + styles.join(",") + ")" };
       } catch (error) {
         console.log("an error occured");
         this.loadingState = false;
@@ -59,22 +118,11 @@ export default {
         this.response = await this.$store.dispatch("adminApplicantsCount", {
           userToken: localStorage.getItem("userToken"),
         });
-        console.log(this.response);
-        this.pieData = [
-          { color: "#0B6487", value: this.response.jobsLastWeak },
-          { color: "#9D1F37", value: this.response.jobsLastMonth },
-          { color: "#F6931C", value: this.response.jobsLastYear },
+        this.inConsiderationJobs = [
+          this.response.jobsLastWeak,
+          this.response.jobsLastMonth,
+          this.response.jobsLastYear,
         ];
-        let total =
-          this.response.jobsLastWeak +
-          this.response.jobsLastMonth +
-          this.response.jobsLastYear;
-        let sum = 0;
-        let styles = this.pieData.map(
-          (piePart) =>
-            `${piePart.color} 0 ${(sum += piePart.value / total) * 100}%`
-        );
-        return { background: "conic-gradient(" + styles.join(",") + ")" };
       } catch (error) {
         console.log("an error occured");
         this.loadingState = false;
@@ -95,22 +143,11 @@ export default {
             userToken: localStorage.getItem("userToken"),
           }
         );
-        console.log(this.response);
-        this.pieData = [
-          { color: "#0B6487", value: this.response.jobsLastWeak },
-          { color: "#9D1F37", value: this.response.jobsLastMonth },
-          { color: "#F6931C", value: this.response.jobsLastYear },
+        this.rejectedJobs = [
+          this.response.jobsLastWeak,
+          this.response.jobsLastMonth,
+          this.response.jobsLastYear,
         ];
-        let total =
-          this.response.jobsLastWeak +
-          this.response.jobsLastMonth +
-          this.response.jobsLastYear;
-        let sum = 0;
-        let styles = this.pieData.map(
-          (piePart) =>
-            `${piePart.color} 0 ${(sum += piePart.value / total) * 100}%`
-        );
-        return { background: "conic-gradient(" + styles.join(",") + ")" };
       } catch (error) {
         console.log("an error occured");
         this.loadingState = false;
@@ -128,21 +165,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.pie-chart {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  border: 2px solid #fefefe;
-  animation: show 1s ease-in-out;
-}
-@keyframes show {
-  0% {
-    transform: scale(0) rotate(720deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-}
-</style>
