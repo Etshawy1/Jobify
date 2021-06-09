@@ -53,7 +53,7 @@
       </v-row>
       <!-- show available skills -->
       <v-row v-for="skill in currUserSkills" :key="skill.skillName" class="mb-2">
-          <skill-card :skillName="skill.skillName" :yearsOfExperiance="skill.yearOfExperiance"></skill-card>
+          <skill-card @delete-skill="deleteSkill" :skillName="skill.skillName" :yearsOfExperiance="skill.yearOfExperiance" :showCloseIcon="true"></skill-card>
       </v-row>
       <!-- alert to show any errors returning from back server -->
       <v-row justify="center">
@@ -153,6 +153,32 @@ export default {
           }
         }
         
+      }
+    },
+    async deleteSkill(sn) {
+      try {
+        console.log(sn)
+        this.loadingState = true;
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          skillName : sn
+        }
+        await this.$store.dispatch('deleteSkillFromApplicant', payload)
+        this.userSkills = this.userSkills.filter((skill) => {
+          return skill.skillName != sn
+        })
+
+        this.loadingState = false
+      } 
+      catch (error) {
+        console.log(error)
+          this.loadingState = false
+          if(error.status === 'fail') {
+            this.errorMessage = error.msg;
+          }
+          else {
+            this.errorMessage = "Please try again later!"
+          }
       }
     },
   },

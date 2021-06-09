@@ -4,7 +4,7 @@
             <v-col cols="10">
                 <v-sheet color="white" rounded elevation="3">
                     <v-row justify="center">
-                        <v-col cols="6">
+                        <v-col cols="6" class="ml-2">
                             <div class="text-h6">{{skillName}}</div>
                         </v-col>
                         <v-col cols="4">
@@ -15,6 +15,10 @@
                                 color="yellow"
                             ></v-rating>
                         </v-col>
+                        <v-spacer></v-spacer>
+                        <v-col>
+                            <v-icon v-if="showCloseIcon" @click="emitDelEvent">mdi-close</v-icon>
+                        </v-col>
                     </v-row>
                 </v-sheet>
             </v-col>
@@ -24,7 +28,7 @@
 
 <script>
 export default {
-    props:['skillName', 'yearsOfExperiance'],
+    props:['skillName', 'yearsOfExperiance', 'showCloseIcon'],
     computed: {
         rateSkill() {
             if(this.yearsOfExperiance === 'Less than 1 year') {
@@ -39,6 +43,11 @@ export default {
             else {
                 return 5
             }
+        }
+    },
+    methods : {
+        emitDelEvent() {
+            this.$emit('delete-skill', this.skillName)
         }
     }
 }
