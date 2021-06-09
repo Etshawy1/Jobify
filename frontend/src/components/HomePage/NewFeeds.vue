@@ -101,6 +101,7 @@ export default {
           offset : 0
         })
         this.items = this.response.items;
+        this.items = this.items.reverse();
         this.loadingState = false;
         console.log(this.response);
       } 

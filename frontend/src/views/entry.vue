@@ -29,7 +29,7 @@
       <v-row class="mt-15">
         <v-col class="ml-12">
           <v-img
-            src="../assets/jobify.png"
+            src="../assets/jobifyHome.png"
             max-width="250px"
           >
 

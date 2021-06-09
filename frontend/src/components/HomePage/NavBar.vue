@@ -17,7 +17,7 @@
             icon id="user-img">
           <v-avatar>
             <img
-              v-bind:src="profile_img"
+              src="../../assets/jobify2.jpg"
               alt="John">
           </v-avatar>
           </v-btn>           
@@ -29,7 +29,7 @@
                 <v-avatar size="35">
                 <img
                   width="35" height="35"
-                  v-bind:src="profile_img"
+                  src="../../assets/jobify2.jpg"
                   alt="John">
                 </v-avatar>
               </v-flex>
