@@ -59,9 +59,9 @@
 export default {
   data: () => {
     return {
-      chart1: [0, 0, 0],
-      chart2: [0, 0, 0],
-      chart3: [0, 0, 0],
+      chart1: [3, 2, 4],
+      chart2: [6, 5, 5],
+      chart3: [3, 2, 9],
       postedJobs: [0, 0, 0],
       rejectedJobs: [0, 0, 0],
       inConsiderationJobs: [0, 0, 0],
@@ -82,7 +82,12 @@ export default {
           },
         },
         labels: ["Last Weak ", "Last Month", "From Last Year"],
-        responsive: [],
+        responsive: [
+          {
+            breakpoint: undefined,
+            options: {},
+          },
+        ],
       },
       chartOptions2: {
         chart: {
