@@ -12,6 +12,7 @@ import CompleteProfile from '../views/UserManagement/CompleteProfile.vue';
 import JobApply from '../views/JobApply/JobApply.vue';
 import MyJobs from '../views/Recuiter/MyJobs.vue';
 import ReviewApplicants from '../views/Recuiter/ReviewApplicants.vue';
+import ReviewRecruiters from '../views/Admin/RecruiterApplication.vue';
 import PostJob from '../views/Recuiter/PostJob.vue';
 import editApplicantProfile from '../views/Applicant/editApplicantProfile.vue';
 import editPersonalInfoForm from '../components/Applicant/editPersonalInfoForm.vue';
@@ -56,6 +57,11 @@ const routes = [
     path: '/admin/languages',
     name: 'Languages',
     component: Languages,
+  },
+  {
+    path: '/admin/recruiters',
+    name: 'ReviewRecruiters',
+    component: ReviewRecruiters,
   },
   {
     path: '/about',

@@ -46,6 +46,12 @@
         </v-list-item-icon>
         <v-list-item-title>Job Title</v-list-item-title>
       </v-list-item>
+      <v-list-item link @click="$router.push('/admin/recruiters')">
+        <v-list-item-icon>
+          <v-icon>mdi-check-decagram</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Recruiter Applications</v-list-item-title>
+      </v-list-item>
       <v-list-item link>
         <v-list-item-icon> <v-icon>mdi-export</v-icon> </v-list-item-icon>
         <v-list-item-title>Log out</v-list-item-title>

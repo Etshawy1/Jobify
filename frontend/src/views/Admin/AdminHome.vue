@@ -2,6 +2,9 @@
   <div>
     <nav-bar-app />
     <side-bar-app />
+    <h2 style="margin:7vw">
+      replace this text with the charts in this page
+    </h2>
   </div>
 </template>
 <script>
