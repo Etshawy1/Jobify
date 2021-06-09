@@ -26,7 +26,7 @@ const createSendToken = (user, statusCode, res) => {
   user.__v = undefined;
   res.status(statusCode).json({
     token,
-    user,
+    user
   });
 };
 
@@ -35,36 +35,37 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}`;
   // insert the user data in the database
   let newUser = await User.create({
-    ..._.pick(req.body, ['email', 'password', 'type']),
+    ..._.pick(req.body, ['email', 'password', 'type', 'linkedIn']),
     last_login: Date.now(),
     passwordConfirm: req.body.password,
-    imageUrl: `${url}/api/v1/static/images/users/default.png`,
+    active: req.body.type !== constants.USER_TYPES.RECRUITER,
+    imageUrl: `${url}/api/v1/static/images/users/default.png`
   });
 
   let additionalData;
   if (newUser.type === constants.USER_TYPES.RECRUITER) {
     additionalData = await RecruiterData.create({
-      user: newUser._id,
+      user: newUser._id
     });
   } else {
     additionalData = await ApplicantData.create({
-      user: newUser._id,
+      user: newUser._id
     });
   }
 
   await User.findByIdAndUpdate(
     {
-      _id: newUser._id,
+      _id: newUser._id
     },
     {
       additionalData: additionalData._id,
       onModel:
         newUser.type === constants.USER_TYPES.RECRUITER
           ? constants.MODELS_NAMES.recruiterData
-          : constants.MODELS_NAMES.applicantData,
+          : constants.MODELS_NAMES.applicantData
     }
   );
-  await new Email("", newUser.email, "").sendWelcome();
+  await new Email('', newUser.email, '').sendWelcome();
   createSendToken(newUser, 201, res);
 });
 
@@ -75,7 +76,9 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide email and password!', 400));
   }
   // Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password').populate('additionalData');
+  const user = await User.findOne({ email })
+    .select('+password')
+    .populate('additionalData');
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password', 401));
@@ -95,22 +98,13 @@ exports.googleOauth = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ googleId: req.user.googleId })
     .select('+type')
     .select('+googleId');
-  user.facebookId = undefined;
-  user.imageFacebookUrl = undefined;
   user.password = undefined;
-  user.tracks = undefined;
-  user.ownedPlaylists = undefined;
-  user.followedAlbums = undefined;
-  user.followedTracks = undefined;
-  user.followedUsers = undefined;
-  user.followedUsers = undefined;
-  user.queue = undefined;
   user.deleted = undefined;
   user.__v = undefined;
   createSendToken(user, req.user.status, res);
 });
 
-exports.protect = (blocking) => {
+exports.protect = blocking => {
   return catchAsync(async (req, res, next) => {
     // 1) Getting token and check of it's there
     let token;
@@ -137,7 +131,9 @@ exports.protect = (blocking) => {
       process.env.JWT_SECRET_KEY
     );
     // 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id).populate('additionalData');
+    const currentUser = await User.findById(decoded.id).populate(
+      'additionalData'
+    );
     if (!currentUser) {
       return next(
         new AppError(
@@ -178,7 +174,7 @@ exports.restrictTo = (...types) => {
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTed email
   const user = await User.findOne({
-    email: req.body.email,
+    email: req.body.email
   });
   if (!user) {
     return next(new AppError('There is no user with email address.', 404));
@@ -186,23 +182,27 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
   await user.save({
-    validateBeforeSave: false,
+    validateBeforeSave: false
   });
   // 3) Send it to user's email
   try {
     const resetURL =
       `${constants.FRONTEND_PROTOCOL}://${constants.FRONTEND_HOSTNAME}` +
       `/password-reset/change/${resetToken}`;
-    await new Email(user.additionalData.firstName || user.additionalData.name, user.email, resetURL).sendPasswordReset();
+    await new Email(
+      user.additionalData.firstName || user.additionalData.name,
+      user.email,
+      resetURL
+    ).sendPasswordReset();
     res.status(200).json({
       status: 'success',
-      message: 'Token sent to email!',
+      message: 'Token sent to email!'
     });
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({
-      validateBeforeSave: false,
+      validateBeforeSave: false
     });
     return next(
       new AppError('There was an error sending the email. Try again later!'),
@@ -220,8 +220,8 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: {
-      $gt: Date.now(),
-    },
+      $gt: Date.now()
+    }
   });
   // 2) If token has not expired, and there is user, set the new password
   if (!user) {
