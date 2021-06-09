@@ -34,11 +34,6 @@
                                         <div class="text-h6 mr-1">Field : </div>
                                         <div class="text-h6 blue--text">{{ companyData.field }}</div>
                                     </v-row>
-                                    <v-row class="mt-5">
-                                        <v-icon class="mr-1">mdi-linkedin</v-icon>
-                                        <div class="text-h6 mr-1">LinkedIn : </div>
-                                        <div class="text-h6 blue--text">{{ companyData.linkedin }}</div>
-                                    </v-row>
                                 </v-col>
                             </v-row>
                             <v-row justify="start" class="ml-11">
@@ -69,7 +64,6 @@ export default {
                 employeesCount: '',
                 field: '',
                 companyName: '',
-                linkedin: '',
                 imageUrl: '',
             },
             errorMessage : ''
@@ -87,7 +81,6 @@ export default {
             this.companyData.employeesCount = additionalData.employeesCount;
             this.companyData.field = additionalData.field;
             this.companyData.description = additionalData.description;
-            this.companyData.linkedIn = additionalData.linkedIn;
             this.companyData.imageUrl = response.imageUrl;
         } catch (error) {
             console.log(error)

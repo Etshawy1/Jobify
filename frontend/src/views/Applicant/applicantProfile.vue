@@ -1,8 +1,8 @@
 <template>
   <div class="applicantProfile">
       <nav-bar></nav-bar>
-        <v-sheet color="white" rounded="lg" class="mb-3 ml-3 mr-3">
             <v-container>
+                <v-sheet color="white" rounded="lg" class="pa-3" elevation="5">
                 <v-row>
                     <div class="text-h4 mt-2 ml-3">General Information</div>
                 </v-row>
@@ -49,11 +49,11 @@
                         </v-row>
                     </v-col>
                 </v-row>
-            </v-container>
-        </v-sheet>
+            </v-sheet>
+        </v-container>
 
-      <v-sheet color="white" rounded="lg" class="mb-3 ml-3 mr-3">
-        <v-container fluid>
+    <v-container>
+        <v-sheet color="white" rounded="lg" class="pa-3" elevation="5">
             <v-row>
                 <div class="text-h4 ml-3 mb-3">Career Interests</div>
             </v-row>
@@ -122,11 +122,11 @@
                     </v-row>
                 </v-col>
             </v-row>
-        </v-container>
-      </v-sheet>
+        </v-sheet>
+    </v-container>
 
-      <v-sheet color="white" rounded="lg" class="mb-3 ml-3 mr-3">
-        <v-container fluid>
+    <v-container>
+        <v-sheet color="white" rounded="lg" class="pa-3" elevation="5">
             <v-row>
                 <div class="text-h4 ml-3 mb-3">Online Presence</div>
             </v-row>
@@ -229,11 +229,11 @@
                 </div>
                 <div class="text-subtitle2 blue--text" v-else> Unspecified by Applicant</div>
             </v-row>
-        </v-container>
-      </v-sheet>
+        </v-sheet>
+    </v-container>
 
-      <v-sheet color="white" rounded="lg" class="mb-3 ml-3 mr-3">
-        <v-container fluid>
+    <v-container>
+        <v-sheet color="white" rounded="lg" class="pa-3" elevation="5">
             <v-row>
                 <v-col>
                     <div class="text-h4 ml-3 mb-3">Skills</div>
@@ -245,8 +245,8 @@
                     <div class="text-subtitle2 blue--text" v-else> Unspecified by Applicant</div>
                 </v-col>
             </v-row>
-        </v-container>
-      </v-sheet>
+        </v-sheet>
+    </v-container>
   </div>
 </template>
 

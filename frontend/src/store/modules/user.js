@@ -64,8 +64,6 @@ const actions = {
                     localStorage.setItem("userImageUrl", response.data.user.imageUrl);
                     localStorage.setItem("additionalData", response.data.user.additionalData);
                     localStorage.setItem("onModel", response.data.user.onModel);
-                    console.log("from loginUser")
-                    console.log(response.data.user.type)
                     resolve(response.data.user.type);
                 })
                 .catch(error => {
@@ -118,6 +116,45 @@ const actions = {
             }
             axios.put(url , formData, config)
             .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data)
+            })
+        })
+    },
+    // an action to ask for email to reset the user's password
+    resetPassword({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = 'v1/users/forgotpassword'
+            const body = {
+                email : payload.email
+            }
+            axios.post(url , body)
+            .then((response) => {
+                resolve(response.data)
+            })
+            .catch((error) => {
+                reject(error.response.data)
+            })
+        })
+    },
+    changePassword({ state }, payload) {
+        return new Promise((resolve, reject) => {
+            const url = `v1/users/resetpassword/${payload.resetToken}`
+            const body = {
+                password : payload.password,
+                passwordConfirm : payload.passwordConfirm
+            }
+            axios.patch(url , body)
+            .then((response) => {
+                localStorage.setItem("userToken", response.data.token);
+                localStorage.setItem("userID", response.data.user._id);
+                localStorage.setItem("userEmail", response.data.user.email);
+                localStorage.setItem("userType", response.data.user.type);
+                localStorage.setItem("userImageUrl", response.data.user.imageUrl);
+                localStorage.setItem("additionalData", response.data.user.additionalData);
+                localStorage.setItem("onModel", response.data.user.onModel);
                 resolve(response.data)
             })
             .catch((error) => {

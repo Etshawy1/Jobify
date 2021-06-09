@@ -6,7 +6,14 @@
         <v-row justify="center">
             <div class="formTitle text-h2 mb-3 mt-3">Update Your CV</div>
         </v-row>
-
+        <v-row justify="center" v-if="loadingState">
+          <div class="text-center">
+              <v-progress-circular
+                  indeterminate
+                  color="primary"
+              ></v-progress-circular>
+          </div>
+        </v-row>
         <!-- alert to show status of response returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -122,6 +129,7 @@ export default {
 
   async mounted() {
       try {
+          this.loadingState = true;
           let response = await this.$store.dispatch('getApplicantProfileData', {
               userToken : localStorage.getItem('userToken'),
               id : this.$route.params.id
@@ -136,6 +144,7 @@ export default {
                                   " "+lastUpdatedDate.getHours()+
                                   ":"+lastUpdatedDate.getMinutes()+
                                   ":"+lastUpdatedDate.getSeconds();
+          this.loadingState = false;
       }
       catch(error) {
           this.errorMessage = "Error loading Uploaded CV"

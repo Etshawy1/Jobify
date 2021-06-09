@@ -2,6 +2,14 @@
 <div>
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
+      <v-row justify="center" v-if="loadingState">
+        <div class="text-center">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+      </v-row>
       <v-container>
         <div class="loginTitle text-h6 mb-3">Welcome Back</div>
         <v-row justify="center">
@@ -72,7 +80,7 @@
         <v-row justify="center" justify-md="center" class="mb-2">
           <router-link
             :to="{
-              path: '/signup',
+              path: '/password-reset/reset',
               query: { redirect: this.$route.query.redirect },
             }"
             class="blue--text"
@@ -127,6 +135,7 @@ export default {
     async onSubmit() {
       this.errorMessage = ""
       try {
+        this.loadingState = true;
         let userType = await this.$store.dispatch("loginUser", this.formData)
         if(userType == 'admin') {
           this.$router.push({path: '/admin'})
@@ -136,6 +145,7 @@ export default {
         }
       } 
       catch (error) {
+        this.loadingState = false;
         console.log("an error occured")
         if(error.status === "fail") {
           this.errorMessage = error.msg

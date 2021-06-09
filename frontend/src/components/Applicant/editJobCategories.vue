@@ -3,6 +3,14 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
+        <v-row justify="center" v-if="loadingState">
+          <div class="text-center">
+              <v-progress-circular
+                  indeterminate
+                  color="primary"
+              ></v-progress-circular>
+          </div>
+        </v-row>
           <!-- Career info -->
         <v-row>
           <div class="text-h4 text-left mb-3 ml-13 mt-3">Job Categories</div>
@@ -85,6 +93,7 @@ export default {
   },
   async mounted() {
     try {
+        this.loadingState = true
         const payload = {
             userToken : localStorage.getItem('userToken'),
             id : this.$route.params.id
@@ -97,7 +106,9 @@ export default {
         for(let i = 0; i < returnedJobCategories.length; i++) {
             this.jobCategories.push(returnedJobCategories[i].name)
         }
+        this.loadingState = false
     } catch (error) {
+        this.loadingState = false
         console.log(error)
         this.errorMessage = "Can't retrieve user data currently"
     }
@@ -105,6 +116,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
+        this.loadingState = true
         this.isSuccessful = false;
         const payload = {
             userToken : localStorage.getItem('userToken'),
@@ -112,9 +124,11 @@ export default {
         };
         let response = await this.$store.dispatch('updateApplicantJobCategories', payload);
         this.isSuccessful = true
+        this.loadingState = false
       } 
       catch (error) {
           console.log(error)
+          this.loadingState = false
           if(error.status === 'fail') {
               this.errorMessage = error.msg
           }

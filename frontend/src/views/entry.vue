@@ -25,15 +25,33 @@
         </v-row>
       </v-container>
     </v-app-bar>
+    <v-container fluid>
+      <v-row class="mt-15">
+        <v-col class="ml-12">
+          <v-img
+            src="../assets/jobify.png"
+            max-width="250px"
+          >
+
+          </v-img>
+        </v-col>
+      </v-row>
+      <v-row class="mt-2 ml-12">
+          <v-img
+            src="../assets/seek.png"
+            max-width="400px">
+          </v-img>
+      </v-row>
+    </v-container>
 
   </div>
 </template>
 
-<style>
+<style scoped>
 .main-containter{
-  background: url('../assets/about.jpg');
+  background: url('../assets/home.jpg');
   background-size: cover;
-  height: 100vh;
+  height: 93vh;
   width: 100%;
 }
 </style>

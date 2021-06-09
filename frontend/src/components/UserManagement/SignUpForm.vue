@@ -3,6 +3,14 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
+      <v-row justify="center" v-if="loadingState">
+        <div class="text-center">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+      </v-row>
         <div class="signupTitle">Sign Up and Start Applying For Jobs</div>
         <v-row justify="center" justify-md="center">
           <v-radio-group v-model="formData.type" row>

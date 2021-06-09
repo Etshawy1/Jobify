@@ -3,6 +3,14 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
+        <v-row justify="center" v-if="loadingState">
+          <div class="text-center">
+              <v-progress-circular
+                  indeterminate
+                  color="primary"
+              ></v-progress-circular>
+          </div>
+        </v-row>
         <div class="onlinePresenceTitle text-h2 mb-3">Online Presence</div>
         <!-- Linkedin text field -->
         <v-row justify="center">
@@ -226,6 +234,7 @@ export default {
   },
   async mounted() {
     try {
+      this.loadingState = true;
       const payload = {
         userToken : localStorage.getItem('userToken'),
         id : this.$route.params.id
@@ -244,16 +253,18 @@ export default {
       this.formData.blog = onlinePresence.blog;
       this.formData.website = onlinePresence.website;
       this.formData.other = onlinePresence.other;
-      
+      this.loadingState = false;
     } catch (error) {
       console.log(error)
       this.errorMessage = "Can't retrieve user data currently"
+      this.loadingState = false;
     }
   },
   methods: {
     async onSubmit() {
         try {
         this.isSuccessful = false;
+        this.loadingState = true;
         const payload = {
             userToken : localStorage.getItem('userToken'),
             linkedIn : this.formData.linkedIn,
@@ -270,8 +281,10 @@ export default {
         } 
         let response = await this.$store.dispatch('updateOnlinePresence', payload);
         this.isSuccessful = true
+        this.loadingState = false;
       } 
       catch (error) {
+          this.loadingState = false;
           console.log(error)
           if(error.status === 'fail') {
               this.errorMessage = error.msg

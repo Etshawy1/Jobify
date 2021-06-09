@@ -2,6 +2,14 @@
 <div>
   <v-sheet color="white" rounded="lg">
     <v-container>
+      <v-row justify="center" v-if="loadingState">
+        <div class="text-center">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+      </v-row>
       <div class="formTitle text-h2 mb-3"> Update your skills </div>
       <v-row justify="center">
         <v-img
@@ -88,6 +96,7 @@ export default {
   async mounted() {
     try {
       // get the available skills for the user to choose from
+      this.loadingState = true;
       let response = await this.$store.dispatch('getAvailableskills', {
       userToken : localStorage.getItem('userToken')
       })
@@ -105,7 +114,9 @@ export default {
       for(let i = 0; i < returnedSkills.length; i++) {
         this.userSkills.push({skillName : returnedSkills[i].skill, yearOfExperiance : returnedSkills[i].yearsExperiance})
       }
+      this.loadingState = false;
     } catch (error) {
+      this.loadingState = false;
       console.log(error)
     }
     
@@ -123,6 +134,7 @@ export default {
 
       if(!skillAlreadyIncluded) {
         try {
+          this.loadingState = true;
           this.errorMessage = ''
           const payload = {
             userToken : localStorage.getItem('userToken'),
@@ -130,7 +142,9 @@ export default {
           }
           let response = await this.$store.dispatch('addSkillToApplicant', payload);
           this.userSkills.push(skillToAdd)
+          this.loadingState = false
         } catch (error) {
+          this.loadingState = false
           if(error.status === 'fail') {
             this.errorMessage = error.msg;
           }

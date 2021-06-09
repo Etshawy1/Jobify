@@ -3,10 +3,20 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
+        <v-row justify="center" v-if="loadingState">
+          <div class="text-center">
+              <v-progress-circular
+                  indeterminate
+                  color="primary"
+              ></v-progress-circular>
+          </div>
+        </v-row>
+
         <!-- Expected Salary -->
         <v-row>
           <div class="text-h4 text-left mb-3 ml-13 mt-3">Expected Salary</div>
         </v-row>
+
         <!-- Salary text field -->
         <v-row justify="center">
           <v-col cols="6">
@@ -17,6 +27,7 @@
               dense
               type="text"
               v-model="formData.salary"
+              :rules="[nonNegative()]"
             ></v-text-field>
           </v-col>
           <!-- form submission button -->
@@ -80,6 +91,10 @@ export default {
           (v && v.length >= minLength) ||
           `${propertyType} must be longer than ${minLength} characters`;
       },
+      nonNegative() {
+        return (v) => 
+          (v && v > 0) || "Salary must be greater than 0 !"
+      }
     };
   },
   methods: {
@@ -92,7 +107,7 @@ export default {
             userToken : localStorage.getItem('userToken'),
             salary : this.formData.salary
         }
-        this.$store.dispatch('updateSalary', payload)
+        await this.$store.dispatch('updateSalary', payload)
         this.loadingState = false;
         this.isSuccessful = true;
       } 
@@ -109,13 +124,16 @@ export default {
   },
     async mounted() {
         try {
+            this.loadingState = true;
             let response = await this.$store.dispatch('getApplicantProfileData', {
                 userToken : localStorage.getItem('userToken'),
                 id : this.$route.params.id
             })
             this.formData.salary =  response.additionalData.salary
+            this.loadingState = false;
         }
         catch(error) {
+            this.loadingState = false;
             this.errorMessage = "Error loading saved salary"
         }
     }

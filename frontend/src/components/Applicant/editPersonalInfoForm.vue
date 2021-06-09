@@ -4,6 +4,14 @@
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
         <div class="formTitle text-h2 mb-3">Edit your personal info</div>
+        <v-row justify="center" v-if="loadingState">
+          <div class="text-center">
+              <v-progress-circular
+                  indeterminate
+                  color="primary"
+              ></v-progress-circular>
+          </div>
+        </v-row>
         <v-row justify="center">
           <v-avatar rounded="circle">
             <img
@@ -194,6 +202,7 @@ export default {
 
   async mounted() {
     try {
+      this.loadingState = true;
       const payload = {
         userToken : localStorage.getItem('userToken'),
         id : this.$route.params.id
@@ -206,11 +215,13 @@ export default {
       this.formData.imageUrl = response.imageUrl;
       const dob = new Date(additionalData.dateOfBirth)
       this.formData.dateOfBirth =  `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`
+      this.loadingState = false;
 
       this.formData.phone = additionalData.phone
       this.formData.gender = additionalData.gender
     } catch (error) {
       console.log(error)
+      this.loadingState = false;
       this.errorMessage = "Can't retrieve user data currently"
     }
   },
@@ -258,7 +269,7 @@ export default {
         console.log("returned from imageUrl API");
         console.log(response)
         this.formData.imageUrl = response.image;
-        this.localStorage.setItem('userImageUrl', this.formData.imageUrl)
+        localStorage.setItem('userImageUrl', this.formData.imageUrl)
         console.log(this.formData.imageUrl);
       } 
       catch (error) {

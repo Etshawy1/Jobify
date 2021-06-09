@@ -24,7 +24,10 @@ import editCareerInterests from '../components/Applicant/editCareerInterests.vue
 import applicantProfile from '../views/Applicant/applicantProfile.vue';
 import RecruiterProfile from '../views/Recuiter/RecruiterProfile.vue';
 import editRecruiterProfile from '../views/Recuiter/editRecruiterProfile.vue';
-import entry from '../views/entry.vue'
+import entry from '../views/entry.vue';
+import ForgotPassword from '../views/UserManagement/ForgotPassword.vue';
+import PasswordReset from '../components/UserManagement/PasswordReset.vue';
+import PasswordChange from '../components/UserManagement/PasswordChange.vue';
 
 Vue.use(VueRouter);
 
@@ -157,6 +160,24 @@ const routes = [
     name: 'RecruiterProfile',
     component: RecruiterProfile,
   },
+  {
+    path: "/password-reset",
+    name: "forgotpassword",
+    component: ForgotPassword,
+    redirect: "/password-reset/reset",
+    children: [
+      {
+        path: "reset",
+        name: "reset",
+        component: PasswordReset
+      },
+      {
+        path: "change/:resettoken",
+        name: "change",
+        component: PasswordChange
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({

@@ -3,6 +3,14 @@
   <v-sheet color="white" rounded="lg">
     <v-form v-model="formData.valid" @submit.prevent="onSubmit">
       <v-container>
+      <v-row justify="center" v-if="loadingState">
+        <div class="text-center">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+        </div>
+      </v-row>
         <div class="recruiterTitle text-h2 mb-3">Edit Company Info</div>
         <v-row justify="center">
           <v-img
@@ -90,21 +98,6 @@
                 </v-textarea>
             </v-col>
         </v-row>
-        <!-- LinkedIN account -->
-        <v-row justify="center">
-          <v-col cols="10">
-            <v-text-field
-              rounded-md
-              outlined
-              label="Linked In Profile"
-              dense
-              type="text"
-              v-model="formData.linkedIn"
-              :rules="[required('Linked In')]"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
         <!-- alert to show that the data was updated successfully -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -161,7 +154,6 @@ export default {
           companyAddress: '',
           employeesCount : '1-50 Employees',
           field: 'Accounting/Finance',
-          linkedIn: '',
           description: '',
           imageUrl: ''
         },
@@ -227,6 +219,7 @@ export default {
   },
   async mounted() {
       try {
+          this.loadingState = true;
           const payload = {
               id : this.$route.params.id
           };
@@ -237,11 +230,12 @@ export default {
           this.formData.employeesCount = additionalData.employeesCount;
           this.formData.field = additionalData.field;
           this.formData.description = additionalData.description;
-          this.formData.linkedIn = additionalData.linkedIn;
           this.formData.imageUrl = response.imageUrl;
+          this.loadingState = false
       } catch (error) {
           console.log(error)
           this.errorMessage = "Couln't Retrieve Recruiter Data";
+          this.loadingState = false
       }
   },
   methods: {
@@ -256,7 +250,6 @@ export default {
             companyAddress: this.formData.companyAddress,
             employeesCount : this.formData.employeesCount,
             field: this.formData.field,
-            linkedIn: this.formData.linkedIn,
             description: this.formData.description
         }
         let response = await this.$store.dispatch("setRecruiterMandatoryData", payload);
@@ -288,7 +281,7 @@ export default {
         console.log("returned from imageUrl API recuiter");
         console.log(response)
         this.formData.imageUrl = response.image;
-        this.localStorage.setItem('userImageUrl', this.formData.imageUrl)
+        localStorage.setItem('userImageUrl', this.formData.imageUrl)
         console.log(this.formData.imageUrl);
       } 
       catch (error) {
