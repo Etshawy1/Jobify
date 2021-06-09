@@ -1,5 +1,5 @@
 <template>
-  <div class="editApplicant">
+  <div class="editApplicant" v-if="checkLocalStorage()">
       <nav-bar/>
       <v-container>
           <v-row>
@@ -64,17 +64,32 @@ export default {
                     toUrl: `/editapplicantprofile/${this.$route.params.id}/updatecv`
                 },
                 {
-                    title: 'Update Salary',
-                    icon: 'mdi-cash'
+                    title: 'Career Interests',
+                    icon: 'mdi-cash',
+                    toUrl: `/editapplicantprofile/${this.$route.params.id}/careerinterests`
                 },
                 {
                     title: 'Update Skills',
                     icon: 'mdi-brain',
                     toUrl: `/editapplicantprofile/${this.$route.params.id}/updateskills`
+                },
+                {
+                    title: "Online Presence",
+                    icon: 'mdi-account-group',
+                    toUrl: `/editapplicantprofile/${this.$route.params.id}/onlinepresence`
                 }
             ]
         }
     },
+    methods: {
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }
+    }
 
 }
 </script>

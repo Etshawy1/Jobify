@@ -7,7 +7,7 @@ const skillSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 1,
-    maxlength: 50,
+    maxlength: 500,
     unique: true
   }
 });

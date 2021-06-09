@@ -52,6 +52,18 @@
               :rules="[required('password'), checkLength('password', 8)]"
             ></v-text-field>
           </v-col>
+          <v-col cols="10">
+            <v-text-field
+              v-if="formData.type=='recruiter'"
+              rounded-md
+              outlined
+              label="LinkedIn"
+              dense
+              type="text"
+              v-model="formData.linkedIn"
+              :rules="[required('text'), checkText()]"
+            ></v-text-field>
+          </v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols = "10">
@@ -105,6 +117,7 @@ export default {
         type: "applicant",
         email: "",
         password: "",
+        linkedIn: undefined
       },
       errorMessage: "",
       loadingState: false,
@@ -121,19 +134,20 @@ export default {
           (v && v.length >= minLength) ||
           `${propertyType} must be longer than ${minLength} characters`;
       },
+      checkText() {
+        return (v) => !!v || 'This field is required'
+      }
     };
   },
   methods: {
     async onSubmit() {
       console.log("on submit function")
       this.loadingState = true;
-      this.errorMessage = ""
+      this.errorMessage = "";
       try {
         let userType = await this.$store.dispatch("registerUser", this.formData)
         this.loadingState = false;
-        if(userType === 'applicant'){
-          this.$router.push('/completeprofile')
-        }
+        this.$router.push('/completeprofile')
       } 
       catch (error) {
         console.log("an error occured")

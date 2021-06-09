@@ -1,0 +1,9 @@
+<template>
+  <v-toolbar
+    dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+  >
+    <v-spacer></v-spacer>
+    <v-toolbar-title>Jobify</v-toolbar-title>
+  </v-toolbar>
+</template>

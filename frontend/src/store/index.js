@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import user from "./modules/user"
 import applicant from "./modules/applicant"
 import home from "./modules/home"
+import admin from "./modules/admin"
+import recruiter from "./modules/recruiter"
 
 Vue.use(Vuex);
 
@@ -13,6 +15,8 @@ export default new Vuex.Store({
   modules: {
     user,
     applicant,
-    home
+    home,
+    admin,
+    recruiter
   },
 });

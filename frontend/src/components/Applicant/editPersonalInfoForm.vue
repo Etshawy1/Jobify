@@ -5,12 +5,23 @@
       <v-container>
         <div class="formTitle text-h2 mb-3">Edit your personal info</div>
         <v-row justify="center">
-          <v-img
-            src="../../assets/profile.png"
-            max-width="30%"
-            max-height="20%"
-          >
-          </v-img>
+          <v-avatar rounded="circle">
+            <img
+              v-bind:src="formData.imageUrl"
+            >
+          </v-avatar>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="10">
+            <v-file-input
+              @change="uploadImg"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Pick an avatar"
+              label="Upload Image"
+              outlined
+              dense
+            ></v-file-input>
+          </v-col>
         </v-row>
         <!-- first name text field -->
         <v-row justify="center">
@@ -18,7 +29,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="First name"
+              label="First Name"
               dense
               type="text"
               v-model="formData.firstname"
@@ -30,7 +41,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="Last name"
+              label="Last Name"
               dense
               type="text"
               v-model="formData.lastname"
@@ -77,7 +88,7 @@
             <v-text-field
               rounded-md
               outlined
-              label="Phone number"
+              label="Phone Number"
               dense
               type="text"
               v-model="formData.phone"
@@ -102,6 +113,19 @@
           </v-radio-group>
         </v-row>
 
+        <!-- alert to show that data is updated successfully -->
+        <v-row justify="center">
+          <v-col cols = "10">
+            <v-alert 
+            id="backsuccess-alert" 
+            v-if="isSuccessful"
+            dense
+            outlined
+            type="success">
+              <div>Information is successfully updated </div>
+            </v-alert>
+          </v-col>
+        </v-row>
         <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -145,10 +169,12 @@ export default {
         lastname: '',
         dateOfBirth: '1999-12-31',
         gender: 'male',
-        phone: ''
+        phone: '',
+        imageUrl: ''
       },
       dateMenu: false,
       errorMessage: "",
+      isSuccessful: false,
       loadingState: false,
       required(propertyType) {
         return (v) =>
@@ -165,10 +191,87 @@ export default {
       },
     };
   },
+
+  async mounted() {
+    try {
+      const payload = {
+        userToken : localStorage.getItem('userToken'),
+        id : this.$route.params.id
+      }
+      let response = await this.$store.dispatch('getApplicantProfileData', payload);
+      
+      let additionalData = response.additionalData
+      this.formData.firstname = additionalData.firstName
+      this.formData.lastname = additionalData.lastName
+      this.formData.imageUrl = response.imageUrl;
+      const dob = new Date(additionalData.dateOfBirth)
+      this.formData.dateOfBirth =  `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`
+
+      this.formData.phone = additionalData.phone
+      this.formData.gender = additionalData.gender
+    } catch (error) {
+      console.log(error)
+      this.errorMessage = "Can't retrieve user data currently"
+    }
+  },
+
   methods: {
     async onSubmit() {
-      console.log("on submit function")
+      this.loadingState = true;
+      this.errorMessage = ""
+      this.isSuccessful = false
+      try {
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          firstname : this.formData.firstname,
+          lastname : this.formData.lastname,
+          dateOfBirth : this.formData.dateOfBirth,
+          phone : this.formData.phone,
+          gender: this.formData.gender
+        }
+        let response = await this.$store.dispatch("setApplicantMandatoryData", payload);
+        this.loadingState = false;
+        this.isSuccessful = true;
+      } 
+      catch (error) {
+        console.log(error)
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+      }
     },
+    async uploadImg(file){
+      console.log(file);
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          file: file
+        }
+        let response = await this.$store.dispatch("updateImage", payload);
+        this.loadingState = false;
+        console.log("returned from imageUrl API");
+        console.log(response)
+        this.formData.imageUrl = response.image;
+        this.localStorage.setItem('userImageUrl', this.formData.imageUrl)
+        console.log(this.formData.imageUrl);
+      } 
+      catch (error) {
+        console.log(error)
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+      }
+    }
   },
 };
 </script>

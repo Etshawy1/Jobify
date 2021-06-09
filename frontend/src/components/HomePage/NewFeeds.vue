@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container v-if="checkLocalStorage()">
         <div class="text-center" v-if="loadingState">
         <v-progress-circular
             indeterminate
@@ -44,11 +44,6 @@
                     <v-card-actions>
                         <v-btn
                             color="blue darken-2"
-                            text>
-                            Share
-                        </v-btn>
-                        <v-btn
-                            color="blue darken-2"
                             text
                             @click="$router.push('/apply/' + item._id)">
                             Details
@@ -71,7 +66,7 @@
                         text
                         color="light-blue darken-4"
                         :to="{
-                            path: `editapplicantprofile/${currUserId}`,
+                            path: editPath,
                             query: { redirect: this.$route.query.redirect },
                         }"
                         @click="reveal = false">
@@ -126,8 +121,25 @@ export default {
             if(itemID==this.currUserId)
                 return false;
             return true;    
+        },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
         }
     },
+    computed: {
+        editPath() {
+            if(localStorage.getItem('userType') === 'applicant') {
+                return `editapplicantprofile/${this.currUserId}`
+            }
+            else {
+                return `editrecruiterprofile/${this.currUserId}`
+            }
+        }
+    }
 };
 </script>
 

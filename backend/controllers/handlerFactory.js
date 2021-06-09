@@ -16,7 +16,7 @@ exports.deleteOne = Model =>
     res.status(204).json(null);
   });
 
-exports.softDelete = Model => 
+exports.softDelete = Model =>
   catchAsync(async (req, res, next) => {
     const document = await Model.findById(req.params.id);
     if (!document) {
@@ -27,9 +27,9 @@ exports.softDelete = Model =>
     res.status(204).json({});
   });
 
-exports.updateOne = (Model,popOptions, additionalData) =>
+exports.updateOne = (Model, popOptions, additionalData) =>
   catchAsync(async (req, res, next) => {
-    req.body = {...req.body, ...additionalData};
+    req.body = { ...req.body, ...additionalData };
     let query = Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
@@ -79,7 +79,7 @@ exports.getMany = (Model, popOptions) =>
     res.status(200).json(doc);
   });
 
-exports.getAll = (Model, popOptions)  =>
+exports.getAll = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Model.find({}), req.query)
       .filter()
@@ -87,7 +87,8 @@ exports.getAll = (Model, popOptions)  =>
     if (popOptions) query = features.query.populate(popOptions);
     const docs = await features.query;
     const totalCount = await new APIFeatures(Model.find({}), req.query)
-      .filter().query.countDocuments();
-    
+      .filter()
+      .query.countDocuments();
+
     res.status(200).json(helpers.getPaging(docs, req, totalCount));
   });

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="checkLocalStorage()">
         <h2 style="text-align: center; margin: 10px">Update Job</h2>
         <div class="text-center" v-if="loadingState">
             <v-progress-circular
@@ -9,80 +9,86 @@
         </div>
         <v-form class="form-post" ref="form" v-if="!loadingState">
             <v-text-field 
-            style="margin: 20px"
-            label="Job Title"
-            outlined
-            :rules="ValidationRulesText"
-            :value="item.jobTitle"
-            required
+                style="margin: 20px"
+                label="Job Title"
+                outlined
+                :rules="ValidationRulesText"
+                :value="item.jobTitle"
+                v-model="item.jobTitle"
+                required
             ></v-text-field>
             <h3 style="margin: 10px; margin-left:15px">Job Details</h3>
             <v-select
-            style="margin: 20px"
-            :items="exprience_needed_list"
-            label="Experience Needed"
-            :value="item.experience"
-            outlined
-            :rules="ValidationRulesText"
-            required
+                style="margin: 20px"
+                :items="exprience_needed_list"
+                label="Experience Needed"
+                :value="item.experience"
+                v-model="item.experience"
+                outlined
+                :rules="ValidationRulesText"
+                required
             ></v-select>
             <v-select
-            style="margin: 20px"
-            :items="career_level_list"
-            label="Career Level"
-            outlined
-            :value="item.careerLevel"
-            :rules="ValidationRulesText"
-            required
+                style="margin: 20px"
+                :items="career_level_list"
+                label="Career Level"
+                outlined
+                :value="item.careerLevel"
+                v-model="item.careerLevel"
+                :rules="ValidationRulesText"
+                required
             ></v-select>
             <v-text-field 
-            style="margin: 20px; width:30%"
-            label="Salary (LE)"
-            type="number"
-            :value="item.salary"
-            outlined
-            :rules="ValidationRulesNumbers"
-            required
+                style="margin: 20px; width:30%"
+                label="Salary (LE)"
+                type="number"
+                :value="item.salary"
+                v-model="item.salary"
+                outlined
+                :rules="ValidationRulesNumbers"
+                required
             ></v-text-field>
             <v-select
-            style="margin: 20px"
-            :items="job_category_list"
-            label="Job Category"
-            outlined
-            :value="item.field"
-            :rules="ValidationRulesText"
-            required
+                style="margin: 20px"
+                :items="job_category_list"
+                label="Job Category"
+                outlined
+                :value="item.field"
+                v-model="item.field"
+                :rules="ValidationRulesText"
+                required
             ></v-select>
             <v-select
-            v-model="e7"
-            :items="skills_list"
-            label="Skills and Tools"
-            multiple
-            style="margin: 20px"
-            chips
-            v-on:change="getSelectedSkills"
-            :values="item.skills"
-            hint="You Can Select multiple skills"
-            persistent-hint
-            :rules="ValidationRulesSelect"
-            required
+                style="margin: 20px"
+                v-model="item.skills"
+                :items="skills_list"
+                label="Skills"
+                hint="You Can Select multiple skills"
+                multiple
+                chips
+                outlined
             ></v-select>
             <v-textarea
-            style="margin: 20px; margin-top:30px"
-            outlined
-            label="Job Description"
-            :value="item.jobDescription"
-            :rules="ValidationRulesText"
-            required
+                style="margin: 20px; margin-top:30px"
+                outlined
+                label="Job Description"
+                :value="item.jobDescription"
+                v-model="item.jobDescription"
+                :rules="ValidationRulesText"
+                required
             ></v-textarea>     
             <div style="margin:40px; text-align:center;">
                 <v-btn
                     color="primary"
                     large
                     width = "120"
+                    :disabled="addedSuccessfully"
                     @click="submitForm">
                     Update
                 </v-btn>
+                <v-alert v-if="show_success" style="margin-top: 20px"
+                        type="success"
+                >Job is updated successfully</v-alert>
             </div>
         </v-form>  
     </div>
@@ -93,7 +99,8 @@
 import {exprience_needed_list, career_level_list, job_category_list} from "../../const.js";
 export default {
     props:{
-        job_id: String
+        job_id: String,
+        init_skills: Array
     },
     data () {
         return {
@@ -176,16 +183,43 @@ export default {
       }
    },
    methods: {
-       submitForm(){
+       async submitForm(){
             if(this.$refs.form.validate()){
-                 console.log("valid");
+                console.log(this.item);
+                console.log("valid input, submit function");
+                this.addedSuccessfully = true;
+                this.errorMessage = "";
+                try {
+                    this.create_response = await this.$store.dispatch("editJob", {
+                    userToken : localStorage.getItem('userToken'),
+                    form_input: this.item
+                    });
+                    console.log(this.create_response);
+                    this.show_success=true;
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    this.$router.push({path: '/home'});
+                } 
+                catch (error) {
+                    console.log("an error occured")
+                    if(error.status === "fail") {
+                    this.errorMessage = error.msg
+                    }
+                    else {
+                    this.errorMessage = "Please try again later !"
+                    }
+                }
             } 
             else
                 alert("invalid input");
-      },
-      getSelectedSkills(selected){
-          this.selected_data.skills = selected;
-      }
+
+        },
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }  
     }
 };
 </script>

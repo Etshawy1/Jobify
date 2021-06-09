@@ -4,6 +4,7 @@
       <v-spacer></v-spacer>
       <v-col cols="6">
         <applicant-mandatory-form v-if="userType === 'applicant'"/>
+        <recruiter-mandaotry-form v-if="userType === 'recruiter'"/>
       </v-col>
       <v-spacer></v-spacer>
     </v-container>
@@ -12,10 +13,13 @@
 
 <script>
 import ApplicantMandatoryForm from "../../components/Applicant/applicantMandatoryForm.vue"
+import RecruiterMandaotryForm from "../../components/Recuiter/RecruiterMandatoryForm.vue"
+
 export default {
     name: "CompleteProfile",
     components: {
-        ApplicantMandatoryForm
+        ApplicantMandatoryForm,
+        RecruiterMandaotryForm
     },
     data() {
         return {
