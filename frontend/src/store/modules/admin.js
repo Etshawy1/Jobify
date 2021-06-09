@@ -53,7 +53,22 @@ const actions = {
           }
         })
         .then(response => {
-          console.log(response.data)
+          resolve(response.data)
+        })
+        .catch(error => {
+          reject(error.response.data)
+        })
+    })
+  },
+  adminViewedApplicantsCount ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/v1/admins/viewedcount', {
+          headers: {
+            Authorization: `Bearer ${payload.userToken}`
+          }
+        })
+        .then(response => {
           resolve(response.data)
         })
         .catch(error => {
@@ -70,7 +85,6 @@ const actions = {
           }
         })
         .then(response => {
-          console.log(response.data)
           resolve(response.data)
         })
         .catch(error => {
@@ -87,7 +101,6 @@ const actions = {
           }
         })
         .then(response => {
-          console.log(response.data)
           resolve(response.data)
         })
         .catch(error => {

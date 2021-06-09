@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="applicantProfile">
     <nav-bar-app />
     <v-container>
       <v-row no-gutters>
@@ -29,3 +29,9 @@ export default {
 
 
 
+<style scoped>
+.applicantProfile {
+  background-color: rgba(0, 0, 255, 0.6);
+  height: 100%;
+}
+</style>

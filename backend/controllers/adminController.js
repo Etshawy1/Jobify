@@ -172,3 +172,31 @@ exports.getRejectedApplicantsCount = catchAsync(async (req, res, next) => {
     jobsLastYear: jobsLastYear.length
   });
 });
+exports.getViewedApplicantsCount = catchAsync(async (req, res, next) => {
+  let day = new Date();
+  day.setMonth(day.getMonth() - 1);
+  day = day.toISOString();
+
+  const jobsLastWeak = await JobApplication.find({
+    $and: [{ lastUpdate: { $gt: day } }, { status: { $eq: 'applied' } }]
+  });
+  day = new Date();
+  day.setMonth(day.getMonth() - 1);
+  day = day.toISOString();
+
+  const jobsLastMonth = await JobApplication.find({
+    $and: [{ lastUpdate: { $gt: day } }, { status: { $eq: 'applied' } }]
+  });
+  day = new Date();
+  day.setMonth(day.getMonth() - 1);
+  day = day.toISOString();
+
+  const jobsLastYear = await JobApplication.find({
+    $and: [{ lastUpdate: { $gt: day } }, { status: { $eq: 'Not Selected' } }]
+  });
+  res.status(200).json({
+    jobsLastWeak: jobsLastWeak.length,
+    jobsLastMonth: jobsLastMonth.length,
+    jobsLastYear: jobsLastYear.length
+  });
+});
