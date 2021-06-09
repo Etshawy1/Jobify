@@ -4,6 +4,14 @@
           <v-col>
             <v-sheet color="white" rounded="lg">
                 <v-form v-model="valid" @submit.prevent="onSubmit">
+                    <v-row justify="center" v-if="loadingState">
+                        <div class="text-center">
+                            <v-progress-circular
+                                indeterminate
+                                color="primary"
+                            ></v-progress-circular>
+                        </div>
+                    </v-row>
                     <v-row justify="center">
                         <div class="text-h4 mt-3">Change Password</div>
                     </v-row>
@@ -123,6 +131,7 @@ export default {
             errorMessage: '',
             isSuccessful: false,
             resetToken : '',
+            loadingState : false,
             required(propertyType) {
               return (v) =>
                 (v && v.length > 0) || `Please enter Your ${propertyType}`;
@@ -145,15 +154,18 @@ export default {
             try {
                 console.log('On submit')
                 this.errorMessage = ''
-                this.isSuccessful = false
+                this.isSuccessful = false;
+                this.loadingState = true;
                 const payload = {
                     resetToken : this.resetToken,
                     password : this.password,
                     passwordConfirm : this.passwordConfirm
                 }
                 let response = await this.$store.dispatch('changePassword', payload)
+                this.loadingState = false;
                 this.isSuccessful = true;
             } catch (error) {
+                this.loadingState = false;
                 if(error.status === 'fail') {
                     this.errorMessage = error.msg;
                 }

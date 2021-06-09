@@ -62,7 +62,7 @@ export default {
       chart1: [3, 2, 4],
       chart2: [6, 5, 5],
       chart3: [3, 2, 9],
-      postedJobs: [0, 0, 0],
+      postedJobs: [5, 5, 5],
       rejectedJobs: [0, 0, 0],
       inConsiderationJobs: [0, 0, 0],
       Viewed: [0, 0, 0],

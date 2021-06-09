@@ -35,113 +35,179 @@ const routes = [
   {
     path: '/',
     name: "entry",
-    component : entry
+    component : entry,
+    meta : {
+      allowAnonymous : true
+    }
   },
   {
     path: '/home',
     name: 'Home',
     component: Home,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin',
     name: 'AdminHome',
     component: AdminHome,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin/skills',
     name: 'Skills',
     component: Skills,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin/job-titles',
     name: 'Jobtitles',
     component: JobTitles,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin/categories',
     name: 'Categories',
     component: Categories,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin/languages',
     name: 'Languages',
     component: Languages,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/admin/recruiters',
     name: 'ReviewRecruiters',
     component: ReviewRecruiters,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/signup',
     name: 'SignUp',
     component: SignUp,
+    meta : {
+      allowAnonymous : true
+    }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    meta : {
+      allowAnonymous : true
+    }
   },
   {
     path: '/completeprofile',
     name: 'CompleteProfile',
     component: CompleteProfile,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/apply/:id',
     name: 'JobApply',
     component: JobApply,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/jobs/:profile_id',
     name: 'MyJobs',
     component: MyJobs,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/review/:job_id',
     name: 'ReviewApplicants',
     component: ReviewApplicants,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/postjob',
     name: 'PostJob',
     component: PostJob,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/editjob/:job_id',
     name: 'EditJob',
     component: EditJob,
+    meta : {
+      allowAnonymous : false
+    }
   },
   // the applicant edit profile url
   {
     path: '/editapplicantprofile/:id',
     name: 'editApplicantProfile',
     component: editApplicantProfile,
+    meta : {
+      allowAnonymous : false
+    },
     children: [
       {
         path: '',
         name: 'editPersonalInfoForm',
         component: editPersonalInfoForm,
+        meta : {
+          allowAnonymous : false
+        }
       },
       {
         path: 'updatecv',
         name: 'updatecv',
         component: updateApplicantCVForm,
+        meta : {
+          allowAnonymous : false
+        }
       },
       {
         path: 'updateskills',
         name: 'updateskills',
         component: updateSkillsForm,
+        meta : {
+          allowAnonymous : false
+        }
       },
       {
         path: 'onlinepresence',
         name: 'onlinepresence',
         component: editOnlinePresenceForm,
+        meta : {
+          allowAnonymous : false
+        }
       },
       {
         path: 'careerinterests',
         name: 'careerinterests',
         component: editCareerInterests,
+        meta : {
+          allowAnonymous : false
+        }
       },
     ],
   },
@@ -149,32 +215,50 @@ const routes = [
     path: '/applicantprofile/:id',
     name: 'applicantProfile',
     component: applicantProfile,
+    meta : {
+      allowAnonymous : true
+    }
   },
   {
     path: '/editrecruiterprofile/:id',
     name: 'editRecruiterProfile',
     component: editRecruiterProfile,
+    meta : {
+      allowAnonymous : false
+    }
   },
   {
     path: '/recruiterprofile/:id',
     name: 'RecruiterProfile',
     component: RecruiterProfile,
+    meta : {
+      allowAnonymous : true
+    }
   },
   {
     path: "/password-reset",
     name: "forgotpassword",
     component: ForgotPassword,
     redirect: "/password-reset/reset",
+    meta : {
+      allowAnonymous : true
+    },
     children: [
       {
         path: "reset",
         name: "reset",
-        component: PasswordReset
+        component: PasswordReset,
+        meta : {
+          allowAnonymous : true
+        }
       },
       {
         path: "change/:resettoken",
         name: "change",
-        component: PasswordChange
+        component: PasswordChange,
+        meta : {
+          allowAnonymous : true
+        }
       }
     ]
   }
@@ -210,8 +294,11 @@ router.beforeEach((to, from, next) => {
     next({
       path: "/home"
     });
-  }
-  else {
+  } else if (!to.meta.allowAnonymous && !(localStorage.getItem('userToken'))) {
+    next({
+      path: "/",
+    });
+  }else {
     next();
   }
 });
