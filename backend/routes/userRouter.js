@@ -43,7 +43,7 @@ router.patch('/updatelanguage', userController.updateLanguages);
 router.patch('/updatejobtitle', userController.updateJobTitles);
 router.patch('/updatecategory', userController.updateCategories);
 router.patch('/updatesalary', userController.updateSalary);
-router.delete('/deleteskills', userController.deleteSkills);
+router.patch('/deleteskills', userController.deleteSkills);
 router.delete('/deletecategory', userController.deleteCategories);
 router.delete('/deletejobtitle', userController.deleteJobTitles);
 router.delete('/deletelanguage', userController.deleteLanguages);
