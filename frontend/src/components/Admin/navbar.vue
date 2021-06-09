@@ -4,6 +4,6 @@
     src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
   >
     <v-spacer></v-spacer>
-    <v-toolbar-title>Vuetify</v-toolbar-title>
+    <v-toolbar-title>Jobify</v-toolbar-title>
   </v-toolbar>
 </template>

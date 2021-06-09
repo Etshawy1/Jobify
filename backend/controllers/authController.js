@@ -35,9 +35,10 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}`;
   // insert the user data in the database
   let newUser = await User.create({
-    ..._.pick(req.body, ['email', 'password', 'type']),
+    ..._.pick(req.body, ['email', 'password', 'type', 'linkedIn']),
     last_login: Date.now(),
     passwordConfirm: req.body.password,
+    active: req.body.type !== constants.USER_TYPES.RECRUITER,
     imageUrl: `${url}/api/v1/static/images/users/default.png`,
   });
 

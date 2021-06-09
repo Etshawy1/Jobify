@@ -61,6 +61,7 @@ const userSchema = new mongoose.Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
   googleId: String,
+  linkedIn: String,
   imageGoogleUrl: String,
   imageUrl: String,
   last_login: Date,
