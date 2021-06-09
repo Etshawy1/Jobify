@@ -66,7 +66,7 @@
                         text
                         color="light-blue darken-4"
                         :to="{
-                            path: `editapplicantprofile/${currUserId}`,
+                            path: editPath,
                             query: { redirect: this.$route.query.redirect },
                         }"
                         @click="reveal = false">
@@ -130,6 +130,16 @@ export default {
             return true;  
         }
     },
+    computed: {
+        editPath() {
+            if(localStorage.getItem('userType') === 'applicant') {
+                return `editapplicantprofile/${this.currUserId}`
+            }
+            else {
+                return `editrecruiterprofile/${this.currUserId}`
+            }
+        }
+    }
 };
 </script>
 

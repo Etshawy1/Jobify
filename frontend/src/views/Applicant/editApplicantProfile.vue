@@ -1,5 +1,5 @@
 <template>
-  <div class="editApplicant">
+  <div class="editApplicant" v-if="checkLocalStorage()">
       <nav-bar/>
       <v-container>
           <v-row>
@@ -81,6 +81,15 @@ export default {
             ]
         }
     },
+    methods: {
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }
+    }
 
 }
 </script>
