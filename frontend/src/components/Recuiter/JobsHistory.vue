@@ -67,11 +67,6 @@
                     <v-card-actions>
                         <v-btn
                             color="blue darken-2"
-                            text>
-                            Share
-                        </v-btn>
-                        <v-btn
-                            color="blue darken-2"
                             text
                             @click="$router.push('/review/' + item._id)">
                             Review Applicants
@@ -129,6 +124,7 @@ export default {
           recruiter_user_id: this.profile_id
         })
         this.items = this.response.items;
+        this.items = this.items.reverse();
         this.loadingState = false;
         console.log(this.response);
       } 

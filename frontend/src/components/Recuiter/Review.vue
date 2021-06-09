@@ -126,6 +126,7 @@ export default {
                 job: this.job_id
             })
             this.items = this.response.items;
+            this.items = this.items.reverse();
             console.log("returned from get applicants successfuly");
             this.loadingState = false;
             console.log(this.response);
