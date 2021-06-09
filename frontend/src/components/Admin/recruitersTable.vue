@@ -149,8 +149,7 @@ export default {
           userToken: localStorage.getItem("userToken"),
           ...this.editedItem,
         });
-        this.recruiters.splice(this.editedIndex, 1);
-        this.totalCount--;
+        await this.getDataFromApi();
         this.loadingState = false;
         this.snackbarText = "Recruiter was rejected.";
         this.closeDelete();
@@ -168,8 +167,7 @@ export default {
           userToken: localStorage.getItem("userToken"),
           ...this.editedItem,
         });
-        this.recruiters.splice(this.editedIndex, 1);
-        this.totalCount--;
+        await this.getDataFromApi();
         this.loadingState = false;
         this.snackbarText = "Recruiter was accepted successfully.";
         this.closeUpdate();
@@ -203,7 +201,7 @@ export default {
       try {
         this.response = await this.$store.dispatch("adminGetAllRecruiters", {
           userToken: localStorage.getItem("userToken"),
-          limit: this.options.itemsPerPage,
+          limit: this.firstLoad ? 10 : this.options.itemsPerPage,
           offset: (this.options.page - 1) * this.options.itemsPerPage,
         });
         this.items = this.response.items;
