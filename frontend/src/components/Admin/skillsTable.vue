@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-skeleton-loader v-if="firstLoad" :loading="loadingState" type="table"></v-skeleton-loader>
+    <v-skeleton-loader
+      v-if="firstLoad"
+      :loading="loadingState"
+      type="table"
+    ></v-skeleton-loader>
     <v-data-table
       v-show="!firstLoad"
       :headers="headers"
@@ -119,12 +123,13 @@ export default {
     this.initialize();
   },
   watch: {
-    options:{
-      handler(){
+    options: {
+      handler() {
         this.getDataFromApi();
-      },deep:true
+      },
+      deep: true,
     },
-    dialog(val){
+    dialog(val) {
       val || this.close();
     },
     dialogDelete(val) {
@@ -154,8 +159,7 @@ export default {
           userToken: localStorage.getItem("userToken"),
           ...this.editedItem,
         });
-        this.skills.splice(this.editedIndex, 1);
-        this.totalCount--;
+        await this.getDataFromApi();
         this.loadingState = false;
         this.closeDelete();
       } catch (error) {
@@ -208,8 +212,7 @@ export default {
             userToken: localStorage.getItem("userToken"),
             ...this.editedItem,
           });
-          this.skills.push(this.editedItem);
-          this.totalCount++;
+          await this.getDataFromApi();
           this.loadingState = false;
           this.close();
         } catch (error) {
@@ -226,7 +229,7 @@ export default {
       try {
         this.response = await this.$store.dispatch("adminGetAllSkills", {
           userToken: localStorage.getItem("userToken"),
-          limit: this.options.itemsPerPage,
+          limit: this.firstLoad ? 10 : this.options.itemsPerPage,
           offset: (this.options.page - 1) * this.options.itemsPerPage,
         });
         this.items = this.response.items;

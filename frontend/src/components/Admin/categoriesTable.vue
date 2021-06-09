@@ -154,8 +154,7 @@ export default {
           userToken: localStorage.getItem("userToken"),
           ...this.editedItem,
         });
-        this.categories.splice(this.editedIndex, 1);
-        this.totalCount--;
+        await this.getDataFromApi();
         this.loadingState = false;
         this.closeDelete();
       } catch (error) {
@@ -208,8 +207,7 @@ export default {
             userToken: localStorage.getItem("userToken"),
             ...this.editedItem,
           });
-          this.categories.push(this.editedItem);
-          this.totalCount++;
+          await this.getDataFromApi();
           this.loadingState = false;
           this.close();
         } catch (error) {
@@ -226,7 +224,7 @@ export default {
       try {
         this.response = await this.$store.dispatch("adminGetAllCategories", {
           userToken: localStorage.getItem("userToken"),
-          limit: this.options.itemsPerPage,
+          limit: this.firstLoad ? 10 : this.options.itemsPerPage,
           offset: (this.options.page - 1) * this.options.itemsPerPage,
         });
         this.items = this.response.items;
