@@ -168,7 +168,7 @@ router.beforeEach((to, from, next) => {
     next({
       path: "/home"
     });
-  } 
+  }
   else {
     next();
   }

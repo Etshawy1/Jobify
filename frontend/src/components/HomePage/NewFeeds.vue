@@ -133,10 +133,10 @@ export default {
     computed: {
         editPath() {
             if(localStorage.getItem('userType') === 'applicant') {
-                return `editapplicantprofile/${currUserId}`
+                return `editapplicantprofile/${this.currUserId}`
             }
             else {
-                return `editrecruiterprofile/${currUserId}`
+                return `editrecruiterprofile/${this.currUserId}`
             }
         }
     }

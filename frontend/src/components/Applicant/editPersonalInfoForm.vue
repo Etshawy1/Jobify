@@ -5,12 +5,23 @@
       <v-container>
         <div class="formTitle text-h2 mb-3">Edit your personal info</div>
         <v-row justify="center">
-          <v-img
-            src="../../assets/profile.png"
-            max-width="30%"
-            max-height="20%"
-          >
-          </v-img>
+          <v-avatar rounded="circle">
+            <img
+              v-bind:src="formData.imageUrl"
+            >
+          </v-avatar>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="10">
+            <v-file-input
+              @change="uploadImg"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Pick an avatar"
+              label="Upload Image"
+              outlined
+              dense
+            ></v-file-input>
+          </v-col>
         </v-row>
         <!-- first name text field -->
         <v-row justify="center">
@@ -158,7 +169,8 @@ export default {
         lastname: '',
         dateOfBirth: '1999-12-31',
         gender: 'male',
-        phone: ''
+        phone: '',
+        imageUrl: ''
       },
       dateMenu: false,
       errorMessage: "",
@@ -191,7 +203,7 @@ export default {
       let additionalData = response.additionalData
       this.formData.firstname = additionalData.firstName
       this.formData.lastname = additionalData.lastName
-
+      this.formData.imageUrl = response.imageUrl;
       const dob = new Date(additionalData.dateOfBirth)
       this.formData.dateOfBirth =  `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`
 
@@ -232,6 +244,34 @@ export default {
         }
       }
     },
+    async uploadImg(file){
+      console.log(file);
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          file: file
+        }
+        let response = await this.$store.dispatch("updateImage", payload);
+        this.loadingState = false;
+        console.log("returned from imageUrl API");
+        console.log(response)
+        this.formData.imageUrl = response.image;
+        this.localStorage.setItem('userImageUrl', this.formData.imageUrl)
+        console.log(this.formData.imageUrl);
+      } 
+      catch (error) {
+        console.log(error)
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+      }
+    }
   },
 };
 </script>

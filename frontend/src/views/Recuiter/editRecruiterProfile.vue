@@ -1,5 +1,5 @@
 <template>
-    <div class="recruiterProfile">
+    <div class="recruiterProfile" v-if="checkLocalStorage()">
         <nav-bar></nav-bar>
         <v-container>
             <v-row justify="center">
@@ -19,6 +19,15 @@ export default {
     components: {
         editRecruiterForm,
         NavBar
+    },
+    methods: {
+        checkLocalStorage: function(){
+            console.log("entering check local storage");
+            console.log(localStorage.getItem('userToken'));
+            if(localStorage.getItem('userToken') == null)
+                return false;
+            return true;  
+        }
     }
 }
 </script>

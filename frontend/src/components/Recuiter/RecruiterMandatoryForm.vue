@@ -77,21 +77,6 @@
                 </v-textarea>
             </v-col>
         </v-row>
-        <!-- LinkedIN account -->
-        <v-row justify="center">
-          <v-col cols="10">
-            <v-text-field
-              rounded-md
-              outlined
-              label="Linked In Profile"
-              dense
-              type="text"
-              v-model="formData.linkedIn"
-              :rules="[required('Linked In')]"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
         <!-- alert to show any errors returning from back server -->
         <v-row justify="center">
           <v-col cols = "10">
@@ -208,7 +193,6 @@ export default {
             companyAddress: this.formData.companyAddress,
             employeesCount : this.formData.employeesCount,
             field: this.formData.field,
-            linkedIn: this.formData.linkedIn,
             description: this.formData.description
         }
         let response = await this.$store.dispatch("setRecruiterMandatoryData", payload);

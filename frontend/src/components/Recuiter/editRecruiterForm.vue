@@ -6,11 +6,24 @@
         <div class="recruiterTitle text-h2 mb-3">Edit Company Info</div>
         <v-row justify="center">
           <v-img
-            src="../../assets/companyInfo.png"
+            rounded="circle"
+            v-bind:src="formData.imageUrl"
             max-width="50%"
             max-height="20%"
           >
           </v-img>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="10">
+            <v-file-input
+              @change="uploadImg"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Pick an avatar"
+              label="Upload Image"
+              outlined
+              dense
+            ></v-file-input>
+          </v-col>
         </v-row>
         <!-- Recruiter info -->
         <v-row>
@@ -149,7 +162,8 @@ export default {
           employeesCount : '1-50 Employees',
           field: 'Accounting/Finance',
           linkedIn: '',
-          description: ''
+          description: '',
+          imageUrl: ''
         },
         employeesCountList : [
             '1-50 Employees',
@@ -224,6 +238,7 @@ export default {
           this.formData.field = additionalData.field;
           this.formData.description = additionalData.description;
           this.formData.linkedIn = additionalData.linkedIn;
+          this.formData.imageUrl = response.imageUrl;
       } catch (error) {
           console.log(error)
           this.errorMessage = "Couln't Retrieve Recruiter Data";
@@ -259,6 +274,34 @@ export default {
         }
       }
     },
+    async uploadImg(file){
+      console.log(file);
+      this.loadingState = true;
+      this.errorMessage = ""
+      try {
+        const payload = {
+          userToken : localStorage.getItem('userToken'),
+          file: file
+        }
+        let response = await this.$store.dispatch("updateImageRecuiter", payload);
+        this.loadingState = false;
+        console.log("returned from imageUrl API recuiter");
+        console.log(response)
+        this.formData.imageUrl = response.image;
+        this.localStorage.setItem('userImageUrl', this.formData.imageUrl)
+        console.log(this.formData.imageUrl);
+      } 
+      catch (error) {
+        console.log(error)
+        this.loadingState = false
+        if(error.status === "fail") {
+          this.errorMessage = error.msg
+        }
+        else {
+          this.errorMessage = "Please try again later !"
+        }
+      }
+    }
   },
 };
 </script>

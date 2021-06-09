@@ -6,7 +6,7 @@
                 color="primary"
             ></v-progress-circular>
         </div>
-        <v-row no-gutters  v-if="!lfoadingState">
+        <v-row no-gutters  v-if="!loadingState">
             <v-flex md8>
                 <v-card
                     class="mx-auto job-card"

@@ -18,7 +18,7 @@
                     <v-container wrap>
                         <v-row no-gutters>
                             <v-flex md10>
-                                <v-card-title>
+                                <v-card-title @click="$router.push(`/applicantprofile/${item.applicant._id}`)">
                                     {{item.applicant.additionalData.firstName}} {{item.applicant.additionalData.lastName}}
                                 </v-card-title>
                                 <v-card-subtitle>{{item.applicant.additionalData.currentJob}}</v-card-subtitle>
