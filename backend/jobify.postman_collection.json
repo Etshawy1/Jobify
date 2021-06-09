@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test2112@gmail.com\",\n\t\"password\": \"password\",\n    \"type\": \"applicant\"\n}",
+							"raw": "{\n\t\"email\": \"hesham@gmail.com\",\n\t\"password\": \"password\",\n    \"linkedIn\": \"https://www.linkedin.com/mhesham137\",\n    \"type\": \"recruiter\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"password\"\n}\n",
+							"raw": "{\n\t\"email\": \"test2@gmail.com\",\n\t\"password\": \"password\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4027,6 +4027,221 @@
 							"body": "{\n    \"_id\": \"60b7fc8141913e5408725e4c\",\n    \"deleted\": false,\n    \"name\": \"IT/Sotfware Development\",\n    \"__v\": 0\n}"
 						}
 					]
+				},
+				{
+					"name": "get applied recruiters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/admins/recruiters?limit=0&offset=0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"admins",
+								"recruiters"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}api/v1/admins/get-applied-recruiters?limit=1&offset=0",
+									"host": [
+										"{{URL}}api"
+									],
+									"path": [
+										"v1",
+										"admins",
+										"get-applied-recruiters"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-lgQ25rfT8t+ZKlT208YbyX7jkfM\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jun 2021 00:52:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 1,\n    \"items\": [],\n    \"limit\": 1,\n    \"offset\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Accept recruiter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/admins/recruiter/:{id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"admins",
+								"recruiter",
+								":{id}"
+							],
+							"variable": [
+								{
+									"key": "{id}",
+									"value": "60c007aaca05bb2a30d2847c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject recruiter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/admins/recruiter/:{id}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"admins",
+								"recruiter",
+								":{id}"
+							],
+							"variable": [
+								{
+									"key": "{id}",
+									"value": "60c007aaca05bb2a30d2847c"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -4583,7 +4798,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 5000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android Java developer full time\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
+							"raw": "{\r\n    \"jobDescription\": \"We are looking for a senior computer vision engineer for Mobile platforms, developers who can combine the programming skills with the art of image processing. This role is a bridge between using product requirement definition and algorithms/OpenCV/OpenGL libraries to develop features for various image, video editing. This position should take responsibility for the completion of designated software features; designing suitable solutions to complex problems with assistance from management.\",\r\n    \"field\": \"IT/Software Development\",\r\n    \"salary\": 5000,\r\n    \"careerLevel\": \"Entry Level\",\r\n    \"experience\": \"No experience\",\r\n    \"jobTitle\": \"Android Java developer asdfasdf\",\r\n    \"screeningQuestions\": [\"what makes you different?\", \"why should we hire you?\"],\r\n    \"skills\":[\"C++\", \"Java\", \"Git\"]\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4603,7 +4818,7 @@
 							"variable": [
 								{
 									"key": "{id}",
-									"value": "60b973c30e222736649bc6e0"
+									"value": "60c0216dca05bb2a30d28484"
 								}
 							]
 						}
