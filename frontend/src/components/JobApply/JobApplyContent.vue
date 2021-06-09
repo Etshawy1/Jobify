@@ -7,7 +7,7 @@
             ></v-progress-circular>
         </div>
         <v-row no-gutters  v-if="!loadingState">
-            <v-flex md8>
+            <v-flex md7>
                 <v-card
                     class="mx-auto job-card"
                     elevation="10"
@@ -192,11 +192,11 @@
 
             <v-spacer></v-spacer>
             
-            <v-flex md3>
+            <v-flex md4>
                 <v-card
                     class="mx-auto"
                     elevation="2"
-                    max-width="450"
+                    max-width="500"
                     outlined
                     hover>
                     <v-card-title @click="$router.push(`/recruiterprofile/${item.recruiter._id}`)">More about {{item.recruiter.additionalData.name}}</v-card-title>
