@@ -27,4 +27,6 @@ router.delete('/category/:id', adminController.deleteCategory);
 router.patch('/category/:id', adminController.updateCategory);
 
 router.get('/appliedjobscount', adminController.getCountJobs);
+router.get('/inconsiderationcount', adminController.getApplicantsCount);
+router.get('/notselectedcount', adminController.getRejectedApplicantsCount);
 module.exports = router;
