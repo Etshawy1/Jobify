@@ -38,7 +38,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     ..._.pick(req.body, ['email', 'password', 'type', 'linkedIn']),
     last_login: Date.now(),
     passwordConfirm: req.body.password,
-    active: req.body.type !== constants.USER_TYPES.RECRUITER,
     imageUrl: `${url}/api/v1/static/images/users/default.png`
   });
 
@@ -58,6 +57,7 @@ exports.signup = catchAsync(async (req, res, next) => {
       _id: newUser._id
     },
     {
+      active: req.body.type !== constants.USER_TYPES.RECRUITER,
       additionalData: additionalData._id,
       onModel:
         newUser.type === constants.USER_TYPES.RECRUITER
@@ -65,6 +65,10 @@ exports.signup = catchAsync(async (req, res, next) => {
           : constants.MODELS_NAMES.applicantData
     }
   );
+  if (req.body.type === constants.USER_TYPES.RECRUITER)
+  {
+    return next(new AppError('Pending Admin Approval Please check later', 403));
+  }
   await new Email('', newUser.email, '').sendWelcome();
   createSendToken(newUser, 201, res);
 });
@@ -79,6 +83,12 @@ exports.login = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email })
     .select('+password')
     .populate('additionalData');
+
+  const recruiter = await User.collection.findOne({ active: false, email });
+  if(recruiter)
+  {
+    return next(new AppError('Pending Admin Approval Please check later', 401));
+  }
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password', 401));
