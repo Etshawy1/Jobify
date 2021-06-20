@@ -3,15 +3,6 @@
     <img src="frontend\src\assets\Jobify_logo.png" width="700"/>
 </p>
 
-<div align="center">
-
-[![GitHub contributors](https://img.shields.io/github/contributors/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/graphs/contributors)
-[![GitHub forks](https://img.shields.io/github/forks/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/stargazers)
-
-</div>
-
-
 # Table of contents
 - [Screenshots](#Screenshots)
 - [Technologies](#Technologies)
@@ -20,23 +11,23 @@
 # Description
 Jobify is a web portal designed to make it easier for job seekers to browse for jobs matching their skills.
 # 📷 Screenshots
-![Home](Images\Home.png)
+![Home](https://github.com/Etshawy1/Jobify/blob/main/Images/Home.png)
 ## 🔑 User Management
-![Login](Images\login.png)
+![Login](https://github.com/Etshawy1/Jobify/blob/main/Images/login.png)
 ## 🙍‍♂️ Applicant
-![Edit](Images\editProfile.png)
-![UpdateSkills](Images\UpdateSkills.png)
-![UserProfile](Images\userProfile.png)
-![JobsHome](Images\jobsHome.png)
-![ApplyJob](Images\applyJob.png)
-![jobStatus](Images\jobStatus.png)
+![Edit](https://github.com/Etshawy1/Jobify/blob/main/Images/editProfile.png)
+![UpdateSkills](https://github.com/Etshawy1/Jobify/blob/main/Images/UpdateSkills.png)
+![UserProfile](https://github.com/Etshawy1/Jobify/blob/main/Images/userProfile.png)
+![JobsHome](https://github.com/Etshawy1/Jobify/blob/main/Images/jobsHome.png)
+![ApplyJob](https://github.com/Etshawy1/Jobify/blob/main/Images/applyJob.png)
+![jobStatus](https://github.com/Etshawy1/Jobify/blob/main/Images/jobStatus.png)
 
 ## 🏢 Recruiter
-![recruiterProfile](Images\recruiterProfile.png)
-![postJob](Images\postJob.png)
-![acceptJob](Images\acceptApply.png)
+![recruiterProfile](https://github.com/Etshawy1/Jobify/blob/main/Images/recruiterProfile.png)
+![postJob](https://github.com/Etshawy1/Jobify/blob/main/Images/postJob.png)
+![acceptJob](https://github.com/Etshawy1/Jobify/blob/main/Images/acceptApply.png)
 ## 🔐 Admin panel
-![ApproveApplications](Images\adminRecruiterApplications.png)
+![ApproveApplications](https://github.com/Etshawy1/Jobify/blob/main/Images/adminRecruiterApplications.png)
 
 # Technologies
 ## Frontend
