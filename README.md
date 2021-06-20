@@ -4,6 +4,7 @@
 </p>
 
 # Table of contents
+- [Description](#Description)
 - [Screenshots](#Screenshots)
 - [Technologies](#Technologies)
 - [Contributers](#Contributers)
