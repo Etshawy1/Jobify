@@ -4,43 +4,61 @@
 </p>
 
 # Table of contents
+
 - [Description](#Description)
 - [Screenshots](#Screenshots)
 - [Technologies](#Technologies)
 - [Contributers](#Contributers)
 
 # Description
+
 Jobify is a web portal designed to make it easier for job seekers to browse for jobs matching their skills.
+
 # 📷 Screenshots
-![Home](https://github.com/Etshawy1/Jobify/blob/main/Images/Home.png)
+
+![Home](./Images/Home.png)
+
 ## 🔑 User Management
-![Login](https://github.com/Etshawy1/Jobify/blob/main/Images/login.png)
+
+![Login](./Images/login.png)
+
 ## 🙍‍♂️ Applicant
-![Edit](https://github.com/Etshawy1/Jobify/blob/main/Images/editProfile.png)
-![UpdateSkills](https://github.com/Etshawy1/Jobify/blob/main/Images/UpdateSkills.png)
-![UserProfile](https://github.com/Etshawy1/Jobify/blob/main/Images/userProfile.png)
-![JobsHome](https://github.com/Etshawy1/Jobify/blob/main/Images/jobsHome.png)
-![ApplyJob](https://github.com/Etshawy1/Jobify/blob/main/Images/applyJob.png)
-![jobStatus](https://github.com/Etshawy1/Jobify/blob/main/Images/jobStatus.png)
+
+![Edit](./Images/editProfile.png)
+![UpdateSkills](./Images/UpdateSkills.png)
+![UserProfile](./Images/userProfile.png)
+![JobsHome](./Images/jobsHome.png)
+![ApplyJob](./Images/applyJob.png)
+![jobStatus](./Images/jobStatus.png)
 
 ## 🏢 Recruiter
-![recruiterProfile](https://github.com/Etshawy1/Jobify/blob/main/Images/recruiterProfile.png)
-![postJob](https://github.com/Etshawy1/Jobify/blob/main/Images/postJob.png)
-![acceptJob](https://github.com/Etshawy1/Jobify/blob/main/Images/acceptApply.png)
+
+![recruiterProfile](./Images/recruiterProfile.png)
+![postJob](./Images/postJob.png)
+![acceptJob](./Images/acceptApply.png)
+
 ## 🔐 Admin panel
-![ApproveApplications](https://github.com/Etshawy1/Jobify/blob/main/Images/adminRecruiterApplications.png)
+
+![AdminDashboard](./Images/admin-dashboard.png)
+![ApproveApplications](./Images/admin-skills.png)
+![ApproveApplications](./Images/adminRecruiterApplications.png)
 
 # Technologies
+
 ## Frontend
+
 - Vue js
 - Vuex
 - Vue Router
 - Vuetify
+
 ## Backend
-- Express js
+
+- ExpressJS
 - MongoDB
 
-# Contributers:
+# Contributers
+
 - [Hossam Alaa](https://github.com/hossamalaa69)
 - [Muhammed Ahmad Hesham](https://github.com/Etshawy1)
 - [Muhammed Alaa](https://github.com/MuhammeedAlaa)

@@ -334,7 +334,7 @@ exports.profilePictureMultipart = catchAsync(async (req, res, next) => {
  * @param {String} keyword - the item name or part of its name
  * @param {Request} req - express request object
  * @param {Object} popOptions - object contains what fields to be populated in the returned document
- * @returns {documents, totalCount}
+ * @returns {Object}
  */
 
 exports.getSearchQuery = async function getSearchQuery (

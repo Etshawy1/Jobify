@@ -7,8 +7,6 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest --watchAll --verbose --runInBand --detectOpenHandles --coverage",
-    "start:prod": "NODE_ENV=production nodemon server.js",
     "doc": "jsdoc -c jsdoc.json"
   },
   "jest": {
