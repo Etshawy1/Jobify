@@ -3,6 +3,14 @@
     <img src="frontend\src\assets\Jobify_logo.png" width="700"/>
 </p>
 
+<div align="center">
+
+[![GitHub contributors](https://img.shields.io/github/contributors/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/graphs/contributors)
+[![GitHub forks](https://img.shields.io/github/forks/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Etshawy1/Jobify)](https://github.com/Etshawy1/Jobify/stargazers)
+
+</div>
+
 # Table of contents
 
 - [Description](#Description)
